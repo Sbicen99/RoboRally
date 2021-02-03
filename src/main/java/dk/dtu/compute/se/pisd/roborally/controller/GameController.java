@@ -53,15 +53,21 @@ public class GameController {
         //   - the counter of moves in the game should be increased by one
         //     if the player is moved
 
+
         Player currentPlayer = board.getCurrentPlayer();
-        if (currentPlayer != null){
+
+        if (space.getPlayer() == null){
             currentPlayer.setSpace(space);
-            int number = board.getPlayerNumber(currentPlayer);
-            Player nextPlayer = board.getPlayer((number + 1) % board.getPlayersNumber());
-            board.setCurrentPlayer(nextPlayer);
-            board.setCount(board.getCount() + 1);
+            board.setNotEmpty("Ikke optaget");
+        } else if (space.getPlayer() != null){
+            board.setNotEmpty("Optaget");
+            return;
         }
 
+        int number = board.getPlayerNumber(currentPlayer);
+        Player nextPlayer = board.getPlayer((number + 1) % board.getPlayersNumber());
+        board.setCurrentPlayer(nextPlayer);
+        board.setCount(board.getCount() + 1);
     }
 
     /**

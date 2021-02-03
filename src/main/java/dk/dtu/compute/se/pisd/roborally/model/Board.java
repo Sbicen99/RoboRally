@@ -37,6 +37,10 @@ import static dk.dtu.compute.se.pisd.roborally.model.Phase.INITIALISATION;
  */
 public class Board extends Subject {
 
+    private String notEmpty;
+
+    private int count;
+
     public final int width;
 
     public final int height;
@@ -212,17 +216,17 @@ public class Board extends Subject {
         //      which is counted up every time a player makes a move; the
         //      status line should show the current player and the number
         //      of the current move!
-        return "Player = " + getCurrentPlayer().getName() + ", moves: " + getCount();
+        return "Player = " + getCurrentPlayer().getName() + ", moves: " + getCount() + ", message: " + getNotEmpty();
     }
     // TODO Assignment V1: add a counter along with a getter and a setter, so the
     //      state the board (game) contains the number of moves, which then can
     //      be used to extend the status message including the number of
 
-    /**
-     * Get- og setter, og tæller antal moves på boardet.
-     */
-    private int count;
 
+    /**
+     * Get- and setter
+     * @return count moves on the board
+     */
     public int getCount() {
         return count;
     }
@@ -232,5 +236,19 @@ public class Board extends Subject {
             this.count = count;
             notifyChange();
         }
+    }
+
+
+    /**
+     * Get- and setter
+     * @return if the field isn't empty return "the field isn't empty"
+     */
+    public String getNotEmpty() {
+        return (this.notEmpty == null ? "" :this.notEmpty);
+    }
+
+    public void setNotEmpty(String notEmpty) {
+        this.notEmpty = notEmpty;
+        notifyChange();
     }
 }
