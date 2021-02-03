@@ -212,11 +212,25 @@ public class Board extends Subject {
         //      which is counted up every time a player makes a move; the
         //      status line should show the current player and the number
         //      of the current move!
-        return "Player = " + getCurrentPlayer().getName();
+        return "Player = " + getCurrentPlayer().getName() + ", moves: " + getCount();
     }
-
     // TODO Assignment V1: add a counter along with a getter and a setter, so the
     //      state the board (game) contains the number of moves, which then can
     //      be used to extend the status message including the number of
 
+    /**
+     * Get- og setter, og tæller antal moves på boardet.
+     */
+    private int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        if (this.count != count){
+            this.count = count;
+            notifyChange();
+        }
+    }
 }
