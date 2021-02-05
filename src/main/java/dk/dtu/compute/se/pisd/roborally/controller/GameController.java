@@ -56,11 +56,11 @@ public class GameController {
 
         Player currentPlayer = board.getCurrentPlayer();
 
-        if (space.getPlayer() == null){
+        if (space.getPlayer() == null && space.board == board){
             currentPlayer.setSpace(space);
-            board.setNotEmpty("Ikke optaget");
+            board.setNotEmpty("The field is empty");
         } else if (space.getPlayer() != null){
-            board.setNotEmpty("Optaget");
+            board.setNotEmpty("The field isn't empty");
             return;
         }
 
