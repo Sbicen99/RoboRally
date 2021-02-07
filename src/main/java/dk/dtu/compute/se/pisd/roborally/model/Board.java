@@ -232,7 +232,7 @@ public class Board extends Subject {
 
     /**
      * Get- and setter
-     * @return if the field isn't empty return "the field isn't empty"
+     * @return if the field isn't empty return the message "the field isn't empty"
      */
     public String getNotEmpty() {
         return (this.notEmpty == null ? "" :this.notEmpty);

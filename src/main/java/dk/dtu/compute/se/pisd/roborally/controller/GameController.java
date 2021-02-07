@@ -49,7 +49,7 @@ public class GameController {
 
         if (space.getPlayer() == null && space.board == this.board){
             currentPlayer.setSpace(space);
-            board.setNotEmpty("The field is empty");
+            board.setNotEmpty("");
         } else if (space.getPlayer() != null){
             board.setNotEmpty("The field isn't empty");
             return;
