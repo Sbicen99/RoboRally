@@ -45,21 +45,20 @@ public class GameController {
      * @param space the space to which the current player should move
      */
     public void moveCurrentPlayerToSpace(@NotNull Space space)  {
-        Player currentPlayer = board.getCurrentPlayer();
 
         if (space.getPlayer() == null && space.board == board){
+            Player currentPlayer = board.getCurrentPlayer();
             currentPlayer.setSpace(space);
             board.setNotEmpty("");
+
+            int number = board.getPlayerNumber(currentPlayer);
+            Player nextPlayer = board.getPlayer((number + 1) % board.getPlayersNumber());
+            board.setCurrentPlayer(nextPlayer);
+            board.setCount(board.getCount() + 1);
+
         } else {
             board.setNotEmpty("The field isn't empty");
-            return;
         }
-
-        int number = board.getPlayerNumber(currentPlayer);
-        Player nextPlayer = board.getPlayer((number + 1) % board.getPlayersNumber());
-        board.setCurrentPlayer(nextPlayer);
-        board.setCount(board.getCount() + 1);
-
     }
 
     // XXX: V2
