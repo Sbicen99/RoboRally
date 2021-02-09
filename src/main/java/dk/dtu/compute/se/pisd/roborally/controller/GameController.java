@@ -48,6 +48,7 @@ public class GameController {
         if (space.getPlayer() == null && space.board == board){
             Player currentPlayer = board.getCurrentPlayer();
             currentPlayer.setSpace(space);
+            board.setNotEmpty("");
             int number = board.getPlayerNumber(currentPlayer);
             Player nextPlayer = board.getPlayer((number + 1) % board.getPlayersNumber());
             board.setCurrentPlayer(nextPlayer);
