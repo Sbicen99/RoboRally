@@ -47,10 +47,10 @@ public class GameController {
     public void moveCurrentPlayerToSpace(@NotNull Space space){
         Player currentPlayer = board.getCurrentPlayer();
 
-        if (space.getPlayer() == null && space.board == this.board){
+        if (space.getPlayer() == null && space.board == board){
             currentPlayer.setSpace(space);
             board.setNotEmpty("");
-        } else if (space.getPlayer() != null){
+        } else {
             board.setNotEmpty("The field isn't empty");
             return;
         }
