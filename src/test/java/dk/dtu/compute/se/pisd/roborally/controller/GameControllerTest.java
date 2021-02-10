@@ -1,5 +1,7 @@
 package dk.dtu.compute.se.pisd.roborally.controller;
 
+import com.mysql.cj.protocol.x.XMessage;
+import com.mysql.cj.protocol.x.XMessageHeader;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
@@ -34,39 +36,30 @@ class GameControllerTest {
         gameController = null;
     }
 
+
     @Test
     void someTest() {
         Board board = gameController.board;
+        Player player1 = board.getPlayer(0);
+        Player player2 = board.getPlayer(1);
 
-        Player player = board.getCurrentPlayer();
         gameController.moveCurrentPlayerToSpace(board.getSpace(0, 4));
 
-        Assertions.assertEquals(player, board.getSpace(0, 4).getPlayer(), "Player " + player.getName() + " should beSpace (0,4)!");
-    }
+        Assertions.assertEquals(player1, board.getSpace(0, 4).getPlayer(), "Player " + player1.getName() + " should beSpace (0,4)!");
+        Assertions.assertNull(board.getSpace(0,0).getPlayer(),"Space (0,0) should be empty");
+        Assertions.assertEquals(player2, board.getCurrentPlayer(),"Current player should be" + player2.getName()+"!");
+        
+        }
 
     @Test
     void moveForward() {
         Board board = gameController.board;
-        Player currentPlayer = board.getCurrentPlayer();
+        Player current = board.getCurrentPlayer();
 
-        gameController.moveForward(currentPlayer);
-        Assertions.assertEquals(currentPlayer, board.getSpace(0, 1).getPlayer(), "Player " + currentPlayer.getName() + " should beSpace (0,1)!");
-        Assertions.assertNull(board.getSpace(0, 0).getPlayer(), "Space (0,0) should be empty.");
-        Assertions.assertEquals(Heading.SOUTH, currentPlayer.getHeading(), "Player 0 should head SOUTH.");
-    }
+        gameController.moveForward(current);
 
-    @Test
-    void fastForward() {
-        Assertions.fail();
-    }
-
-    @Test
-    void turnRight() {
-        Assertions.fail();
-    }
-
-    @Test
-    void turnLeft() {
-        Assertions.fail();
+        Assertions.assertEquals(current, board.getSpace(0, 1).getPlayer(), "Player " + current.getName() + " should beSpace (0,1)!");
+        Assertions.assertNull(board.getSpace(0,0).getPlayer(),"Space (0,0) should be empty!");
+        Assertions.assertEquals(Heading.SOUTH, current.getHeading(), "Player 0 should head SOUTH");
     }
 }
