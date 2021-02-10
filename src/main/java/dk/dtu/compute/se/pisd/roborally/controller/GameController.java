@@ -204,13 +204,20 @@ public class GameController {
 
     // TODO Assignment V2
     public void moveForward(@NotNull Player player) {
-
+        Space current = player.getSpace();
+        if (current != null && player.board == current.board){
+            Space target = board.getNeighbour(current, player.getHeading());
+            if (target != null && target.getPlayer() == null){
+                player.setSpace(target);
+            }
+        }
     }
 
     // TODO Assignment V2
     public void fastForward(@NotNull Player player) {
 
-    }
+        }
+
 
     // TODO Assignment V2
     public void turnRight(@NotNull Player player) {
