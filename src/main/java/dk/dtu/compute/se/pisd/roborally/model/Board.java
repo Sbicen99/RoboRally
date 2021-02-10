@@ -209,7 +209,7 @@ public class Board extends Subject {
         // the students, this method gives a string representation of the current
         // status of the game
 
-        return "Player = " + getCurrentPlayer().getName() + ", moves: " + getCount() + ", message: " + getNotEmpty();
+        return "Player = " + getCurrentPlayer().getName() + ", moves: " + getCount() + ", message: " + getNotEmpty() + ", phase: " + getPhase();
     }
 
 

@@ -210,11 +210,17 @@ public class GameController {
         }
     }
 
+    /**
+     * Eksekverer metoden moveForward 2 gange.
+     * @param player
+     */
+
     // TODO Assignment V2
     public void fastForward(@NotNull Player player) {
-moveForward(player);
-moveForward(player);
+        for (int i = 0; i < 2; i++) {
+            moveForward(player);
         }
+    }
 
 
     // TODO Assignment V2
