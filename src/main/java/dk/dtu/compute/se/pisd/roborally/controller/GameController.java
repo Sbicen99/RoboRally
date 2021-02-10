@@ -218,7 +218,7 @@ public class GameController {
 
     // TODO Assignment V2
     public void turnRight(@NotNull Player player) {
-Hej
+H
     }
 
     // TODO Assignment V2
