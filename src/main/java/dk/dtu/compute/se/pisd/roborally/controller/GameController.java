@@ -217,8 +217,10 @@ public class GameController {
 
     // TODO Assignment V2
     public void fastForward(@NotNull Player player) {
-        for (int i = 0; i < 2; i++) {
+        int i = 0;
+        while (i < 2){
             moveForward(player);
+            i++;
         }
     }
 

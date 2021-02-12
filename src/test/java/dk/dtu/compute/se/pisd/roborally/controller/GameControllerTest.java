@@ -64,6 +64,10 @@ class GameControllerTest {
     }
 
     @Test
+    void fastForward() {
+    }
+
+    @Test
     void turnRight() {
     }
 
