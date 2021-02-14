@@ -199,6 +199,11 @@ public class GameController {
         }
     }
 
+    /**
+     * Rykker spilleren et felt frem.
+     * @param player
+     */
+
     // TODO Assignment V2
     public void moveForward(@NotNull Player player) {
         Space current = player.getSpace();
@@ -209,6 +214,7 @@ public class GameController {
             }
         }
     }
+
 
     /**
      * Eksekverer metoden moveForward 2 gange.
@@ -225,6 +231,10 @@ public class GameController {
     }
 
 
+    /**
+     * Metoden rykker spilleren et felt til højre
+     * @param player
+     */
     // TODO Assignment V2
     public void turnRight(@NotNull Player player) {
         Space current = player.getSpace();
@@ -236,6 +246,11 @@ public class GameController {
         }
     }
 
+
+    /**
+     * Metoden rykker spilleren et felt til venstre.
+     * @param player
+     */
     // TODO Assignment V2
     public void turnLeft(@NotNull Player player) {
         Space current = player.getSpace();

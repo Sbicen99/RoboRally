@@ -25,7 +25,7 @@ class GameControllerTest {
         for (int i = 0; i < 6; i++) {
             Player player = new Player(board, null,"Player " + i);
             board.addPlayer(player);
-            player.setSpace(board.getSpace(1,i));
+            player.setSpace(board.getSpace(1, i));
             player.setHeading(Heading.values()[(i + 1) % Heading.values().length]);
         }
         board.setCurrentPlayer(board.getPlayer(0));
@@ -58,20 +58,23 @@ class GameControllerTest {
 
         gameController.moveForward(current);
 
-        Assertions.assertEquals(current, board.getSpace(0, 1).getPlayer(), "Player " + current.getName() + " should beSpace (0,1)!");
-        Assertions.assertNull(board.getSpace(0,0).getPlayer(),"Space (0,0) should be empty!");
+        Assertions.assertEquals(current, board.getSpace(0, 0).getPlayer(), "Player " + current.getName() + " should beSpace (0,1)!");
+        Assertions.assertNull(board.getSpace(0,1).getPlayer(),"Space (0,0) should be empty!");
         Assertions.assertEquals(Heading.SOUTH, current.getHeading(), "Player 0 should head SOUTH");
     }
 
     @Test
     void fastForward() {
+
     }
 
     @Test
     void turnRight() {
+
     }
 
     @Test
     void turnLeft() {
+
     }
 }
