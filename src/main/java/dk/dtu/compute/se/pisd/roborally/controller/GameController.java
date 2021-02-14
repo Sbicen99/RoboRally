@@ -237,12 +237,8 @@ public class GameController {
      */
     // TODO Assignment V2
     public void turnRight(@NotNull Player player) {
-        Space current = player.getSpace();
-        if (current != null && player.board == current.board){
-            Space target = board.getNeighbour(current, player.getHeading().prev());
-            if (target != null && target.getPlayer() == null){
-                player.setSpace(target);
-            }
+        if (player != null && player.board == board){
+            player.setHeading(player.getHeading().next());
         }
     }
 
@@ -253,12 +249,8 @@ public class GameController {
      */
     // TODO Assignment V2
     public void turnLeft(@NotNull Player player) {
-        Space current = player.getSpace();
-        if (current != null && player.board == current.board){
-            Space target = board.getNeighbour(current, player.getHeading().next());
-            if (target != null && target.getPlayer() == null){
-                player.setSpace(target);
-            }
+        if (player != null && player.board == board){
+            player.setHeading(player.getHeading().prev());
         }
     }
 
