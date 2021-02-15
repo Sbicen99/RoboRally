@@ -223,12 +223,22 @@ public class GameController {
 
     // TODO Assignment V2
     public void fastForward(@NotNull Player player) {
+
         int i = 0;
-        while (i < 2){
+        while (i < 2) {
             moveForward(player);
             i++;
         }
+
+        // another option for implementation
+        /*
+        for (int i = 0; i < 2; i++) {
+            moveForward(player);
+        }
+         */
     }
+
+
 
 
     /**
@@ -240,6 +250,14 @@ public class GameController {
         if (player != null && player.board == board){
             player.setHeading(player.getHeading().next());
         }
+
+        // another option for implementation
+        /*
+        Space current =player.getSpace();
+        if (current != null && player.board == board){
+            player.setHeading(player.getHeading().next());
+        }
+         */
     }
 
 
@@ -252,6 +270,13 @@ public class GameController {
         if (player != null && player.board == board){
             player.setHeading(player.getHeading().prev());
         }
+
+        // another option for implementation
+        /*Space current =player.getSpace();
+        if (current != null && player.board == board){
+            player.setHeading(player.getHeading().prev());
+        }*/
+
     }
 
     public boolean moveCards(@NotNull CommandCardField source, @NotNull CommandCardField target) {
