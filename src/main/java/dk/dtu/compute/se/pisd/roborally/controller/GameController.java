@@ -230,7 +230,7 @@ public class GameController {
             i++;
         }
 
-        // another option for implementation
+        // another option for implementation😀
         /*
         for (int i = 0; i < 2; i++) {
             moveForward(player);
@@ -251,12 +251,18 @@ public class GameController {
             player.setHeading(player.getHeading().next());
         }
 
-        // another option for implementation
+        // another option for implementation 😀
         /*
         Space current =player.getSpace();
         if (current != null && player.board == board){
             player.setHeading(player.getHeading().next());
         }
+         */
+        /*
+        også kan man bare skrive
+
+         player.setHeading(player.getHeading().next()); 👁
+
          */
     }
 
@@ -271,7 +277,7 @@ public class GameController {
             player.setHeading(player.getHeading().prev());
         }
 
-        // another option for implementation
+        // another option for implementation 😀
         /*Space current =player.getSpace();
         if (current != null && player.board == board){
             player.setHeading(player.getHeading().prev());
