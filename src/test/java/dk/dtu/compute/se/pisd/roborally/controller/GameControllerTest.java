@@ -73,7 +73,9 @@ class GameControllerTest {
         Board board = gameController.board;
         Player current = board.getCurrentPlayer();
 
-        //Der tjekkes med udgangspunkt i heading = NORTH
+        /**
+         * Der tjekkes med udgangspunkt i heading = NORTH
+         */
         current.setHeading(Heading.NORTH);
 
         gameController.turnRight(current);
@@ -86,7 +88,9 @@ class GameControllerTest {
         Board board = gameController.board;
         Player current = board.getCurrentPlayer();
 
-        //Der tjekkes med udgangspunkt i heading = NORTH
+        /**
+         * Der tjekkes med udgangspunkt i heading = NORTH
+         */
         current.setHeading(Heading.NORTH);
 
         gameController.turnLeft(current);
