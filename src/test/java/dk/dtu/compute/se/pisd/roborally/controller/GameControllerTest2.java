@@ -10,6 +10,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
+/**
+ * et nyt GameControllerTest.
+ * @author M-Najib Herbawi, s181663.
+ */
 class GameControllerTest2 {
 
     private final int TEST_WIDTH = 8;
@@ -34,6 +39,7 @@ class GameControllerTest2 {
     void tearDown() {
         gameController = null;
     }
+
 
     @Test
     void moveForward() {
