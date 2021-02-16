@@ -218,6 +218,7 @@ public class GameController {
 
     /**
      * Eksekverer metoden moveForward 2 gange.
+     * @author Sercan Bicen, s185040
      * @param player
      */
 
@@ -229,20 +230,14 @@ public class GameController {
             moveForward(player);
             i++;
         }
-
-        // another option for implementation😀
-        /*
-        for (int i = 0; i < 2; i++) {
-            moveForward(player);
-        }
-         */
     }
 
 
 
 
     /**
-     * Metoden rykker spilleren et felt til højre
+     * Metoden vender spilleren til højre.
+     * @author Aqib, s205340
      * @param player
      */
     // TODO Assignment V2
@@ -250,25 +245,12 @@ public class GameController {
         if (player != null && player.board == board){
             player.setHeading(player.getHeading().next());
         }
-
-        // another option for implementation 😀
-        /*
-        Space current =player.getSpace();
-        if (current != null && player.board == board){
-            player.setHeading(player.getHeading().next());
-        }
-         */
-        /*
-        også kan man bare skrive
-
-         player.setHeading(player.getHeading().next()); 👁
-
-         */
     }
 
 
     /**
-     * Metoden rykker spilleren et felt til venstre.
+     * Metoden vender spilleren til venstre.
+     * @author Aqib, s205340
      * @param player
      */
     // TODO Assignment V2
@@ -276,12 +258,6 @@ public class GameController {
         if (player != null && player.board == board){
             player.setHeading(player.getHeading().prev());
         }
-
-        // another option for implementation 😀
-        /*Space current =player.getSpace();
-        if (current != null && player.board == board){
-            player.setHeading(player.getHeading().prev());
-        }*/
 
     }
 
