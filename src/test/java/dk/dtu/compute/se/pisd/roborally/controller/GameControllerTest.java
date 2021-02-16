@@ -74,7 +74,8 @@ class GameControllerTest {
         Player current = board.getCurrentPlayer();
 
         /**
-         * Der tjekkes med udgangspunkt i heading = NORTH
+         * Der tjekkes med udgangspunkt i heading = NORTH.
+         * @author Sercan Bicen, s185040
          */
         current.setHeading(Heading.NORTH);
 
@@ -89,7 +90,8 @@ class GameControllerTest {
         Player current = board.getCurrentPlayer();
 
         /**
-         * Der tjekkes med udgangspunkt i heading = NORTH
+         * Der tjekkes med udgangspunkt i heading = NORTH.
+         * @author Sercan Bicen, s185040
          */
         current.setHeading(Heading.NORTH);
 
