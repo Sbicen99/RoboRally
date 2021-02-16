@@ -207,10 +207,10 @@ public class GameController {
     // TODO Assignment V2
     public void moveForward(@NotNull Player player) {
         Space current = player.getSpace();
-        if (current != null && player.board == current.board){
+        if (current != null && player.board == current.board && player != null){
             Space target = board.getNeighbour(current, player.getHeading());
             if (target != null && target.getPlayer() == null){
-                player.setSpace(target);
+                target.setPlayer(player);
             }
         }
     }
@@ -224,12 +224,8 @@ public class GameController {
 
     // TODO Assignment V2
     public void fastForward(@NotNull Player player) {
-
-        int i = 0;
-        while (i < 2) {
-            moveForward(player);
-            i++;
-        }
+        moveForward(player);
+        moveForward(player);
     }
 
 
@@ -246,6 +242,7 @@ public class GameController {
             player.setHeading(player.getHeading().next());
         }
     }
+
 
 
     /**
