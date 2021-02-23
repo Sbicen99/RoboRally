@@ -243,6 +243,7 @@ public class GameController {
             Space target = board.getNeighbour(current, player.getHeading());
             if (target != null && target.getPlayer() == null){
                 target.setPlayer(player);
+                startProgrammingPhase();
             }
         }
     }
