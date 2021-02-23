@@ -204,11 +204,16 @@ public class Board extends Subject {
         return getSpace(x, y);
     }
 
+
+    /**
+     * Showing a message on the board that contains player name, moves, status on each field and the phase.
+     *
+     */
+
     public String getStatusMessage() {
         // This is actually a view aspect, but for making the first task easy for
         // the students, this method gives a string representation of the current
         // status of the game
-
         return "Player = " + getCurrentPlayer().getName() + ", moves: " + getCount() + ", message: " + getNotEmpty() + ", phase: " + getPhase();
     }
 

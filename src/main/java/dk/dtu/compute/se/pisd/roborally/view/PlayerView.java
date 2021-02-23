@@ -197,6 +197,7 @@ public class PlayerView extends Tab implements ViewObserver {
 
 
             } else {
+
                 if (!programPane.getChildren().contains(playerInteractionPanel)) {
                     programPane.getChildren().remove(buttonPanel);
                     programPane.add(playerInteractionPanel, Player.NO_REGISTERS, 0);
@@ -209,9 +210,7 @@ public class PlayerView extends Tab implements ViewObserver {
                     //      the player's choices of the interactive command card. The
                     //      following is just a mockup showing two options
 
-
                     /*
-
                     Button optionButton = new Button("Option1");
                     optionButton.setOnAction( e -> gameController.notImplemented());
                     optionButton.setDisable(false);
@@ -221,14 +220,12 @@ public class PlayerView extends Tab implements ViewObserver {
                     optionButton.setOnAction( e -> gameController.notImplemented());
                     optionButton.setDisable(false);
                     playerInteractionPanel.getChildren().add(optionButton);
-
-                */
-
-
+                    */
 
                     CommandCardField field = player.getProgramField(player.board.getStep());
                     if (field != null){
                         CommandCard card = field.getCard();
+                        //Defensiv programmering.
                         if (card != null){
                             for (Command option : card.command.getOptions()){
                                 Button optionButton = new Button(option.displayName);

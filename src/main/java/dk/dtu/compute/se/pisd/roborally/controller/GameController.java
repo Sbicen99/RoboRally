@@ -39,9 +39,9 @@ public class GameController {
     }
 
     /**
-     * This is just some dummy controller operation to make a simple move to see something
-     * happening on the board. This method should eventually be deleted!
-     *
+     * Moves the player and changes to another player.
+     * Checks if the field is empty.
+     * @author Sercan Bicen
      * @param space the space to which the current player should move
      */
     public void moveCurrentPlayerToSpace(@NotNull Space space)  {
@@ -58,6 +58,7 @@ public class GameController {
             board.setNotEmpty("The field isn't empty");
         }
     }
+
 
     // XXX: V2
     public void startProgrammingPhase() {
@@ -89,6 +90,9 @@ public class GameController {
         return new CommandCard(commands[random]);
     }
 
+    /**
+     * Once the player has completed programming his robot.
+     */
     // XXX: V2
     public void finishProgrammingPhase() {
         makeProgramFieldsInvisible();
@@ -120,11 +124,19 @@ public class GameController {
         }
     }
 
+    /**
+     * Executing command cards for all players.
+     */
+
     // XXX: V2
     public void executePrograms() {
         board.setStepMode(false);
         continuePrograms();
     }
+
+    /**
+     * Executing command cards for current player.
+     */
 
     // XXX: V2
     public void executeStep() {
@@ -179,7 +191,7 @@ public class GameController {
 
 
     /**
-     * udfør kommandomulighed og fortsæt.
+     * Executing command with option on turn right and turn left and continue.
      * @author Najib, s181663
      * @param option
      */
@@ -193,7 +205,7 @@ public class GameController {
             if (nextPlayerNumber < board.getPlayersNumber()) {
                 board.setCurrentPlayer(board.getPlayer(nextPlayerNumber));
             } else {
-                int step =board.getStep() + 1;
+                int step = board.getStep() + 1;
                 if (step < Player.NO_REGISTERS) {
                     makeProgramFieldsVisible(step);
                     board.setStep(step);
@@ -232,7 +244,7 @@ public class GameController {
     }
 
     /**
-     * Rykker spilleren et felt frem.
+     * Moving the player one field forward.
      * @param player
      */
 
@@ -250,7 +262,8 @@ public class GameController {
 
 
     /**
-     * Eksekverer metoden moveForward 2 gange.
+     * Moving the player two fields forward.
+     * Calling the moveForward method two times
      * @author Sercan Bicen, s185040
      * @param player
      */
@@ -266,8 +279,8 @@ public class GameController {
 
 
     /**
-     * Metoden vender spilleren til højre.
-     * @author Aqib, s205340
+     * Turning the player to the right.
+     * @author Sercan, s185040
      * @param player
      */
     // TODO Assignment V2
@@ -281,8 +294,8 @@ public class GameController {
 
 
     /**
-     * Metoden vender spilleren til venstre.
-     * @author Aqib, s205340
+     * Turning the player to the left.
+     * @author Sercan, s185040
      * @param player
      */
     // TODO Assignment V2
