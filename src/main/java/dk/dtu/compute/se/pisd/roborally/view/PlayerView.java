@@ -89,6 +89,10 @@ public class PlayerView extends Tab implements ViewObserver {
         // XXX  the following buttons should actually not be on the tabs of the individual
         //      players, but on the PlayersView (view for all players). This should be
         //      refactored.
+        /**
+         * addition to buttens.
+        * @author Camilla Bøjden, s205360.
+         */
 
         // XXX the respective GameController operations are not yet implemented
         finishButton = new Button("Finish Programming");
