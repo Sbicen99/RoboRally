@@ -243,6 +243,7 @@ public class GameController {
             Space target = board.getNeighbour(current, player.getHeading());
             if (target != null && target.getPlayer() == null){
                 target.setPlayer(player);
+                startProgrammingPhase();
             }
         }
     }
@@ -258,6 +259,7 @@ public class GameController {
     public void fastForward(@NotNull Player player) {
         moveForward(player);
         moveForward(player);
+        startProgrammingPhase();
     }
 
 
@@ -272,6 +274,7 @@ public class GameController {
     public void turnRight(@NotNull Player player) {
         if (player != null && player.board == board){
             player.setHeading(player.getHeading().next());
+            startProgrammingPhase();
         }
     }
 
@@ -286,6 +289,7 @@ public class GameController {
     public void turnLeft(@NotNull Player player) {
         if (player != null && player.board == board){
             player.setHeading(player.getHeading().prev());
+            startProgrammingPhase();
         }
 
     }
