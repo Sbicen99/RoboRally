@@ -245,6 +245,7 @@ public class GameController {
 
     /**
      * Moving the player one field forward.
+     * @author Najib s181663
      * @param player
      */
 
