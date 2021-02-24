@@ -222,6 +222,10 @@ public class PlayerView extends Tab implements ViewObserver {
                     playerInteractionPanel.getChildren().add(optionButton);
                     */
 
+                    /**
+                     * Getting options - Turn right and turn left buttons
+                     */
+
                     CommandCardField field = player.getProgramField(player.board.getStep());
                     if (field != null){
                         CommandCard card = field.getCard();
