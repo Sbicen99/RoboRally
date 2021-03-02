@@ -266,6 +266,7 @@ public class GameController {
      * Moving the player two fields forward.
      * Calling the moveForward method two times
      * @author Sercan Bicen, s185040
+     * @author Najib Hebrawi, s181663
      * @param player
      */
 
@@ -282,6 +283,7 @@ public class GameController {
     /**
      * Turning the player to the right.
      * @author Sercan, s185040
+     * @author Najib Hebrawi, s181663
      * @param player
      */
     // TODO Assignment V2
@@ -297,6 +299,7 @@ public class GameController {
     /**
      * Turning the player to the left.
      * @author Sercan, s185040
+     * @author Najib Hebrawi, s181663
      * @param player
      */
     // TODO Assignment V2
