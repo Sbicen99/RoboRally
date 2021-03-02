@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * A new GameControllerTest class.
- * @author M-Najib Herbawi, s181663.
+ * @author M-Najib Herbawi, s181663
  */
 class GameControllerTest {
 
