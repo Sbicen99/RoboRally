@@ -77,6 +77,11 @@ class GameControllerTest {
         Assertions.assertEquals(Heading.SOUTH, current.getHeading()," Player 0 should here south ");
 
     }
+
+    /**
+     * Moving the player three field forward(Test).
+     * @author Najib s181663
+     */
     @Test
     void fastForward2() {
         Board board = gameController.board;
