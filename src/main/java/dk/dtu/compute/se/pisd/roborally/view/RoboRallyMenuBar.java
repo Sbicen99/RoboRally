@@ -79,16 +79,22 @@ public class RoboRallyMenuBar extends MenuBar {
         update();
     }
 
+    /**
+     *
+     * @author Ekkart Kindler, ekki@dtu.dk
+     * @author Najib Hebrawi, s181663.
+     */
+
     public void update() {
         if (appController.isGameRunning()) {
-            newGame.setVisible(false);
+            newGame.setVisible(true);
             stopGame.setVisible(true);
             saveGame.setVisible(true);
-            loadGame.setVisible(false);
+            loadGame.setVisible(true);
         } else {
             newGame.setVisible(true);
-            stopGame.setVisible(false);
-            saveGame.setVisible(false);
+            stopGame.setVisible(true);
+            saveGame.setVisible(true);
             loadGame.setVisible(true);
         }
     }
