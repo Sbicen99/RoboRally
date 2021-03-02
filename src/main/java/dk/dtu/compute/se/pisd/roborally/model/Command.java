@@ -29,16 +29,18 @@ package dk.dtu.compute.se.pisd.roborally.model;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
+ * @author Najib Hebrawi, s181663.
  */
 public enum Command {
 
     // This is a very simplistic way of realizing different commands.
 
-    FORWARD("Fwd"),
+    FORWARD("Fwd(Move one step)"),
     RIGHT("Turn Right"),
     LEFT("Turn Left"),
-    FAST_FORWARD("Fast Fwd"),
+    FAST_FORWARD1("Fast Fwd(Move to step)"),
+    FAST_FORWARD2("Fast Fwd(Move three step)"),
+
 
 
     // XXX Assignment V3

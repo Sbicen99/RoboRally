@@ -234,9 +234,11 @@ public class GameController {
                 case LEFT:
                     this.turnLeft(player);
                     break;
-                case FAST_FORWARD:
-                    this.fastForward(player);
+                case FAST_FORWARD1:
+                    this.fastForward1(player);
                     break;
+                case FAST_FORWARD2:
+                    this.fastForward2(player);
                 default:
                     // DO NOTHING (for now)
             }
@@ -271,11 +273,25 @@ public class GameController {
      */
 
     // TODO Assignment V2
-    public void fastForward(@NotNull Player player) {
+    public void fastForward1(@NotNull Player player) {
         moveForward(player);
         moveForward(player);
         startProgrammingPhase();
     }
+
+    /**
+     * Moving the player three field forward.
+     * @author Najib s181663
+     * @param player
+     */
+    public void fastForward2(@NotNull Player player) {
+        moveForward(player);
+        moveForward(player);
+        moveForward(player);
+        startProgrammingPhase();
+    }
+
+
 
 
 
