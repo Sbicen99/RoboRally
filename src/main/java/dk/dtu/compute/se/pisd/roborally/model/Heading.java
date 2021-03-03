@@ -38,4 +38,13 @@ public enum Heading {
     public Heading prev() {
         return values()[(this.ordinal() + values().length - 1) % values().length];
     }
+
+
+    /**
+     * Turning the player 180 degrees.
+     * @author Najib Hebrawi, s181663
+     */
+    public Heading BackUTurn() {
+        return values()[(this.ordinal() + values().length - 2) % values().length];
+    }
 }

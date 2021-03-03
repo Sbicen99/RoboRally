@@ -40,6 +40,7 @@ public enum Command {
     LEFT("Turn Left"),
     FAST_FORWARD1("Fast Fwd(Move to step)"),
     FAST_FORWARD2("Fast Fwd(Move three step)"),
+    U_Turn("Turn back"),
 
 
 

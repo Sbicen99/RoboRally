@@ -239,6 +239,8 @@ public class GameController {
                     break;
                 case FAST_FORWARD2:
                     this.fastForward2(player);
+                case U_Turn:
+                    this.UTurn(player);
                 default:
                     // DO NOTHING (for now)
             }
@@ -320,6 +322,17 @@ public class GameController {
             player.setHeading(player.getHeading().prev());
         }
 
+    }
+
+    /**
+     * Turning the player U-Turn.
+     * @author Najib Hebrawi, s181663
+     * @param player
+     */
+    public void UTurn(@NotNull Player player){
+        if (player !=null && player.board == board){
+            player.setHeading(player.getHeading().BackUTurn());
+        }
     }
 
     public boolean moveCards(@NotNull CommandCardField source, @NotNull CommandCardField target) {

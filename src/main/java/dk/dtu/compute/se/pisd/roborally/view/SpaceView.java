@@ -45,7 +45,7 @@ public class SpaceView extends StackPane implements ViewObserver {
      * Ændre skærmopløsning.
      */
     final public static int SPACE_HEIGHT = 50; // 60; // 75;
-    final public static int SPACE_WIDTH = 50;  // 60; // 75;
+    final public static int SPACE_WIDTH = 70;  // 60; // 75;
 
     public final Space space;
 
