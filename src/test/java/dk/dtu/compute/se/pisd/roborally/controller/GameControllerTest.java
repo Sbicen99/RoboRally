@@ -65,6 +65,10 @@ class GameControllerTest {
         Assertions.assertEquals(player2, board.getCurrentPlayer(), "Current player should be " + player2.getName() +"!");
     }
 
+    /**
+     * Moving the player to field forward(Test).
+     * @author Najib s181663
+     */
     @Test
     void fastForward1() {
         Board board = gameController.board;
@@ -117,4 +121,22 @@ class GameControllerTest {
         Assertions.assertEquals(Heading.WEST, current.getHeading()," Player 0 should here West ");
 
     }
+
+
+
+    /**
+     * Moving the player U-Turn(Test).
+     * @author Najib s181663
+     */
+    @Test
+    void UTurn(){
+        Board board=gameController.board;
+        Player current= board.getCurrentPlayer();
+        current.setHeading(Heading.NORTH);
+
+        gameController.UTurn(current);
+
+        Assertions.assertEquals(Heading.SOUTH, current.getHeading()," Player 0 should here South ");
+    }
+
 }
