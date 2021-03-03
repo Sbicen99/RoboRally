@@ -184,6 +184,8 @@ public class Board extends Subject {
      * @return the space in the given direction; null if there is no (reachable) neighbour
      */
     public Space getNeighbour(@NotNull Space space, @NotNull Heading heading) {
+
+
         int x = space.x;
         int y = space.y;
         switch (heading) {
@@ -200,8 +202,8 @@ public class Board extends Subject {
                 x = (x + 1) % width;
                 break;
         }
-
         return getSpace(x, y);
+
     }
 
 
