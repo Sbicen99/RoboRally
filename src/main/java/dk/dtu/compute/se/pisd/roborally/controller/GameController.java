@@ -281,17 +281,8 @@ public class GameController {
             if (target != null && target.getPlayer() == null){
                 target.setPlayer(player);
             }
-
-
         }
-
-
-
     }
-
-
-
-
 
     /**
      * Moving the player two fields forward.
@@ -319,10 +310,6 @@ public class GameController {
     }
 
 
-
-
-
-
     /**
      * Turning the player to the right.
      * @author Sercan, s185040
@@ -335,7 +322,6 @@ public class GameController {
             player.setHeading(player.getHeading().next());
         }
     }
-
 
 
     /**
