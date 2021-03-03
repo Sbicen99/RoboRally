@@ -40,6 +40,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static com.sun.tools.internal.xjc.reader.Ring.add;
+
 /**
  * ...
  *
@@ -51,6 +53,11 @@ public class AppController implements Observer {
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
     final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "grey", "magenta");
 
+    final private List<String> Player_Board_Option = Arrays.asList("Big board","Small board");
+
+
+
+
     final private RoboRally roboRally;
 
     private GameController gameController;
@@ -59,7 +66,11 @@ public class AppController implements Observer {
         this.roboRally = roboRally;
     }
 
-    public void newGame() {
+    /**
+     * This method creates a table with 12 * 12..
+     * @author Najib s181663
+     */
+    public void newGameBigBoard(){
         ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
         dialog.setTitle("Player number");
         dialog.setHeaderText("Select number of players");
@@ -76,6 +87,76 @@ public class AppController implements Observer {
 
             // XXX the board should eventually be created programmatically or loaded from a file
             //     here we just create an empty board with the required number of players.
+            Board board = new Board(12,12);
+            gameController = new GameController(board);
+            int no = result.get();
+            for (int i = 0; i < no; i++) {
+                Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1));
+                board.addPlayer(player);
+                player.setSpace(board.getSpace(i % board.width, i));
+            }
+
+            // XXX: V2
+            board.setCurrentPlayer(board.getPlayer(0));
+            gameController.startProgrammingPhase();
+            roboRally.createBoardView(gameController);
+        }
+    }
+
+    /**
+     * This method of choosing between large or small board and starting the game.
+     * @author Najib s181663
+     */
+    public void newGame(){
+        ChoiceDialog<String> dialogg = new ChoiceDialog<>(Player_Board_Option.get(0), Player_Board_Option);
+        dialogg.setTitle("Board choice");
+        dialogg.setHeaderText("Select board");
+        Optional<String> results = dialogg.showAndWait();
+
+        if (results.isPresent()) {
+            if (gameController != null) {
+                // The UI should not allow this, but in case this happens anyway.
+                // give the user the option to save the game or abort this operation!
+                if (!stopGame()) {
+                    return;
+                }
+            }
+            String value = dialogg.getSelectedItem();
+            if (value == "Big board"){
+                newGameBigBoard();
+            }
+            else if (value == "Small board"){
+                newGameSmallBoard();
+
+            }
+
+        }
+    }
+
+
+
+    /**
+     * This method creates a table with 8*8.
+     * @author Najib s181663
+     */
+    public void newGameSmallBoard() {
+        ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
+        dialog.setTitle("Player number");
+        dialog.setHeaderText("Select number of players");
+        Optional<Integer> result = dialog.showAndWait();
+
+        if (result.isPresent()) {
+            if (gameController != null) {
+                // The UI should not allow this, but in case this happens anyway.
+                // give the user the option to save the game or abort this operation!
+                if (!stopGame()) {
+                    return;
+                }
+            }
+
+
+            // XXX the board should eventually be created programmatically or loaded from a file
+            //     here we just create an empty board with the required number of players.
             Board board = new Board(8,8);
             gameController = new GameController(board);
             int no = result.get();
@@ -87,10 +168,8 @@ public class AppController implements Observer {
 
             // XXX: V2
             board.setCurrentPlayer(board.getPlayer(0));
-
-            roboRally.createBoardView(gameController);
             gameController.startProgrammingPhase();
-
+            roboRally.createBoardView(gameController);
         }
     }
 
