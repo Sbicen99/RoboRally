@@ -228,6 +228,9 @@ public class GameController {
                 case FORWARD:
                     this.moveForward(player);
                     break;
+                case MoveBack:
+                    this.Moveback(player);
+                    break;
                 case RIGHT:
                     this.turnRight(player);
                     break;
@@ -239,6 +242,7 @@ public class GameController {
                     break;
                 case FAST_FORWARD2:
                     this.fastForward2(player);
+                    break;
                 case U_Turn:
                     this.UTurn(player);
                 default:
@@ -260,9 +264,33 @@ public class GameController {
             Space target = board.getNeighbour(current, player.getHeading());
             if (target != null && target.getPlayer() == null){
                 target.setPlayer(player);
+
             }
         }
     }
+
+    /**
+     * Moving the player one field back( without changing the direction).
+     * @author Najib s181663
+     * @param player
+     */
+    public void Moveback(@NotNull Player player){
+        Space current = player.getSpace();
+        if (current != null && player.board == current.board && player != null){
+            Space target = board.getNeighbourr(current, player.getHeading());
+            if (target != null && target.getPlayer() == null){
+                target.setPlayer(player);
+            }
+
+
+        }
+
+
+
+    }
+
+
+
 
 
     /**

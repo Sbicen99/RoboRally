@@ -206,6 +206,33 @@ public class Board extends Subject {
 
 
     /**
+     * Moving the player one field back( without changing the direction).
+     * @author Najib s181663
+     * @param space, heading.
+     */
+    public Space getNeighbourr(@NotNull Space space, @NotNull Heading heading) {
+        int x = space.x;
+        int y = space.y;
+        switch (heading) {
+            case NORTH:
+                y = (y + 1) % height;
+                break;
+            case EAST:
+                x = (x + width - 1) % width;
+                break;
+            case SOUTH:
+                y = (y + height - 1) % height;
+                break;
+            case WEST:
+                x = (x + 1) % width;
+                break;
+        }
+
+        return getSpace(x, y);
+    }
+
+
+    /**
      * Showing a message on the board that contains player name, moves, status on each field and the phase.
      *
      */
