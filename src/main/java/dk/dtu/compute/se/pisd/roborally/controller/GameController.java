@@ -41,11 +41,13 @@ public class GameController {
     /**
      * Moves the player and changes to another player.
      * Checks if the field is empty.
-     * @author Sercan Bicen
+     * @author Sercan Bicen, s185040
+     * @author Najib Hebrawi s181663
+     * @implNote ( && space == board.getSpace(0,0)) do, we cant click in the board with the mouse.
      * @param space the space to which the current player should move
      */
     public void moveCurrentPlayerToSpace(@NotNull Space space)  {
-        if (space.getPlayer() == null && space.board == board){
+        if (space.getPlayer() == null && space.board == board && space == board.getSpace(0,0)){
             Player currentPlayer = board.getCurrentPlayer();
             currentPlayer.setSpace(space);
             board.setNotEmpty("");
