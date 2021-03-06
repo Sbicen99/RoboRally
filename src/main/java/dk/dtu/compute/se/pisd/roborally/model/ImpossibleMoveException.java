@@ -2,25 +2,28 @@ package dk.dtu.compute.se.pisd.roborally.model;
 
 import org.jetbrains.annotations.NotNull;
 
-public class ImpossibleMoveException extends Exception {
 
 
 
-
+class ImpossibleMoveException extends Exception {
     private Board board;
     private Player player;
     private Space space;
     private Heading heading;
 
-    public ImpossibleMoveException(Player player, Space space, Heading heading) {
+
+
+
+
+    public ImpossibleMoveException(Player player,
+                                   Space space,
+                                   Heading heading) {
         super("Move impossible");
         this.player = player;
         this.space = space;
         this.heading = heading;
     }
 // ...
-
-
 
     public void moveForward(@NotNull Player player) {
         if (player.board == board) {
@@ -35,12 +38,7 @@ public class ImpossibleMoveException extends Exception {
 // we just catch the exception so that
 // we do no pass it on to the caller
 // (which would be very bad style).
-                }
-            }
-        }
-    }
-
-
+                } } } }
 
     private void moveToSpace(
             @NotNull Player player,
@@ -59,6 +57,5 @@ public class ImpossibleMoveException extends Exception {
         }
         player.setSpace(space);
     }
-
 }
 
