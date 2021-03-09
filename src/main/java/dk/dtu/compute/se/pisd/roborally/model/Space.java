@@ -23,6 +23,9 @@ package dk.dtu.compute.se.pisd.roborally.model;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * ...
  *
@@ -64,8 +67,6 @@ public class Space extends Subject {
             notifyChange();
         }
     }
-
-
 
     void playerChanged() {
         // This is a minor hack; since some views that are registered with the space

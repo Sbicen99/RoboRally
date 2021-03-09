@@ -27,9 +27,12 @@ import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeLineCap;
 import org.jetbrains.annotations.NotNull;
 
@@ -48,6 +51,9 @@ public class SpaceView extends StackPane implements ViewObserver {
     final public static int SPACE_WIDTH = 70;  // 60; // 75;
 
     public final Space space;
+
+
+
 
     public SpaceView(@NotNull Space space) {
         this.space = space;
@@ -73,6 +79,43 @@ public class SpaceView extends StackPane implements ViewObserver {
         space.attach(this);
         update(space);
     }
+
+
+    /**
+     * Adding a wall to the board with Pane
+     * @author Sercan Bicen
+     */
+
+    private void addingWallsWithPane() {
+        Pane pane = new Pane();
+        Rectangle rectangle = new Rectangle(0.0, 0.0, SPACE_WIDTH, SPACE_HEIGHT);
+        rectangle.setFill(Color.TRANSPARENT);
+        pane.getChildren().add(rectangle);
+
+        Line line = new Line(2, SPACE_WIDTH-2, SPACE_HEIGHT-2, SPACE_HEIGHT-2);
+        line.setStroke(Color.RED);
+        line.setStrokeWidth(5);
+        pane.getChildren().add(line);
+        this.getChildren().add(pane);
+    }
+
+
+    /**
+     * Adding a wall to the board with Canvas.
+     * @author Sercan Bicen
+     */
+
+    private void addingWallsWithCanvas() {
+        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
+        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
+        graphicsContext.setStroke(Color.RED);
+        graphicsContext.setLineWidth(5);
+        graphicsContext.setLineCap(StrokeLineCap.ROUND);
+
+        graphicsContext.strokeLine(2, SPACE_HEIGHT-2, SPACE_WIDTH-2, SPACE_HEIGHT-2);
+        this.getChildren().add(canvas);
+    }
+
 
     private void updatePlayer() {
         this.getChildren().clear();

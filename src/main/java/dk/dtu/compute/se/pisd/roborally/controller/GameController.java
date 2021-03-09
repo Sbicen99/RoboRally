@@ -47,7 +47,7 @@ public class GameController {
      * @param space the space to which the current player should move
      */
     public void moveCurrentPlayerToSpace(@NotNull Space space)  {
-        if (space.getPlayer() == null && space.board == board && space == board.getSpace(0,0)){
+        if (space.getPlayer() == null && space.board == board){
             Player currentPlayer = board.getCurrentPlayer();
             currentPlayer.setSpace(space);
             board.setNotEmpty("");
@@ -58,6 +58,7 @@ public class GameController {
 
         } else {
             board.setNotEmpty("The field isn't empty");
+
         }
     }
 
@@ -269,6 +270,7 @@ public class GameController {
             }
         }
     }
+
 
     /**
      * Moving the player one field back( without changing the direction).
