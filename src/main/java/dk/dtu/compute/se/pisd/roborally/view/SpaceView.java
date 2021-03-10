@@ -36,6 +36,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeLineCap;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
+
 /**
  * ...
  *
@@ -50,12 +52,16 @@ public class SpaceView extends StackPane implements ViewObserver {
     final public static int SPACE_HEIGHT = 38; // 60; // 75;
     final public static int SPACE_WIDTH = 70;  // 60; // 75;
 
+
     public final Space space;
 
 
 
 
     public SpaceView(@NotNull Space space) {
+
+
+
         this.space = space;
 
         // XXX the following styling should better be done with styles
@@ -67,17 +73,20 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.setMinHeight(SPACE_HEIGHT);
         this.setMaxHeight(SPACE_HEIGHT);
 
+
         if ((space.x + space.y) % 2 == 0) {
             this.setStyle("-fx-background-color: white;");
         } else {
             this.setStyle("-fx-background-color: black;");
         }
 
+
         // updatePlayer();
 
         // This space view should listen to changes of the space
         space.attach(this);
         update(space);
+
     }
 
 
@@ -105,7 +114,7 @@ public class SpaceView extends StackPane implements ViewObserver {
      * @author Sercan Bicen
      */
 
-    private void addingWallsWithCanvas() {
+    protected void addingWallsWithCanvas() {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
         graphicsContext.setStroke(Color.RED);
@@ -134,6 +143,7 @@ public class SpaceView extends StackPane implements ViewObserver {
             arrow.setRotate((90*player.getHeading().ordinal())%360);
             this.getChildren().add(arrow);
         }
+
     }
 
     @Override
@@ -141,6 +151,8 @@ public class SpaceView extends StackPane implements ViewObserver {
         if (subject == this.space) {
             updatePlayer();
         }
+
+
     }
 
 }

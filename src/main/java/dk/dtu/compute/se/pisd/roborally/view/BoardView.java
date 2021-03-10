@@ -42,6 +42,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class BoardView extends VBox implements ViewObserver {
 
+
     private Board board;
 
     private GridPane mainBoardPane;
