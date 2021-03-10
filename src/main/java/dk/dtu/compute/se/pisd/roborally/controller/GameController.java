@@ -268,6 +268,9 @@ public class GameController {
                 try {
                     moveToSpace(player, target, heading);
                 } catch (ImpossibleMoveException e) {
+                    e.getCause();
+                    e.getMessage();
+                    e.printStackTrace();
 // we don't do anything here for now;
 // we just catch the exception so that
 // we do no pass it on to the caller
@@ -284,10 +287,9 @@ public class GameController {
      * @param heading
      * @throws ImpossibleMoveException
      */
-    private void moveToSpace(
-            @NotNull Player player,
-            @NotNull Space space,
-            @NotNull Heading heading) throws ImpossibleMoveException {
+    private void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading)
+
+      throws ImpossibleMoveException {
         Player other = space.getPlayer();
         if (other != null){
             Space target = board.getNeighbour(space, heading);

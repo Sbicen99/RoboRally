@@ -35,10 +35,6 @@ import org.jetbrains.annotations.NotNull;
                 try {
                     moveToSpace(player, target, heading);
                 } catch (ImpossibleMoveException e) {
-// we don't do anything here for now;
-// we just catch the exception so that
-// we do no pass it on to the caller
-// (which would be very bad style).
                 }
             }
         }
@@ -52,8 +48,6 @@ import org.jetbrains.annotations.NotNull;
         if (other != null){
             Space target = board.getNeighbour(space, heading);
             if (target != null) {
-// XXX Note that there might be additional problems
-// with infinite recursion here!
                 moveToSpace(other, target, heading);
             } else {
                 throw new ImpossibleMoveException(player, space, heading);
