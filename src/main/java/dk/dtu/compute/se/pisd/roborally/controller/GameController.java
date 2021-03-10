@@ -259,8 +259,6 @@ public class GameController {
      * @author Najib s181663
      * @param player
      */
-
-    // TODO Assignment V2
     public void moveForward(@NotNull Player player) {
         if (player.board == board && player != null) {
             Space space = player.getSpace();
