@@ -5,7 +5,8 @@ import org.jetbrains.annotations.NotNull;
 
 
 
-class ImpossibleMoveException extends Exception {
+ public class ImpossibleMoveException extends Exception {
+
     private Board board;
     private Player player;
     private Space space;
@@ -15,9 +16,9 @@ class ImpossibleMoveException extends Exception {
 
 
 
-    public ImpossibleMoveException(Player player,
-                                   Space space,
-                                   Heading heading) {
+     public ImpossibleMoveException(Player player,
+                                    Space space,
+                                    Heading heading) {
         super("Move impossible");
         this.player = player;
         this.space = space;
@@ -38,7 +39,10 @@ class ImpossibleMoveException extends Exception {
 // we just catch the exception so that
 // we do no pass it on to the caller
 // (which would be very bad style).
-                } } } }
+                }
+            }
+        }
+    }
 
     private void moveToSpace(
             @NotNull Player player,

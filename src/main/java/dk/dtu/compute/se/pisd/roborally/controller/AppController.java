@@ -64,8 +64,7 @@ public class AppController implements Observer {
     }
 
     /**
-     * This method creates a table with 12 * 12..
-     *
+     * This method creates a table with 10 * 10..
      * @author Najib s181663
      */
     public void newGameBigBoard() {
@@ -83,9 +82,10 @@ public class AppController implements Observer {
                 }
             }
 
+
             // XXX the board should eventually be created programmatically or loaded from a file
             //     here we just create an empty board with the required number of players.
-            Board board = new Board(12, 12);
+            Board board = new Board(10, 10);
             gameController = new GameController(board);
             int no = result.get();
             for (int i = 0; i < no; i++) {
@@ -193,7 +193,32 @@ public class AppController implements Observer {
      * @return true if the current game was stopped, false otherwise
      */
     public boolean stopGame() {
+
+//        if (gameController != null) {
+//
+//            Alert alert = new Alert(AlertType.CONFIRMATION);
+//            alert.setTitle("stop the game");
+//            String message =" Confirm to stop the game and save the game  or cancel to not save the game";
+//            alert.setContentText(message);
+//            Optional<ButtonType> result = alert.showAndWait();
+//            if ((!result.isPresent() || result.get() != ButtonType.OK)){
+//
+//                return true;
+//            }else if ((result.isPresent() && ( result.get() == ButtonType.OK))){
+//                saveGame();
+//            }
+//            // here we save the game (without asking the user).
+//            gameController = null;
+//            roboRally.createBoardView(null);
+//            return true;
+//        }
+//        return false;
+//    }
+//
+
         if (gameController != null) {
+
+
 
             // here we save the game (without asking the user).
             saveGame();
