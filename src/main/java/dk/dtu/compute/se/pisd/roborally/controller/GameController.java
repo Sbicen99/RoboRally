@@ -257,6 +257,7 @@ public class GameController {
     /**
      * Moving the player one field forward.
      * @author Najib s181663
+     * @author Sercan, s185040
      * @param player
      */
     public void moveForward(@NotNull Player player) {
@@ -282,6 +283,7 @@ public class GameController {
 
     /**
      * @author Najib Hebrawi s181663
+     * @author Sercan, s185040
      * @param player
      * @param space
      * @param heading
