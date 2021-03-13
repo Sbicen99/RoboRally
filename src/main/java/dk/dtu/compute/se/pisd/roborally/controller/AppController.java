@@ -28,6 +28,7 @@ import dk.dtu.compute.se.pisd.roborally.RoboRally;
 
 import dk.dtu.compute.se.pisd.roborally.model.*;
 
+import dk.dtu.compute.se.pisd.roborally.view.SpaceView;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -52,7 +53,8 @@ public class AppController implements Observer {
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
     final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "grey", "magenta");
 
-    final private List<String> Player_Board_Option = Arrays.asList("Big board", "Small board");
+    final private List<String> Player_Board_Option = Arrays.asList("Big board", "Small board/does not exist right now");
+
 
 
     final private RoboRally roboRally;
@@ -99,6 +101,8 @@ public class AppController implements Observer {
             gameController.startProgrammingPhase();
             roboRally.createBoardView(gameController);
         }
+
+
     }
 
     /**
@@ -123,7 +127,7 @@ public class AppController implements Observer {
             String value = dialogg.getSelectedItem();
             if (value == "Big board") {
                 newGameBigBoard();
-            } else if (value == "Small board") {
+            } else if (value == "Small board/does not exist right now") {
                 newGameSmallBoard();
 
             }
@@ -155,7 +159,7 @@ public class AppController implements Observer {
 
             // XXX the board should eventually be created programmatically or loaded from a file
             //     here we just create an empty board with the required number of players.
-            Board board = new Board(8, 8);
+            Board board = new Board(10, 10);
             gameController = new GameController(board);
             int no = result.get();
             for (int i = 0; i < no; i++) {

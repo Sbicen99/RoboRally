@@ -22,7 +22,6 @@
 package dk.dtu.compute.se.pisd.roborally.view;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
-import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 import javafx.scene.canvas.Canvas;
@@ -30,13 +29,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
+import javafx.scene.shape.*;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.StrokeLineCap;
 import org.jetbrains.annotations.NotNull;
-
-import java.awt.*;
 
 /**
  * ...
@@ -49,8 +45,11 @@ public class SpaceView extends StackPane implements ViewObserver {
     /**
      * Change screen resolution.
      */
-    final public static int SPACE_HEIGHT = 38; // 60; // 75;
+    final public static int SPACE_HEIGHT = 50; // 60; // 75;
     final public static int SPACE_WIDTH = 70;  // 60; // 75;
+
+
+
 
 
     public final Space space;
@@ -87,7 +86,48 @@ public class SpaceView extends StackPane implements ViewObserver {
         space.attach(this);
         update(space);
 
+
+        setBlueConveyorBeltInBoard();
+
+
+
     }
+
+
+    public void setBlueConveyorBeltInBoard(){
+        for (int i = 0; i < space.x; i++) {
+            for (int j = 0; j < space.y; j++) {
+                if (space.x == 3 && space.y == 3){
+                    addingBlueconveyorbelt();
+               }else if (space.x==3 && space.y==4){
+                    addingBlueconveyorbelt();
+                }else if (space.x==3 && space.y==5 ){
+                    addingBlueconveyorbelt();
+                }else if (space.x==3 && space.y==6){
+                    addingBlueconveyorbelt();
+                }else if (space.x==4 && space.y==6){
+                    addingBlueconveyorbelt();
+                }else if (space.x==5 && space.y==6){
+                    addingBlueconveyorbelt();
+                }else if (space.x==6 && space.y==6){
+                    addingBlueconveyorbelt();
+                }else if (space.x==6 && space.y==5){
+                    addingBlueconveyorbelt();
+                }else if (space.x==6 && space.y==4){
+                    addingBlueconveyorbelt();
+                }else if (space.x==6 && space.y==3){
+                    addingBlueconveyorbelt();
+                }else if (space.x==4 && space.y==3){
+                    addingBlueconveyorbelt();
+                }else if (space.x==5 && space.y==3){
+                    addingBlueconveyorbelt();
+                }
+            }
+        }
+    }
+
+
+
 
 
     /**
@@ -113,7 +153,6 @@ public class SpaceView extends StackPane implements ViewObserver {
      * Adding a wall to the board with Canvas.
      * @author Sercan Bicen
      */
-
     protected void addingWallsWithCanvas() {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
@@ -124,6 +163,18 @@ public class SpaceView extends StackPane implements ViewObserver {
         graphicsContext.strokeLine(2, SPACE_HEIGHT-2, SPACE_WIDTH-2, SPACE_HEIGHT-2);
         this.getChildren().add(canvas);
     }
+
+    protected void addingBlueconveyorbelt(){
+        Canvas canvas = new Canvas(SPACE_WIDTH,SPACE_HEIGHT);
+        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
+        graphicsContext.setStroke(Color.BLUE);
+        graphicsContext.setLineWidth(100);
+        graphicsContext.setLineCap(StrokeLineCap.SQUARE);
+
+        graphicsContext.strokeLine(16,SPACE_HEIGHT-18,SPACE_WIDTH-16,SPACE_HEIGHT-18);
+        this.getChildren().add(canvas);
+    }
+
 
 
     private void updatePlayer() {
@@ -144,6 +195,7 @@ public class SpaceView extends StackPane implements ViewObserver {
             this.getChildren().add(arrow);
         }
 
+
     }
 
     @Override
@@ -151,6 +203,9 @@ public class SpaceView extends StackPane implements ViewObserver {
         if (subject == this.space) {
             updatePlayer();
         }
+        setBlueConveyorBeltInBoard();
+
+
 
 
     }
