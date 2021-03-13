@@ -93,7 +93,11 @@ public class SpaceView extends StackPane implements ViewObserver {
 
     }
 
-
+    /**
+     * setBlueConveyorBeltInBoard
+     * @author Najib s181663
+     * @author Sercan, s185040
+     */
     public void setBlueConveyorBeltInBoard(){
         for (int i = 0; i < space.x; i++) {
             for (int j = 0; j < space.y; j++) {
@@ -121,7 +125,18 @@ public class SpaceView extends StackPane implements ViewObserver {
                     addingBlueconveyorbelt();
                 }else if (space.x==5 && space.y==3){
                     addingBlueconveyorbelt();
+                }else if (space.x==9 && space.y==1){
+                    addingBlueconveyorbelt();
+                }else if (space.x==8 && space.y==9){
+                    addingBlueconveyorbelt();
                 }
+
+//
+//                else if (space.x==1 && space.y ==0.2){
+//                    addingBlueconveyorbelt();
+//                }else if (space.x==1 && space.y==8){
+//                    addingBlueconveyorbelt();
+//                }
             }
         }
     }
@@ -164,6 +179,11 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.getChildren().add(canvas);
     }
 
+    /**
+     * setBlueConveyorBeltInBoard
+     * @author Najib s181663
+     * @author Sercan, s185040
+     */
     protected void addingBlueconveyorbelt(){
         Canvas canvas = new Canvas(SPACE_WIDTH,SPACE_HEIGHT);
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
