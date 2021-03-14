@@ -98,7 +98,7 @@ public class SpaceView extends StackPane implements ViewObserver {
      */
     private void setBlueConveyorBeltInBoard() {
         if (space.x == 1 && space.y == 0) {
-            blueConveyorBelt(90,15,-15);
+            blueConveyorBelt(180,1,-5);
 
         } else if (space.x == 3 && space.y == 4 || space.x == 3 && space.y == 5) {
             blueConveyorBelt(0,0,0);
@@ -109,10 +109,13 @@ public class SpaceView extends StackPane implements ViewObserver {
         } else if (space.x == 0 && space.y == 8) {
             blueConveyorBelt(90, 15, -15);
 
-        } else if (space.x == 8 && space.y == 9) {
-            blueConveyorBelt(0,0,0);
+        } else if (space.x == 9 && space.y == 1) {
+            blueConveyorBelt(270, 15, -15);
         }
 
+        else if (space.x == 8 && space.y == 9) {
+            blueConveyorBelt(0,0,0);
+        }
 
         for (int i = 3; i < 7; i++) {
             for (int j = 3; j < 7; j++) {
