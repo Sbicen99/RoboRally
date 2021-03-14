@@ -34,6 +34,8 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
+
 /**
  * ...
  *
@@ -100,8 +102,8 @@ public class SpaceView extends StackPane implements ViewObserver {
      * @author Sercan, s185040
      */
     public void setBlueConveyorBeltInBoard(){
-        for (int i = 0; i < space.x; i++) {
-            for (int j = 0; j < space.y; j++) {
+        for (int i = 0; i <= space.x; i++) {
+            for (int j = 0; j <= space.y; j++) {
                 if (space.x == 3 && space.y == 3){
                     addingBlueconveyorbelt();
                }else if (space.x==3 && space.y==4){
@@ -131,13 +133,11 @@ public class SpaceView extends StackPane implements ViewObserver {
                 }else if (space.x==8 && space.y==9){
                     addingBlueconveyorbelt();
                 }
-
-//
-//                else if (space.x==1 && space.y ==0.2){
-//                    addingBlueconveyorbelt();
-//                }else if (space.x==1 && space.y==8){
-//                    addingBlueconveyorbelt();
-//                }
+                else if (space.x==1 && space.y  == 0 ){
+                    addingBlueconveyorbelt();
+                }else if (space.x==0 && space.y==8){
+                    addingBlueconveyorbelt();
+                }
             }
         }
     }
