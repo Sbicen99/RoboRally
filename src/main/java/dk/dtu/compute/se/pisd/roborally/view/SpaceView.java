@@ -24,6 +24,8 @@ package dk.dtu.compute.se.pisd.roborally.view;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
@@ -31,10 +33,16 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.scene.shape.Polygon;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 /**
  * ...
@@ -50,18 +58,9 @@ public class SpaceView extends StackPane implements ViewObserver {
     final public static int SPACE_HEIGHT = 55; // 60; // 75; // it must be max 55 otherwise I can not see all the cards in my screen. Najib.
     final public static int SPACE_WIDTH = 70;  // 60; // 75;
 
-
-
-
-
     public final Space space;
 
-
-
-
     public SpaceView(@NotNull Space space) {
-
-
 
         this.space = space;
 
@@ -81,32 +80,57 @@ public class SpaceView extends StackPane implements ViewObserver {
             this.setStyle("-fx-background-color: black;");
         }
 
-
         // updatePlayer();
 
         // This space view should listen to changes of the space
         space.attach(this);
         update(space);
 
-
         setBlueConveyorBeltInBoard();
         setwallOnBoard();
-
-
-
     }
 
+
     /**
-     * setBlueConveyorBeltInBoard
+     * setBlueConveyorBeltInBoard with different directions.
      * @author Najib s181663
      * @author Sercan, s185040
      */
-    public void setBlueConveyorBeltInBoard(){
-        for (int i = 0; i <= space.x; i++) {
+    private void setBlueConveyorBeltInBoard() {
+        if (space.x == 1 && space.y == 0) {
+            blueConveyorBelt(90,15,-15);
+
+        } else if (space.x == 3 && space.y == 4 || space.x == 3 && space.y == 5) {
+            blueConveyorBelt(0,0,0);
+
+        } else if (space.x == 6 && space.y == 4 || space.x == 6 && space.y == 5) {
+            blueConveyorBelt(180, 0, 0);
+
+        } else if (space.x == 0 && space.y == 8) {
+            blueConveyorBelt(90, 15, -15);
+
+        } else if (space.x == 8 && space.y == 9) {
+            blueConveyorBelt(0,0,0);
+        }
+
+
+        for (int i = 3; i < 7; i++) {
+            for (int j = 3; j < 7; j++) {
+                if (space.x == j && space.y == 6) {
+                    blueConveyorBelt(-90, 15, -15);
+                }
+            }
+
+            if (space.x == i && space.y == 3){
+                blueConveyorBelt(90, 15, -15);
+            }
+        }
+
+        /*for (int i = 0; i <= space.x; i++) {
             for (int j = 0; j <= space.y; j++) {
                 if (space.x == 3 && space.y == 3){
                     addingBlueconveyorbelt();
-               }else if (space.x==3 && space.y==4){
+                }else if (space.x == 3 && space.y==4){
                     addingBlueconveyorbelt();
                 }else if (space.x==3 && space.y==5 ){
                     addingBlueconveyorbelt();
@@ -139,8 +163,10 @@ public class SpaceView extends StackPane implements ViewObserver {
                     addingBlueconveyorbelt();
                 }
             }
-        }
+        }*/
+
     }
+
 
     /**
      * Placing walls on board
@@ -213,25 +239,44 @@ public class SpaceView extends StackPane implements ViewObserver {
     }
 
 
-
-
     /**
      * setBlueConveyorBeltInBoard
      * @author Najib s181663
      * @author Sercan, s185040
      */
-    protected void addingBlueconveyorbelt(){
-        Canvas canvas = new Canvas(SPACE_WIDTH,SPACE_HEIGHT);
+    protected void blueConveyorBelt(double rotation, double addingValueToHeight, double addingValueToWidth) {
+        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
+
+        //creating the image object
+        try {
+            InputStream stream = new FileInputStream("src/main/resources/images/blueConveyorBelt.png");
+            Image image = new Image(stream);
+
+            //creating the imageview
+            ImageView imageView = new ImageView();
+            imageView.setImage(image);
+            imageView.setFitWidth(SPACE_WIDTH + addingValueToWidth);
+            imageView.setFitHeight(SPACE_HEIGHT + addingValueToHeight);
+
+            //Changing the rotation of the conveyor belt. 90 := --> , -90 := <--, 0 := up and 180 := down
+            imageView.setRotate(rotation);
+
+            this.getChildren().addAll(canvas, imageView);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        /*Canvas canvas = new Canvas(SPACE_WIDTH,SPACE_HEIGHT);
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
         graphicsContext.setStroke(Color.BLUE);
         graphicsContext.setLineWidth(100);
         graphicsContext.setLineCap(StrokeLineCap.SQUARE);
 
         graphicsContext.strokeLine(18,SPACE_HEIGHT-20,SPACE_WIDTH-18,SPACE_HEIGHT-20);
-        this.getChildren().add(canvas);
+        this.getChildren().add(canvas);*/
+
     }
-
-
 
     private void updatePlayer() {
         this.getChildren().clear();
@@ -259,11 +304,9 @@ public class SpaceView extends StackPane implements ViewObserver {
         if (subject == this.space) {
             updatePlayer();
         }
+
         setBlueConveyorBeltInBoard();
         setwallOnBoard();
-
-
-
 
     }
 
