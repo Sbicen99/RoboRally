@@ -47,7 +47,7 @@ public class SpaceView extends StackPane implements ViewObserver {
     /**
      * Change screen resolution.
      */
-    final public static int SPACE_HEIGHT = 70; // 60; // 75;
+    final public static int SPACE_HEIGHT = 55; // 60; // 75; // it must be max 55 otherwise I can not see all the cards in my screen. Najib.
     final public static int SPACE_WIDTH = 70;  // 60; // 75;
 
 
@@ -206,7 +206,9 @@ public class SpaceView extends StackPane implements ViewObserver {
         graphicsContext.setLineWidth(5);
         graphicsContext.setLineCap(StrokeLineCap.ROUND);
 
-        graphicsContext.strokeLine(SPACE_HEIGHT-2, 2, SPACE_WIDTH-2, SPACE_WIDTH-2);
+        // I'll have to change these ( SPACE_HEIGHT-(-13)) in your code because otherwise I can not
+        // see all the cards, thanks for understanding. Najib
+        graphicsContext.strokeLine(SPACE_HEIGHT-(-13), 2, SPACE_WIDTH-2, SPACE_WIDTH-2);
         this.getChildren().add(canvas);
     }
 
