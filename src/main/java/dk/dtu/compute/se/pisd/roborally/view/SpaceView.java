@@ -129,45 +129,6 @@ public class SpaceView extends StackPane implements ViewObserver {
             }
         }
 
-        /*for (int i = 0; i <= space.x; i++) {
-            for (int j = 0; j <= space.y; j++) {
-                if (space.x == 3 && space.y == 3){
-                    addingBlueconveyorbelt();
-                }else if (space.x == 3 && space.y==4){
-                    addingBlueconveyorbelt();
-                }else if (space.x==3 && space.y==5 ){
-                    addingBlueconveyorbelt();
-                }else if (space.x==3 && space.y==6){
-                    addingBlueconveyorbelt();
-                }else if (space.x==4 && space.y==6){
-                    addingBlueconveyorbelt();
-                }else if (space.x==5 && space.y==6){
-                    addingBlueconveyorbelt();
-                }else if (space.x==6 && space.y==6){
-                    addingBlueconveyorbelt();
-                }else if (space.x==6 && space.y==5){
-                    addingBlueconveyorbelt();
-                }else if (space.x==6 && space.y==4){
-                    addingBlueconveyorbelt();
-                }else if (space.x==6 && space.y==3){
-                    addingBlueconveyorbelt();
-                }else if (space.x==4 && space.y==3){
-                    addingBlueconveyorbelt();
-                }else if (space.x==5 && space.y==3){
-                    addingBlueconveyorbelt();
-                }else if (space.x==9 && space.y==1){
-                    addingBlueconveyorbelt();
-                }else if (space.x==8 && space.y==9){
-                    addingBlueconveyorbelt();
-                }
-                else if (space.x==1 && space.y  == 0 ){
-                    addingBlueconveyorbelt();
-                }else if (space.x==0 && space.y==8){
-                    addingBlueconveyorbelt();
-                }
-            }
-        }*/
-
     }
 
 
@@ -269,15 +230,6 @@ public class SpaceView extends StackPane implements ViewObserver {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
-        /*Canvas canvas = new Canvas(SPACE_WIDTH,SPACE_HEIGHT);
-        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
-        graphicsContext.setStroke(Color.BLUE);
-        graphicsContext.setLineWidth(100);
-        graphicsContext.setLineCap(StrokeLineCap.SQUARE);
-        graphicsContext.strokeLine(18,SPACE_HEIGHT-20,SPACE_WIDTH-18,SPACE_HEIGHT-20);
-        this.getChildren().add(canvas);*/
-
     }
 
     private void updatePlayer() {
