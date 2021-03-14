@@ -23,11 +23,9 @@ package dk.dtu.compute.se.pisd.roborally.controller;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Observer;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
-
 import dk.dtu.compute.se.pisd.roborally.RoboRally;
-
-import dk.dtu.compute.se.pisd.roborally.model.*;
-
+import dk.dtu.compute.se.pisd.roborally.model.Board;
+import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.view.SpaceView;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
@@ -39,8 +37,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
-import static com.sun.tools.internal.xjc.reader.Ring.add;
 
 /**
  * ...

@@ -45,7 +45,7 @@ public class SpaceView extends StackPane implements ViewObserver {
     /**
      * Change screen resolution.
      */
-    final public static int SPACE_HEIGHT = 50; // 60; // 75;
+    final public static int SPACE_HEIGHT = 70; // 60; // 75;
     final public static int SPACE_WIDTH = 70;  // 60; // 75;
 
 
@@ -88,6 +88,7 @@ public class SpaceView extends StackPane implements ViewObserver {
 
 
         setBlueConveyorBeltInBoard();
+        setwallOnBoard();
 
 
 
@@ -141,10 +142,25 @@ public class SpaceView extends StackPane implements ViewObserver {
         }
     }
 
-
-
-
-
+    /**
+     * Placing walls on board
+     * @author Thamara Chellakooty & Camilla Boejden
+     */
+    public void setwallOnBoard () {
+    for (int i = 0; i <= space.x; i++) {
+        for (int j = 0; j <= space.y; j++) {
+            if (space.x == 1 && space.y == 1) {
+                addingWallsWithCanvas();
+            }else if (space.x == 7 && space.y == 2) {
+                addingVerticalWallWithCanvas();
+            }else if (space.x == 0 && space.y == 7) {
+                    addingVerticalWallWithCanvas();
+            } else if (space.x == 7 && space.y == 7) {
+            addingWallsWithCanvas();
+            }
+        }
+    }
+}
     /**
      * Adding a wall to the board with Pane
      * @author Sercan Bicen
@@ -180,6 +196,24 @@ public class SpaceView extends StackPane implements ViewObserver {
     }
 
     /**
+     * Adding vertical walls to the boards with Canvas.
+     * @author Thamara Chellakooty & Camilla Boejden
+     */
+    protected void addingVerticalWallWithCanvas() {
+        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
+        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
+        graphicsContext.setStroke(Color.RED);
+        graphicsContext.setLineWidth(5);
+        graphicsContext.setLineCap(StrokeLineCap.ROUND);
+
+        graphicsContext.strokeLine(SPACE_HEIGHT-2, 2, SPACE_WIDTH-2, SPACE_WIDTH-2);
+        this.getChildren().add(canvas);
+    }
+
+
+
+
+    /**
      * setBlueConveyorBeltInBoard
      * @author Najib s181663
      * @author Sercan, s185040
@@ -191,7 +225,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         graphicsContext.setLineWidth(100);
         graphicsContext.setLineCap(StrokeLineCap.SQUARE);
 
-        graphicsContext.strokeLine(16,SPACE_HEIGHT-18,SPACE_WIDTH-16,SPACE_HEIGHT-18);
+        graphicsContext.strokeLine(18,SPACE_HEIGHT-20,SPACE_WIDTH-18,SPACE_HEIGHT-20);
         this.getChildren().add(canvas);
     }
 
@@ -224,6 +258,7 @@ public class SpaceView extends StackPane implements ViewObserver {
             updatePlayer();
         }
         setBlueConveyorBeltInBoard();
+        setwallOnBoard();
 
 
 
