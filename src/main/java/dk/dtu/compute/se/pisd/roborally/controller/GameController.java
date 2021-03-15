@@ -32,6 +32,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class GameController {
 
+    Space space;
     final public Board board;
 
     public GameController(@NotNull Board board) {
@@ -55,6 +56,9 @@ public class GameController {
             Player nextPlayer = board.getPlayer((number + 1) % board.getPlayersNumber());
             board.setCurrentPlayer(nextPlayer);
             board.setCount(board.getCount() + 1);
+
+
+            space.blueConveyorBeltMoving();
 
         } else {
             board.setNotEmpty("The field isn't empty");
@@ -135,6 +139,7 @@ public class GameController {
     public void executePrograms() {
         board.setStepMode(false);
         continuePrograms();
+
     }
 
     /**
@@ -145,6 +150,7 @@ public class GameController {
     public void executeStep() {
         board.setStepMode(true);
         continuePrograms();
+
     }
 
     // XXX: V2

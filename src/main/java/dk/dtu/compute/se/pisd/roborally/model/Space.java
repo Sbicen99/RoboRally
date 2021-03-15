@@ -22,6 +22,7 @@
 package dk.dtu.compute.se.pisd.roborally.model;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
+import dk.dtu.compute.se.pisd.roborally.controller.GameController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,46 @@ public class Space extends Subject {
 
     public Player getPlayer() {
         return player;
+    }
+
+
+
+    /**
+     * BlueConveyorBeltInBoard Move Action.
+     * @author Najib s181663
+     * @author Sercan, s185040
+     */
+    public void blueConveyorBeltMoving(){
+        Space current = player.getSpace();
+        if (x== 1 && y ==0 && current != null && player.board == current.board && player != null){
+            Space target = board.getSpace(1, 2);
+            if (target != null && target.getPlayer() == null) {
+                target.setPlayer(player);
+            }
+        }
+
+        else if (x== 0 && y ==8 && current != null && player.board == current.board && player != null){
+            Space target = board.getSpace(2,8);
+            if (target != null && target.getPlayer()  == null){
+                target.setPlayer(player);
+
+            }
+
+        }else if (x== 9 && y ==1 && current != null && player.board == current.board && player != null){
+            Space target = board.getSpace(7,1);
+            if (target != null && target.getPlayer()  == null){
+                target.setPlayer(player);
+
+            }
+
+        }else if (x== 8 && y ==9 && current != null && player.board == current.board && player != null){
+            Space target = board.getSpace(8,7);
+            if (target != null && target.getPlayer()  == null){
+                target.setPlayer(player);
+
+            }
+
+        }
     }
 
     public void setPlayer(Player player) {
