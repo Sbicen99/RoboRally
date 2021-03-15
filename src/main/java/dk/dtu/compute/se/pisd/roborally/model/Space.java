@@ -90,6 +90,34 @@ public class Space extends Subject {
 
             }
 
+        }else if (x== 3 && y ==3 && current != null && player.board == current.board && player != null){
+            Space target = board.getSpace(5,3);
+            if (target != null && target.getPlayer()  == null){
+                target.setPlayer(player);
+
+            }
+
+        }else if (x== 4 && y ==3 && current != null && player.board == current.board && player != null){
+            Space target = board.getSpace(6,3);
+            if (target != null && target.getPlayer()  == null){
+                target.setPlayer(player);
+
+            }
+
+        }else if (x== 5 && y ==3 && current != null && player.board == current.board && player != null){
+            Space target = board.getSpace(7,3);
+            if (target != null && target.getPlayer()  == null){
+                target.setPlayer(player);
+
+            }
+
+        }else if (x== 6 && y ==3 && current != null && player.board == current.board && player != null){
+            Space target = board.getSpace(8,3);
+            if (target != null && target.getPlayer()  == null){
+                target.setPlayer(player);
+
+            }
+
         }
     }
 
