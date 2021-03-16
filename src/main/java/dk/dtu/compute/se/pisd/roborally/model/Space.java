@@ -139,6 +139,7 @@ public class Space extends Subject {
             notifyChange();
         }
     }
+
     public List<Heading> getWalls() {
         return walls;
     }

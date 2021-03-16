@@ -43,9 +43,9 @@ public class Connector {
 
 	private static final String HOST = "localhost";
 	private static final int PORT = 3306;
-	private static final String DATABASE = "pisu";
-	private static final String USERNAME = "user";
-	private static final String PASSWORD = "";
+	private static final String DATABASE = "Testdatabase";
+	private static final String USERNAME = "root";
+	private static final String PASSWORD = " ";
 
 	private static final String DELIMITER = ";;";
 
@@ -104,10 +104,12 @@ public class Connector {
 			}
 		}
 	}
+
 	Connection getConnection() {
 		return connection;
 	}
-	private static final String CreateTableGame="  CREATE TABLE IF NOT EXISTS Game (\n" +
+
+	private static final String CreateTableGame ="  CREATE TABLE IF NOT EXISTS Game (\n" +
 			"gameID int NOT NULL UNIQUE AUTO_INCREMENT,\n" +
 			"name varchar(255),\n" +
 			"currentPlayer tinyint NULL,\n" +

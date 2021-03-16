@@ -173,6 +173,7 @@ public class AppController implements Observer {
 
     public void saveGame() {
         // XXX needs to be implemented eventually
+
     }
 
     public void loadGame() {
