@@ -270,10 +270,7 @@ public class GameController {
         if (player.board == board && player != null) {
             Space space = player.getSpace();
             Heading heading = player.getHeading();
-
-
             Space target = board.getNeighbour(space, heading);
-
             if (target != null ) {
                 try {
                     moveToSpace(player, target, heading);
@@ -289,7 +286,6 @@ public class GameController {
             }
         }
     }
-
     /**
      * @author Najib Hebrawi s181663
      * @author Sercan, s185040
@@ -300,26 +296,20 @@ public class GameController {
      */
     private void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading)
 
-
       throws ImpossibleMoveException {
-
         Player other = space.getPlayer();
-        if (other != null){
-
+        if (other != null) {
             Space target = board.getNeighbour(space, heading);
             if (target != null) {
 // XXX Note that there might be additional problems
 // with infinite recursion here!
-
                 moveToSpace(other, target, heading);
             } else {
                 throw new ImpossibleMoveException(player, space, heading);
             }
         }
-
         player.setSpace(space);
         space.blueConveyorBeltMoving();
-
     }
 
 
