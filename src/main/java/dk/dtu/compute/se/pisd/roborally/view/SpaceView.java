@@ -211,7 +211,7 @@ public class SpaceView extends StackPane implements ViewObserver {
 
         //creating the image object
         try {
-            InputStream stream = new FileInputStream("src/main/resources/images/blueConveyorBelt.png");
+            InputStream stream = new FileInputStream("src/main/resources/images/976.png");
             Image image = new Image(stream);
 
             //creating the imageview
