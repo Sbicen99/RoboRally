@@ -71,56 +71,87 @@ public class Space extends Subject {
                 target.setPlayer(player);
             }
         }
-
         else if (x== 0 && y ==8 && current != null && player.board == current.board && player != null){
             Space target = board.getSpace(2,8);
             if (target != null && target.getPlayer()  == null){
                 target.setPlayer(player);
 
             }
-
         }else if (x== 9 && y ==1 && current != null && player.board == current.board && player != null){
             Space target = board.getSpace(7,1);
             if (target != null && target.getPlayer()  == null){
                 target.setPlayer(player);
 
             }
-
         }else if (x== 8 && y ==9 && current != null && player.board == current.board && player != null){
             Space target = board.getSpace(8,7);
             if (target != null && target.getPlayer()  == null){
                 target.setPlayer(player);
 
             }
-
         }else if (x== 3 && y ==3 && current != null && player.board == current.board && player != null){
             Space target = board.getSpace(5,3);
             if (target != null && target.getPlayer()  == null){
                 target.setPlayer(player);
 
             }
-
         }else if (x== 4 && y ==3 && current != null && player.board == current.board && player != null){
             Space target = board.getSpace(6,3);
             if (target != null && target.getPlayer()  == null){
                 target.setPlayer(player);
 
             }
-
         }else if (x== 5 && y ==3 && current != null && player.board == current.board && player != null){
             Space target = board.getSpace(7,3);
             if (target != null && target.getPlayer()  == null){
                 target.setPlayer(player);
 
             }
-
         }else if (x== 6 && y ==3 && current != null && player.board == current.board && player != null){
             Space target = board.getSpace(8,3);
             if (target != null && target.getPlayer()  == null){
                 target.setPlayer(player);
-
             }
-
+        }else if (x== 6 && y ==4 && current != null && player.board == current.board && player != null){
+            Space target = board.getSpace(6,6);
+            if (target != null && target.getPlayer()  == null){
+                target.setPlayer(player);
+            }
+        }else if (x== 6 && y ==5 && current != null && player.board == current.board && player != null){
+            Space target = board.getSpace(6,7);
+            if (target != null && target.getPlayer()  == null){
+                target.setPlayer(player);
+            }
+        }else if (x== 6 && y ==6 && current != null && player.board == current.board && player != null){
+            Space target = board.getSpace(6,8);
+            if (target != null && target.getPlayer()  == null){
+                target.setPlayer(player);
+            }
+        }else if (x== 5 && y ==6 && current != null && player.board == current.board && player != null){
+            Space target = board.getSpace(3,6);
+            if (target != null && target.getPlayer()  == null){
+                target.setPlayer(player);
+            }
+        }else if (x== 4 && y ==6 && current != null && player.board == current.board && player != null){
+            Space target = board.getSpace(2,6);
+            if (target != null && target.getPlayer()  == null){
+                target.setPlayer(player);
+            }
+        }else if (x== 3 && y ==6 && current != null && player.board == current.board && player != null){
+            Space target = board.getSpace(1,6);
+            if (target != null && target.getPlayer()  == null){
+                target.setPlayer(player);
+            }
+        }else if (x== 3 && y ==5 && current != null && player.board == current.board && player != null){
+            Space target = board.getSpace(3,3);
+            if (target != null && target.getPlayer()  == null){
+                target.setPlayer(player);
+            }
+        }else if (x== 3 && y ==4 && current != null && player.board == current.board && player != null){
+            Space target = board.getSpace(3,2);
+            if (target != null && target.getPlayer()  == null){
+                target.setPlayer(player);
+            }
         }
     }
 
