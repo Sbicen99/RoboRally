@@ -21,6 +21,19 @@
  */
 package dk.dtu.compute.se.pisd.roborally.fileaccess.model;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import com.oracle.javafx.jmx.json.JSONReader;
+import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
+import dk.dtu.compute.se.pisd.roborally.fileaccess.Adapter;
+import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
+
+import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,5 +50,23 @@ public class BoardTemplate {
     public int height;
 
     public List<SpaceTemplate> spaces = new ArrayList<>();
+
+    GsonBuilder simpleBuilder = new GsonBuilder().
+            registerTypeAdapter(FieldAction.class,
+                    new Adapter<FieldAction>());
+    Gson gson = simpleBuilder.create();
+    ClassLoader classLoader =
+            LoadBoard.class.getClassLoader();
+    InputStream inputStream =
+            classLoader.getResourceAsStream(
+                    "boards/defaultboard.json");
+
+    InputStreamReader streamReader = new InputStreamReader(inputStream);
+    JsonReader reader = gson.newJsonReader(streamReader);
+    BoardTemplate boardTemplate =
+            gson.fromJson(reader, BoardTemplate.class);
+
+
+
 
 }
