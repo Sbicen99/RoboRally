@@ -60,8 +60,6 @@ public class Space extends Subject {
         return player;
     }
 
-
-
     /**
      * BlueConveyorBeltInBoard Move Action.
      * @author Najib s181663

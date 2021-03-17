@@ -270,7 +270,10 @@ public class GameController {
         if (player.board == board && player != null) {
             Space space = player.getSpace();
             Heading heading = player.getHeading();
+
+
             Space target = board.getNeighbour(space, heading);
+
             if (target != null ) {
                 try {
                     moveToSpace(player, target, heading);
@@ -297,19 +300,26 @@ public class GameController {
      */
     private void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading)
 
+
       throws ImpossibleMoveException {
+
         Player other = space.getPlayer();
         if (other != null){
+
             Space target = board.getNeighbour(space, heading);
             if (target != null) {
 // XXX Note that there might be additional problems
 // with infinite recursion here!
+
                 moveToSpace(other, target, heading);
             } else {
                 throw new ImpossibleMoveException(player, space, heading);
             }
         }
+
         player.setSpace(space);
+        space.blueConveyorBeltMoving();
+
     }
 
 
@@ -319,11 +329,18 @@ public class GameController {
      * @param player
      */
     public void Moveback(@NotNull Player player){
-        Space current = player.getSpace();
-        if (current != null && player.board == current.board && player != null){
-            Space target = board.getNeighbourr(current, player.getHeading());
-            if (target != null && target.getPlayer() == null){
-                target.setPlayer(player);
+        Space space = player.getSpace();
+        if (player.board == board && player != null) {
+            Heading heading = player.getHeading();
+            Space target = board.getNeighbourr(space, heading);
+            if (target != null ) {
+                try {
+                    moveToSpace(player, target, heading);
+                } catch (ImpossibleMoveException e) {
+                    e.getCause();
+                    e.getMessage();
+                    e.printStackTrace();
+                }
             }
         }
     }
