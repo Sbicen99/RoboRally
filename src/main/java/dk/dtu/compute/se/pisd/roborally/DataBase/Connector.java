@@ -109,6 +109,12 @@ public class Connector {
 		return connection;
 	}
 
+
+
+	/**
+	 * @author Najib s181663
+	 * @author Sercan, s185040
+	 */
 	private static final String CreateTableGame ="  CREATE TABLE IF NOT EXISTS Game (\n" +
 			"gameID int NOT NULL UNIQUE AUTO_INCREMENT,\n" +
 			"name varchar(255),\n" +
@@ -119,6 +125,11 @@ public class Connector {
 			"...\n" +
 			");; ";
 
+
+	/**
+	 * @author Najib s181663
+	 * @author Sercan, s185040
+	 */
 	private static final String CreateTablePlayer = " CREATE TABLE IF NOT EXISTS Player (\n" +
 			"gameID int NOT NULL,\n" +
 			"playerID tinyint NOT NULL,\n" +
