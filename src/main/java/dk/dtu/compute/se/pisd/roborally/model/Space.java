@@ -28,6 +28,8 @@ import dk.dtu.compute.se.pisd.roborally.controller.GameController;
 import java.util.ArrayList;
 import java.util.List;
 
+import static dk.dtu.compute.se.pisd.roborally.model.Heading.SOUTH;
+
 /**
  * ...
  *
@@ -39,6 +41,8 @@ public class Space extends Subject {
     private List<FieldAction> actions = new ArrayList<>();
 
     public final Board board;
+
+    private Heading heading = SOUTH;
 
     public final int x;
     public final int y;
@@ -169,6 +173,7 @@ public class Space extends Subject {
             }
             notifyChange();
         }
+
     }
 
     public List<Heading> getWalls() {
