@@ -125,7 +125,7 @@ public class Space extends Subject {
                 target.setPlayer(player);
             }
         }else if (x== 6 && y ==6 && current != null && player.board == current.board && player != null){
-            Space target = board.getSpace(6,8);
+            Space target = board.getSpace(4,6);
             if (target != null && target.getPlayer()  == null){
                 target.setPlayer(player);
             }
