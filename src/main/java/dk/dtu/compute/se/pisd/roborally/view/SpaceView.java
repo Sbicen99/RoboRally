@@ -80,17 +80,40 @@ public class SpaceView extends StackPane implements ViewObserver {
             this.setStyle("-fx-background-color: black;");
         }
 
-
-
-
         // updatePlayer();
 
         // This space view should listen to changes of the space
         space.attach(this);
         update(space);
+    }
 
-        setBlueConveyorBeltInBoard();
-        setwallOnBoard();
+    /**
+     * setBlueConveyorBeltInBoard
+     * @author Najib s181663
+     * @author Sercan, s185040
+     */
+    protected void blueConveyorBelt(double rotation, double addingValueToHeight, double addingValueToWidth) {
+        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
+
+        //creating the image object
+        try {
+            InputStream stream = new FileInputStream("src/main/resources/images/blueConveyorBelt.png");
+            Image image = new Image(stream);
+
+            //creating the imageview
+            ImageView imageView = new ImageView();
+            imageView.setImage(image);
+            imageView.setFitWidth(SPACE_WIDTH + addingValueToWidth);
+            imageView.setFitHeight(SPACE_HEIGHT + addingValueToHeight);
+
+            //Changing the rotation of the conveyor belt. 90 := --> , -90 := <--, 0 := up and 180 := down
+            imageView.setRotate(rotation);
+
+            this.getChildren().addAll(canvas, imageView);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -122,53 +145,21 @@ public class SpaceView extends StackPane implements ViewObserver {
      * @author Thamara Chellakooty & Camilla Boejden
      */
     public void setwallOnBoard () {
-    for (int i = 0; i <= space.x; i++) {
-        for (int j = 0; j <= space.y; j++) {
-            if (space.x == 1 && space.y == 1) {
-                addingWallsWithCanvas();
-            }else if (space.x == 7 && space.y == 2) {
-                addingVerticalWallWithCanvas();
-            }else if (space.x == 0 && space.y == 7) {
-                    addingVerticalWallWithCanvas();
-            } else if (space.x == 7 && space.y == 7) {
-            addingWallsWithCanvas();
-            }
+        if (space.x == 1 && space.y == 1) {
+            addingVerticalWallWithCanvas();
+
+        }else if (space.x == 7 && space.y == 2) {
+            addingVerticalWallWithCanvas();
+
+        }else if (space.x == 0 && space.y == 7) {
+            addingVerticalWallWithCanvas();
+
+        } else if (space.x == 7 && space.y == 7) {
+            addingVerticalWallWithCanvas();
+
         }
     }
-}
-    /**
-     * Adding a wall to the board with Pane
-     * @author Sercan Bicen
-     */
 
-    /*private void addingWallsWithPane() {
-        Pane pane = new Pane();
-        Rectangle rectangle = new Rectangle(0.0, 0.0, SPACE_WIDTH, SPACE_HEIGHT);
-        rectangle.setFill(Color.TRANSPARENT);
-        pane.getChildren().add(rectangle);
-
-        Line line = new Line(2, SPACE_WIDTH-2, SPACE_HEIGHT-2, SPACE_HEIGHT-2);
-        line.setStroke(Color.RED);
-        line.setStrokeWidth(5);
-        pane.getChildren().add(line);
-        this.getChildren().add(pane);
-    }*/
-
-
-    /**
-     * Adding a wall to the board with Canvas.
-     * @author Sercan Bicen
-     */
-    protected void addingWallsWithCanvas() {
-        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
-        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
-        graphicsContext.setStroke(Color.RED);
-        graphicsContext.setLineWidth(5);
-        graphicsContext.setLineCap(StrokeLineCap.ROUND);
-
-        graphicsContext.strokeLine(2, SPACE_HEIGHT-2, SPACE_WIDTH-2, SPACE_HEIGHT-2);
-        this.getChildren().add(canvas);
-    }
 
     /**
      * Adding vertical walls to the boards with Canvas.
@@ -186,37 +177,14 @@ public class SpaceView extends StackPane implements ViewObserver {
     }
 
 
-    /**
-     * setBlueConveyorBeltInBoard
-     * @author Najib s181663
-     * @author Sercan, s185040
-     */
-    protected void blueConveyorBelt(double rotation, double addingValueToHeight, double addingValueToWidth) {
-        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
-
-        //creating the image object
-        try {
-            InputStream stream = new FileInputStream("src/main/resources/images/976.png");
-            Image image = new Image(stream);
-
-            //creating the imageview
-            ImageView imageView = new ImageView();
-            imageView.setImage(image);
-            imageView.setFitWidth(SPACE_WIDTH + addingValueToWidth);
-            imageView.setFitHeight(SPACE_HEIGHT + addingValueToHeight);
-
-            //Changing the rotation of the conveyor belt. 90 := --> , -90 := <--, 0 := up and 180 := down
-            imageView.setRotate(rotation);
-
-            this.getChildren().addAll(canvas, imageView);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void updatePlayer() {
         this.getChildren().clear();
+
+        //------------------------
+        //Adding the blue conveyor belt here so each triangle/player is in front of it.
+        setBlueConveyorBeltInBoard();
+        setwallOnBoard();
+        //------------------------
 
         Player player = space.getPlayer();
         if (player != null) {
@@ -241,10 +209,5 @@ public class SpaceView extends StackPane implements ViewObserver {
         if (subject == this.space) {
             updatePlayer();
         }
-
-        setBlueConveyorBeltInBoard();
-        setwallOnBoard();
-
     }
-
 }
