@@ -55,8 +55,8 @@ public class SpaceView extends StackPane implements ViewObserver {
     /**
      * Change screen resolution.
      */
-    final public static int SPACE_HEIGHT = 70; // 60; // 75;
-    final public static int SPACE_WIDTH = 70;  // 60; // 75;
+    final public static int SPACE_HEIGHT = 50; // 60; // 75;
+    final public static int SPACE_WIDTH = 50;  // 60; // 75;
 
     public final Space space;
 
@@ -92,7 +92,7 @@ public class SpaceView extends StackPane implements ViewObserver {
      * @author Najib s181663
      * @author Sercan, s185040
      */
-    protected void blueConveyorBelt(double rotation, double addingValueToHeight, double addingValueToWidth) {
+    private void blueConveyorBelt(double rotation, double addingValueToHeight, double addingValueToWidth) {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
 
         //creating the image object
@@ -115,6 +115,75 @@ public class SpaceView extends StackPane implements ViewObserver {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Adding the first checkpoint as an image.
+     * @author Sercan Bicen
+     * @author Najib Hebrawi
+     */
+
+    private void firstCheckPoint() {
+        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
+
+        //creating the image object
+        try {
+            InputStream stream = new FileInputStream("src/main/resources/images/checkpoint1.png");
+            Image image = new Image(stream);
+
+            //creating the imageview
+            ImageView imageView = new ImageView();
+            imageView.setImage(image);
+            imageView.setFitWidth(SPACE_WIDTH);
+            imageView.setFitHeight(SPACE_HEIGHT);
+
+            this.getChildren().addAll(canvas, imageView);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * Adding the second checkpoint as an image.
+     * @author Sercan Bicen
+     * @author Najib Hebrawi
+     */
+
+    private void secondCheckPoint() {
+        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
+
+        //creating the image object
+        try {
+            InputStream stream = new FileInputStream("src/main/resources/images/checkpoint2.png");
+            Image image = new Image(stream);
+
+            //creating the imageview
+            ImageView imageView = new ImageView();
+            imageView.setImage(image);
+            imageView.setFitWidth(SPACE_WIDTH);
+            imageView.setFitHeight(SPACE_HEIGHT);
+
+            this.getChildren().addAll(canvas, imageView);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * Adding the checkpoints to a specific position on the board.
+     */
+
+    private void addCheckPoints() {
+        if (space.x == 3 && space.y == 4) {
+            firstCheckPoint();
+        } else if (space.x == 6 && space.y == 7) {
+            secondCheckPoint();
+        }
+    }
+
 
 
     /**
@@ -181,9 +250,10 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.getChildren().clear();
 
         //------------------------
-        //Adding the blue conveyor belt here so each triangle/player is in front of it.
+        //Adding elements to the board where each triangle/player is in front of it.
         setBlueConveyorBeltInBoard();
         setwallOnBoard();
+        addCheckPoints();
         //------------------------
 
         Player player = space.getPlayer();
@@ -200,8 +270,6 @@ public class SpaceView extends StackPane implements ViewObserver {
             arrow.setRotate((90*player.getHeading().ordinal())%360);
             this.getChildren().add(arrow);
         }
-
-
     }
 
     @Override

@@ -13,12 +13,7 @@ import org.jetbrains.annotations.NotNull;
     private Heading heading;
 
 
-
-
-
-     public ImpossibleMoveException(Player player,
-                                    Space space,
-                                    Heading heading) {
+    public ImpossibleMoveException(Player player, Space space, Heading heading) {
         super("Move impossible");
         this.player = player;
         this.space = space;
@@ -26,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
     }
 // ...
 
-    public void moveForward(@NotNull Player player) {
+    /*public void moveForward(@NotNull Player player) {
         if (player.board == board) {
             Space space = player.getSpace();
             Heading heading = player.getHeading();
@@ -38,9 +33,9 @@ import org.jetbrains.annotations.NotNull;
                 }
             }
         }
-    }
+    }*/
 
-    private void moveToSpace(
+    /*private void moveToSpace(
             @NotNull Player player,
             @NotNull Space space,
             @NotNull Heading heading) throws ImpossibleMoveException {
@@ -54,6 +49,6 @@ import org.jetbrains.annotations.NotNull;
             }
         }
         player.setSpace(space);
-    }
+    }*/
 }
 
