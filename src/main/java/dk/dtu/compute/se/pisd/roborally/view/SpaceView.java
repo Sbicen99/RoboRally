@@ -80,6 +80,9 @@ public class SpaceView extends StackPane implements ViewObserver {
             this.setStyle("-fx-background-color: black;");
         }
 
+
+
+
         // updatePlayer();
 
         // This space view should listen to changes of the space
@@ -100,12 +103,6 @@ public class SpaceView extends StackPane implements ViewObserver {
         if (space.x == 1 && space.y == 0) {
             blueConveyorBelt(180,1,-5);
 
-        } else if (space.x == 3 && space.y == 4 || space.x == 3 && space.y == 5) {
-            blueConveyorBelt(0,0,0);
-
-        } else if (space.x == 6 && space.y == 4 || space.x == 6 && space.y == 5) {
-            blueConveyorBelt(180, 0, 0);
-
         } else if (space.x == 0 && space.y == 8) {
             blueConveyorBelt(90, 15, -15);
 
@@ -115,18 +112,6 @@ public class SpaceView extends StackPane implements ViewObserver {
 
         else if (space.x == 8 && space.y == 9) {
             blueConveyorBelt(0,0,0);
-        }
-
-        for (int i = 3; i < 7; i++) {
-            for (int j = 3; j < 7; j++) {
-                if (space.x == j && space.y == 6) {
-                    blueConveyorBelt(-90, 15, -15);
-                }
-            }
-
-            if (space.x == i && space.y == 3){
-                blueConveyorBelt(90, 15, -15);
-            }
         }
 
     }
