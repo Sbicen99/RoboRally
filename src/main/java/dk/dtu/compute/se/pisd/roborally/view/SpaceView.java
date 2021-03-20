@@ -104,14 +104,14 @@ public class SpaceView extends StackPane implements ViewObserver {
             blueConveyorBelt(180,1,-5);
 
         } else if (space.x == 0 && space.y == 8) {
-            blueConveyorBelt(90, 15, -15);
+            blueConveyorBelt(90, 1, -5);
 
         } else if (space.x == 9 && space.y == 1) {
-            blueConveyorBelt(270, 15, -15);
+            blueConveyorBelt(270, 1, -5);
         }
 
         else if (space.x == 8 && space.y == 9) {
-            blueConveyorBelt(0,0,0);
+            blueConveyorBelt(0,1,5);
         }
 
     }
