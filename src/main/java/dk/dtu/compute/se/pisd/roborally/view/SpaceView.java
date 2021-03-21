@@ -248,6 +248,7 @@ public class SpaceView extends StackPane implements ViewObserver {
     /**
      * Adding the gear turning right as an image
      * @author Lauritz s191179
+     * @author Pernille Lyngholm
      */
 
     private void gearTurnRight() {
@@ -274,6 +275,7 @@ public class SpaceView extends StackPane implements ViewObserver {
     /**
      * Adding the gear to a specific position on the board
      * @author Lauritz s191179
+     * @author Pernille Lyngholm
      */
 
     private void addGearToBoard() {

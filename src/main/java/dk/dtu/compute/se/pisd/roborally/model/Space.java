@@ -97,6 +97,7 @@ public class Space extends Subject {
     /**
      * gearTurnRight Move Action
      * @author Lauritz s191179
+     * @author Pernille Lyngholm
      */
     public void gearTurnRightMove() {
         Space current = player.getSpace();
