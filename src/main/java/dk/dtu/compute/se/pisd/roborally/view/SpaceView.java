@@ -245,6 +245,43 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.getChildren().add(canvas);
     }
 
+    /**
+     * Adding the gear turning right as an image
+     * @author Lauritz s191179
+     */
+
+    private void gearTurnRight() {
+        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
+
+        //creating the image object
+        try {
+            InputStream stream = new FileInputStream("src/main/resources/images/gearright.png");
+            Image image = new Image(stream);
+
+            //creating the imageview
+            ImageView imageView = new ImageView();
+            imageView.setImage(image);
+            imageView.setFitWidth(SPACE_WIDTH);
+            imageView.setFitHeight(SPACE_HEIGHT);
+
+            this.getChildren().addAll(canvas, imageView);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Adding the gear to a specific position on the board
+     * @author Lauritz s191179
+     */
+
+    private void addGearToBoard() {
+        if (space.x == 3 && space.y == 3) {
+            gearTurnRight();
+        } else if (space.x == 5 && space.y == 7)
+            gearTurnRight();
+    }
 
     private void updatePlayer() {
         this.getChildren().clear();
@@ -254,6 +291,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         setBlueConveyorBeltInBoard();
         setwallOnBoard();
         addCheckPoints();
+        addGearToBoard();
         //------------------------
 
         Player player = space.getPlayer();

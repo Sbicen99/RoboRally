@@ -310,6 +310,7 @@ public class GameController {
         }
         player.setSpace(space);
         space.blueConveyorBeltMoving();
+        space.gearTurnRightMove();
     }
 
 
