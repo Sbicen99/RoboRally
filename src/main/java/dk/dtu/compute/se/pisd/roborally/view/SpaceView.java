@@ -55,8 +55,8 @@ public class SpaceView extends StackPane implements ViewObserver {
     /**
      * Change screen resolution.
      */
-    final public static int SPACE_HEIGHT = 50; // 60; // 75;
-    final public static int SPACE_WIDTH = 50;  // 60; // 75;
+    final public static int SPACE_HEIGHT = 70; // 60; // 75;
+    final public static int SPACE_WIDTH = 70;  // 60; // 75;
 
     public final Space space;
 
@@ -174,6 +174,8 @@ public class SpaceView extends StackPane implements ViewObserver {
 
     /**
      * Adding the checkpoints to a specific position on the board.
+     *  @author Sercan Bicen
+     *  @author Najib Hebrawi
      */
 
     private void addCheckPoints() {
