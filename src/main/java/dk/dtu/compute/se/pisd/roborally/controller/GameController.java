@@ -61,14 +61,7 @@ public class GameController {
             //space.blueConveyorBeltMoving();
 
         } else {
-            //board.setNotEmpty("The field isn't empty");
-            Player current = board.getCurrentPlayer();
-            moveForward(current);
-
-            //changing the current player.
-            int number = board.getPlayerNumber(current);
-            Player nextPlayer = board.getPlayer((number + 1) % board.getPlayersNumber());
-            board.setCurrentPlayer(nextPlayer);
+            board.setNotEmpty("The field isn't empty");
         }
     }
 

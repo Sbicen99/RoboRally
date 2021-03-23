@@ -261,9 +261,6 @@ public class AppController implements Observer {
 //
 
         if (gameController != null) {
-
-
-
             // here we save the game (without asking the user).
             saveGame();
 
