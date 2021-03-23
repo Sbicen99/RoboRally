@@ -118,6 +118,8 @@ public class Space extends Subject {
         }
     }
 
+
+
     public void setPlayer(Player player) {
         Player oldPlayer = this.player;
         if (player != oldPlayer &&

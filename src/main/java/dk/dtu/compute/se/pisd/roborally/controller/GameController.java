@@ -58,11 +58,17 @@ public class GameController {
             board.setCount(board.getCount() + 1);
 
 
-            space.blueConveyorBeltMoving();
+            //space.blueConveyorBeltMoving();
 
         } else {
-            board.setNotEmpty("The field isn't empty");
+            //board.setNotEmpty("The field isn't empty");
+            Player current = board.getCurrentPlayer();
+            moveForward(current);
 
+            //changing the current player.
+            int number = board.getPlayerNumber(current);
+            Player nextPlayer = board.getPlayer((number + 1) % board.getPlayersNumber());
+            board.setCurrentPlayer(nextPlayer);
         }
     }
 
@@ -294,20 +300,21 @@ public class GameController {
      * @param heading
      * @throws ImpossibleMoveException
      */
-    private void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading)
-
-      throws ImpossibleMoveException {
+    private void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading) throws ImpossibleMoveException {
         Player other = space.getPlayer();
         if (other != null) {
             Space target = board.getNeighbour(space, heading);
             if (target != null) {
-// XXX Note that there might be additional problems
-// with infinite recursion here!
+
+                // XXX Note that there might be additional problems
+                // with infinite recursion here!
+
                 moveToSpace(other, target, heading);
             } else {
                 throw new ImpossibleMoveException(player, space, heading);
             }
         }
+
         player.setSpace(space);
         space.blueConveyorBeltMoving();
         space.gearTurnRightMove();

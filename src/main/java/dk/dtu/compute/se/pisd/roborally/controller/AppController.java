@@ -26,6 +26,8 @@ import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.RoboRally;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
+import dk.dtu.compute.se.pisd.roborally.model.database.GameInDB;
+import dk.dtu.compute.se.pisd.roborally.model.database.RepositoryAccess;
 import dk.dtu.compute.se.pisd.roborally.view.SpaceView;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
@@ -83,7 +85,7 @@ public class AppController implements Observer {
 
             // XXX the board should eventually be created programmatically or loaded from a file
             //     here we just create an empty board with the required number of players.
-            Board board = new Board(10, 10);
+            Board board = new Board(7, 7);
             gameController = new GameController(board);
             int no = result.get();
             for (int i = 0; i < no; i++) {
@@ -93,12 +95,12 @@ public class AppController implements Observer {
             }
 
             // XXX: V2
+
             board.setCurrentPlayer(board.getPlayer(0));
             gameController.startProgrammingPhase();
+            RepositoryAccess.getRepository().createGameInDB(board);
             roboRally.createBoardView(gameController);
         }
-
-
     }
 
     /**
@@ -176,7 +178,12 @@ public class AppController implements Observer {
 
     public void saveGame() {
         // XXX needs to be implemented eventually
-
+        if (gameController != null) {
+            Board board = gameController.board;
+            if (board.getGameId() != null) {
+                RepositoryAccess.getRepository().updateGameInDB(board);
+            }
+        }
     }
 
 
@@ -185,8 +192,34 @@ public class AppController implements Observer {
     public void loadGame() {
         // XXX needs to be implememted eventually
         // for now, we just create a new game
-        if (gameController == null) {
+        /*if (gameController == null) {
             newGame();
+        }*/
+
+        List<GameInDB> games = RepositoryAccess.getRepository().getGames();
+        if (!games.isEmpty()) {
+            ChoiceDialog<GameInDB> dialog = new ChoiceDialog<>(games.get(games.size()-1), games);
+            dialog.setTitle("Select game");
+            dialog.setHeaderText("Select a game number");
+            Optional<GameInDB> result = dialog.showAndWait();
+
+            if (result.isPresent()) {
+                Board board = RepositoryAccess.getRepository().loadGameFromDB(result.get().id);
+                if (board != null) {
+                    gameController = new GameController(board);
+                    roboRally.createBoardView(gameController);
+                } else {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Couldn't load the game");
+                    alert.setHeaderText("There was a problem");
+                    alert.showAndWait();
+                }
+            }
+        } else {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("No games avaible!");
+            alert.setHeaderText("There are no games in the db!");
+            alert.showAndWait();
         }
     }
 
