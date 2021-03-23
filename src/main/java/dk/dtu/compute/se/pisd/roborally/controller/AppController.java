@@ -51,7 +51,6 @@ public class AppController implements Observer {
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
     final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "grey", "magenta");
 
-    final private List<String> Player_Board_Option = Arrays.asList("Big board", "Small board/does not exist right now");
 
 
 
@@ -63,11 +62,7 @@ public class AppController implements Observer {
         this.roboRally = roboRally;
     }
 
-    /**
-     * This method creates a table with 10 * 10..
-     * @author Najib s181663
-     */
-    public void newGameBigBoard() {
+    public void newGame() {
         ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
         dialog.setTitle("Player number");
         dialog.setHeaderText("Select number of players");
@@ -81,11 +76,9 @@ public class AppController implements Observer {
                     return;
                 }
             }
-
-
             // XXX the board should eventually be created programmatically or loaded from a file
             //     here we just create an empty board with the required number of players.
-            Board board = new Board(7, 7);
+            Board board = new Board(10,10);
             gameController = new GameController(board);
             int no = result.get();
             for (int i = 0; i < no; i++) {
@@ -93,89 +86,12 @@ public class AppController implements Observer {
                 board.addPlayer(player);
                 player.setSpace(board.getSpace(i % board.width, i));
             }
-
-            // XXX: V2
-
             board.setCurrentPlayer(board.getPlayer(0));
             gameController.startProgrammingPhase();
             RepositoryAccess.getRepository().createGameInDB(board);
             roboRally.createBoardView(gameController);
         }
     }
-
-    /**
-     * This method of choosing between large or small board and starting the game.
-     *
-     * @author Najib s181663
-     */
-    public void newGame() {
-        ChoiceDialog<String> dialogg = new ChoiceDialog<>(Player_Board_Option.get(0), Player_Board_Option);
-        dialogg.setTitle("Board choice");
-        dialogg.setHeaderText("Select board");
-        Optional<String> results = dialogg.showAndWait();
-
-        if (results.isPresent()) {
-            if (gameController != null) {
-                // The UI should not allow this, but in case this happens anyway.
-                // give the user the option to save the game or abort this operation!
-                if (!stopGame()) {
-                    return;
-                }
-            }
-            String value = dialogg.getSelectedItem();
-            if (value == "Big board") {
-                newGameBigBoard();
-            } else if (value == "Small board/does not exist right now") {
-              //  newGameSmallBoard();
-
-            }
-
-        }
-    }
-
-
-//    /**
-//     * This method creates a table with 8*8.
-//     *
-//     * @author Najib s181663
-//     */
-//    public void newGameSmallBoard() {
-//        ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
-//        dialog.setTitle("Player number");
-//        dialog.setHeaderText("Select number of players");
-//        Optional<Integer> result = dialog.showAndWait();
-//
-//        if (result.isPresent()) {
-//            if (gameController != null) {
-//                // The UI should not allow this, but in case this happens anyway.
-//                // give the user the option to save the game or abort this operation!
-//                if (!stopGame()) {
-//                    return;
-//                }
-//            }
-//
-//
-//            // XXX the board should eventually be created programmatically or loaded from a file
-//            //     here we just create an empty board with the required number of players.
-//            Board board = new Board(10, 10);
-//            gameController = new GameController(board);
-//            int no = result.get();
-//            for (int i = 0; i < no; i++) {
-//                Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1));
-//                board.addPlayer(player);
-//                player.setSpace(board.getSpace(i % board.width, i));
-//            }
-//
-//            // XXX: V2
-//            board.setCurrentPlayer(board.getPlayer(0));
-//            gameController.startProgrammingPhase();
-//            roboRally.createBoardView(gameController);
-//        }
-//    }
-
-
-
-
     public void saveGame() {
         // XXX needs to be implemented eventually
         if (gameController != null) {
@@ -185,17 +101,13 @@ public class AppController implements Observer {
             }
         }
     }
-
-
-
-
     public void loadGame() {
+
         // XXX needs to be implememted eventually
         // for now, we just create a new game
         /*if (gameController == null) {
             newGame();
         }*/
-
         List<GameInDB> games = RepositoryAccess.getRepository().getGames();
         if (!games.isEmpty()) {
             ChoiceDialog<GameInDB> dialog = new ChoiceDialog<>(games.get(games.size()-1), games);
@@ -222,11 +134,6 @@ public class AppController implements Observer {
             alert.showAndWait();
         }
     }
-
-
-
-
-
     /**
      * Stop playing the current game, giving the user the option to save
      * the game or to cancel stopping the game. The method returns true
@@ -237,30 +144,7 @@ public class AppController implements Observer {
      * @return true if the current game was stopped, false otherwise
      */
     public boolean stopGame() {
-
-//        if (gameController != null) {
-//
-//            Alert alert = new Alert(AlertType.CONFIRMATION);
-//            alert.setTitle("stop the game");
-//            String message =" Confirm to stop the game and save the game  or cancel to not save the game";
-//            alert.setContentText(message);
-//            Optional<ButtonType> result = alert.showAndWait();
-//            if ((!result.isPresent() || result.get() != ButtonType.OK)){
-//
-//                return true;
-//            }else if ((result.isPresent() && ( result.get() == ButtonType.OK))){
-//                saveGame();
-//            }
-//            // here we save the game (without asking the user).
-//            gameController = null;
-//            roboRally.createBoardView(null);
-//            return true;
-//        }
-//        return false;
-//    }
-//
-
-        if (gameController != null) {
+         if (gameController != null) {
             // here we save the game (without asking the user).
             saveGame();
 

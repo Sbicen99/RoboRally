@@ -58,10 +58,11 @@ public class GameController {
             board.setCount(board.getCount() + 1);
 
 
-            //space.blueConveyorBeltMoving();
+            space.blueConveyorBeltMoving();
 
         } else {
             board.setNotEmpty("The field isn't empty");
+
         }
     }
 
@@ -312,6 +313,7 @@ public class GameController {
         space.blueConveyorBeltMoving();
         space.gearTurnRightMove();
         space.gearTurnLeftMove();
+
     }
 
 
