@@ -275,6 +275,33 @@ public class SpaceView extends StackPane implements ViewObserver {
     }
 
     /**
+     * Adding the gear turning left as an image
+     * @author Lauritz s191179
+     * @author Pernille Lyngholm
+     */
+
+    private void gearTurnLeft() {
+        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
+
+        //creating the image object
+        try {
+            InputStream stream = new FileInputStream("src/main/resources/images/gearleft.png");
+            Image image = new Image(stream);
+
+            //creating the imageview
+            ImageView imageView = new ImageView();
+            imageView.setImage(image);
+            imageView.setFitWidth(SPACE_WIDTH);
+            imageView.setFitHeight(SPACE_HEIGHT);
+
+            this.getChildren().addAll(canvas, imageView);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Adding the gear to a specific position on the board
      * @author Lauritz s191179
      * @author Pernille Lyngholm
@@ -284,7 +311,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         if (space.x == 3 && space.y == 3) {
             gearTurnRight();
         } else if (space.x == 5 && space.y == 7)
-            gearTurnRight();
+            gearTurnLeft();
     }
 
     private void updatePlayer() {

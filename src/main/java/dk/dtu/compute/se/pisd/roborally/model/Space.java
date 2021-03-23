@@ -103,11 +103,18 @@ public class Space extends Subject {
         Space current = player.getSpace();
         if (x == 3 && y == 3 && current != null && player.board == current.board && player != null) {
             player.setHeading(player.getHeading().next());
-
         }
-        else if (x == 5 && y == 7 && current != null && player.board == current.board && player != null) {
-            player.setHeading(player.getHeading().next());
+    }
 
+    /**
+     * gearTurnLeft Move Action
+     * @author Lauritz s191179
+     * @author Pernille Lyngholm
+     */
+    public void gearTurnLeftMove() {
+        Space current = player.getSpace();
+        if (x == 5 && y == 7 && current != null && player.board == current.board && player != null) {
+            player.setHeading(player.getHeading().prev());
         }
     }
 
