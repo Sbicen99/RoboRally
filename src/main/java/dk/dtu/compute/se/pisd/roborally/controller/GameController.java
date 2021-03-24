@@ -139,7 +139,6 @@ public class GameController {
     public void executePrograms() {
         board.setStepMode(false);
         continuePrograms();
-
     }
 
     /**
@@ -150,7 +149,6 @@ public class GameController {
     public void executeStep() {
         board.setStepMode(true);
         continuePrograms();
-
     }
 
     // XXX: V2
@@ -163,17 +161,25 @@ public class GameController {
     // XXX: V2
     private void executeNextStep() {
         Player currentPlayer = board.getCurrentPlayer();
-        if (board.getPhase() == Phase.ACTIVATION && currentPlayer != null) {
+        if ((board.getPhase() == Phase.ACTIVATION  || (board.getPhase() == Phase.PLAYER_INTERACTION && board.getUserChoice() != null)) && currentPlayer != null) {
             int step = board.getStep();
+
             if (step >= 0 && step < Player.NO_REGISTERS) {
-                CommandCard card = currentPlayer.getProgramField(step).getCard();
-                if (card != null) {
-                    Command command = card.command;
-                    if (command.isInteractive()){
-                        board.setPhase(Phase.PLAYER_INTERACTION);
-                        return;
+                Command userChoice  = board.getUserChoice();
+                if (userChoice != null ){
+                    board.setUserChoice(null);
+                    board.setPhase(Phase.ACTIVATION);
+                    executeCommand(currentPlayer, userChoice);
+                }else {
+                    CommandCard card = currentPlayer.getProgramField(step).getCard();
+                    if (card != null) {
+                        Command command = card.command;
+                        if (command.isInteractive()) {
+                            board.setPhase(Phase.PLAYER_INTERACTION);
+                            return;
+                        }
+                        executeCommand(currentPlayer, command);
                     }
-                    executeCommand(currentPlayer, command);
                 }
                 int nextPlayerNumber = board.getPlayerNumber(currentPlayer) + 1;
                 if (nextPlayerNumber < board.getPlayersNumber()) {
@@ -205,25 +211,10 @@ public class GameController {
      * @param option
      */
     public void executeCommandOptionAndContinue(@NotNull Command option){
-        Player currentPlayer = board.getCurrentPlayer();
-        if (currentPlayer != null && board.getPhase() == Phase.PLAYER_INTERACTION && option != null){
-            board.setPhase(Phase.ACTIVATION);
-            executeCommand(currentPlayer, option);
-
-            int nextPlayerNumber = board.getPlayerNumber(currentPlayer) + 1;
-            if (nextPlayerNumber < board.getPlayersNumber()) {
-                board.setCurrentPlayer(board.getPlayer(nextPlayerNumber));
-            } else {
-                int step = board.getStep() + 1;
-                if (step < Player.NO_REGISTERS) {
-                    makeProgramFieldsVisible(step);
-                    board.setStep(step);
-                    board.setCurrentPlayer(board.getPlayer(0));
-                } else {
-                    startProgrammingPhase();
-                }
-            }
-        }
+        assert board.getPhase() == Phase.PLAYER_INTERACTION;
+        assert board.getCurrentPlayer() != null;
+        board.setUserChoice(option);
+        continuePrograms();
     }
 
     // XXX: V2
@@ -298,6 +289,7 @@ public class GameController {
         Player other = space.getPlayer();
         if (other != null) {
             Space target = board.getNeighbour(space, heading);
+
             if (target != null) {
 
                 // XXX Note that there might be additional problems
