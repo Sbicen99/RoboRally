@@ -38,15 +38,15 @@ public enum Command {
     FORWARD("Fwd(Move one step)"),
     RIGHT("Turn Right"),
     LEFT("Turn Left"),
-    FAST_FORWARD1("Fwd(Move to step)"),
-    FAST_FORWARD2("Fwd(Move three step)"),
+    FAST_FORWARD1("Fwd(Move to steps)"),
+    FAST_FORWARD2("Fwd(Move three steps)"),
     U_Turn("Turn back"),
     MoveBack("Move Back(one step)"),
 
 
 
     // XXX Assignment V3
-    OPTION_LEFT_RIGHT("Turn Left OR Turn Right", LEFT, RIGHT);
+    OPTION_LEFT_RIGHT("Left OR Right", LEFT, RIGHT);
 
     final public String displayName;
 
