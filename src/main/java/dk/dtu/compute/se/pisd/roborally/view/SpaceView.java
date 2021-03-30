@@ -194,20 +194,12 @@ public class SpaceView extends StackPane implements ViewObserver {
      * @author Sercan, s185040
      */
     private void setBlueConveyorBeltInBoard() {
-        if (space.x == 1 && space.y == 0) {
+        if (space.x == 4 && space.y == 4) {
             blueConveyorBelt(180,1,-5);
 
-        } else if (space.x == 0 && space.y == 8) {
+        } else if (space.x == 6 && space.y == 6) {
             blueConveyorBelt(90, 1, -5);
-
-        } else if (space.x == 9 && space.y == 1) {
-            blueConveyorBelt(270, 1, -5);
         }
-
-        else if (space.x == 8 && space.y == 9) {
-            blueConveyorBelt(0,1,5);
-        }
-
     }
 
 
