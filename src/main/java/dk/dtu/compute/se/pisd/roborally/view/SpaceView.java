@@ -22,12 +22,14 @@
 package dk.dtu.compute.se.pisd.roborally.view;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
+import dk.dtu.compute.se.pisd.roborally.controller.AppController;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -138,7 +140,7 @@ public class SpaceView extends StackPane implements ViewObserver {
      * @author Najib Hebrawi
      */
 
-    /*private void firstCheckPoint() {
+    private void checkpointOne() {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
 
         //creating the image object
@@ -157,7 +159,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
 
     /**
@@ -166,7 +168,7 @@ public class SpaceView extends StackPane implements ViewObserver {
      * @author Najib Hebrawi
      */
 
-    /*private void secondCheckPoint() {
+    private void checkpointTwo() {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
 
         //creating the image object
@@ -185,7 +187,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
 
     /**
@@ -194,28 +196,27 @@ public class SpaceView extends StackPane implements ViewObserver {
      *  @author Najib Hebrawi
      */
 
-    /*private void addCheckPoints() {
-        if (space.x == 3 && space.y == 4) {
-            firstCheckPoint();
-        } else if (space.x == 6 && space.y == 7) {
-            secondCheckPoint();
+    private void addCheckPoints() {
+        if (space.x == 5 && space.y == 2) {
+            checkpointOne();
+        } else if (space.x == 2 && space.y == 8) {
+            checkpointTwo();
         }
-    }*/
-
+    }
 
 
     /**
      * Placing walls on board
      * @author Thamara Chellakooty & Camilla Boejden
      */
-    public void setwallOnBoard () {
+    private void setwallOnBoard () {
         if (space.x == 1 && space.y == 2) {
             addingVerticalWallWithCanvas();
 
-        }else if (space.x == 7 && space.y == 2) {
+        } else if (space.x == 7 && space.y == 2) {
             addingVerticalWallWithCanvas();
 
-        }else if (space.x == 0 && space.y == 7) {
+        } else if (space.x == 0 && space.y == 7) {
             addingVerticalWallWithCanvas();
 
         } else if (space.x == 7 && space.y == 7) {
@@ -239,6 +240,8 @@ public class SpaceView extends StackPane implements ViewObserver {
         graphicsContext.strokeLine(SPACE_HEIGHT-2, 2, SPACE_WIDTH-2, SPACE_WIDTH-2);
         this.getChildren().add(canvas);
     }
+
+
 
     /**
      * Adding the gear turning right as an image
@@ -307,6 +310,8 @@ public class SpaceView extends StackPane implements ViewObserver {
             gearTurnLeft();
     }
 
+
+
     private void updatePlayer() {
         this.getChildren().clear();
 
@@ -314,7 +319,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         //Adding elements to the board where each triangle/player is in front of it.
         setBlueConveyorBeltOnBoard();
         setwallOnBoard();
-        //addCheckPoints();
+        addCheckPoints();
         addGearToBoard();
         //------------------------
 

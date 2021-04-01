@@ -22,10 +22,10 @@
 package dk.dtu.compute.se.pisd.roborally.model;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
+import dk.dtu.compute.se.pisd.roborally.controller.AppController;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static dk.dtu.compute.se.pisd.roborally.model.Heading.SOUTH;
 
@@ -38,6 +38,8 @@ import static dk.dtu.compute.se.pisd.roborally.model.Heading.SOUTH;
 public class Space extends Subject {
     private List<Heading> walls = new ArrayList<>();
     private List<FieldAction> actions = new ArrayList<>();
+
+    private List<String> checkpointPassed = new ArrayList<>();
 
     public final Board board;
 
@@ -131,8 +133,29 @@ public class Space extends Subject {
         }
     }
 
-    public void wallsAction() {
 
+    public void checkpointActions() {
+        String playerName = player.getName();
+
+        if (x == 5 && y == 2) {
+            System.out.println("Passed checkpoint 1..");
+            checkpointPassed.add(playerName);
+
+        } else if (x == 2 && y == 8) {
+            System.out.println("Passed checkpoint 2..");
+            checkpointPassed.add(playerName);
+        }
+
+        try {
+            //checking for duplicates and return it as winner of the game.
+            for (int i = 0; i < checkpointPassed.size(); i++) {
+                if (checkpointPassed.lastIndexOf(checkpointPassed.get(i)) != i) {
+                    System.out.println("Duplicated: " + checkpointPassed.get(i));
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
     }
 
 

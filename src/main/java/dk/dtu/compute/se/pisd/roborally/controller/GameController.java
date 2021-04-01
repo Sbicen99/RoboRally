@@ -64,6 +64,7 @@ public class GameController {
             space.blueConveyorBeltAction();
             space.gearTurnRightAction();
             space.gearTurnLeftAction();
+            space.checkpointActions();
             //----------------------------
 
         } else {

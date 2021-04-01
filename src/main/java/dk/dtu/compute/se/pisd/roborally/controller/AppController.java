@@ -51,9 +51,6 @@ public class AppController implements Observer {
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
     final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "grey", "magenta");
 
-
-
-
     final private RoboRally roboRally;
 
     private GameController gameController;
@@ -154,6 +151,7 @@ public class AppController implements Observer {
         }
         return false;
     }
+
 
     public void exit() {
         if (gameController != null) {
