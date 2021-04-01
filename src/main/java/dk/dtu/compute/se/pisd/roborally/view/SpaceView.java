@@ -55,8 +55,8 @@ public class SpaceView extends StackPane implements ViewObserver {
     /**
      * Change screen resolution.
      */
-    final public static int SPACE_HEIGHT = 70; // 60; // 75;
-    final public static int SPACE_WIDTH = 70;  // 60; // 75;
+    final public static int SPACE_HEIGHT = 40; // 60; // 75;
+    final public static int SPACE_WIDTH = 40;  // 60; // 75;
 
     public final Space space;
 
@@ -92,19 +92,19 @@ public class SpaceView extends StackPane implements ViewObserver {
      * @author Najib s181663
      * @author Sercan, s185040
      */
-    private void blueConveyorBelt(double rotation, double addingValueToHeight, double addingValueToWidth) {
+    private void createBlueConveyorBelt(int rotation) {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
 
         //creating the image object
         try {
-            InputStream stream = new FileInputStream("src/main/resources/images/blueConveyorBelt.png");
+            InputStream stream = new FileInputStream("src/main/resources/images/blue_arrow.png");
             Image image = new Image(stream);
 
             //creating the imageview
             ImageView imageView = new ImageView();
             imageView.setImage(image);
-            imageView.setFitWidth(SPACE_WIDTH + addingValueToWidth);
-            imageView.setFitHeight(SPACE_HEIGHT + addingValueToHeight);
+            imageView.setFitWidth(SPACE_WIDTH);
+            imageView.setFitHeight(SPACE_HEIGHT);
 
             //Changing the rotation of the conveyor belt. 90 := --> , -90 := <--, 0 := up and 180 := down
             imageView.setRotate(rotation);
@@ -117,12 +117,28 @@ public class SpaceView extends StackPane implements ViewObserver {
     }
 
     /**
+     * setBlueConveyorBeltInBoard with different directions.
+     * @author Najib s181663
+     * @author Sercan, s185040
+     */
+    private void setBlueConveyorBeltOnBoard() {
+        if (space.x == 3 && space.y == 4) {
+            createBlueConveyorBelt(180);
+
+        } else if (space.x == 6 && space.y == 6) {
+            createBlueConveyorBelt(90);
+        }
+    }
+
+
+
+    /**
      * Adding the first checkpoint as an image.
      * @author Sercan Bicen
      * @author Najib Hebrawi
      */
 
-    private void firstCheckPoint() {
+    /*private void firstCheckPoint() {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
 
         //creating the image object
@@ -141,7 +157,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 
     /**
@@ -150,7 +166,7 @@ public class SpaceView extends StackPane implements ViewObserver {
      * @author Najib Hebrawi
      */
 
-    private void secondCheckPoint() {
+    /*private void secondCheckPoint() {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
 
         //creating the image object
@@ -169,7 +185,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 
     /**
@@ -178,29 +194,14 @@ public class SpaceView extends StackPane implements ViewObserver {
      *  @author Najib Hebrawi
      */
 
-    private void addCheckPoints() {
+    /*private void addCheckPoints() {
         if (space.x == 3 && space.y == 4) {
             firstCheckPoint();
         } else if (space.x == 6 && space.y == 7) {
             secondCheckPoint();
         }
-    }
+    }*/
 
-
-
-    /**
-     * setBlueConveyorBeltInBoard with different directions.
-     * @author Najib s181663
-     * @author Sercan, s185040
-     */
-    private void setBlueConveyorBeltInBoard() {
-        if (space.x == 4 && space.y == 4) {
-            blueConveyorBelt(180,1,-5);
-
-        } else if (space.x == 6 && space.y == 6) {
-            blueConveyorBelt(90, 1, -5);
-        }
-    }
 
 
     /**
@@ -208,7 +209,7 @@ public class SpaceView extends StackPane implements ViewObserver {
      * @author Thamara Chellakooty & Camilla Boejden
      */
     public void setwallOnBoard () {
-        if (space.x == 1 && space.y == 1) {
+        if (space.x == 1 && space.y == 2) {
             addingVerticalWallWithCanvas();
 
         }else if (space.x == 7 && space.y == 2) {
@@ -228,7 +229,7 @@ public class SpaceView extends StackPane implements ViewObserver {
      * Adding vertical walls to the boards with Canvas.
      * @author Thamara Chellakooty & Camilla Boejden
      */
-    protected void addingVerticalWallWithCanvas() {
+    private void addingVerticalWallWithCanvas() {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
         graphicsContext.setStroke(Color.RED);
@@ -300,7 +301,7 @@ public class SpaceView extends StackPane implements ViewObserver {
      */
 
     private void addGearToBoard() {
-        if (space.x == 3 && space.y == 3) {
+        if (space.x == 2 && space.y == 3) {
             gearTurnRight();
         } else if (space.x == 5 && space.y == 7)
             gearTurnLeft();
@@ -311,17 +312,17 @@ public class SpaceView extends StackPane implements ViewObserver {
 
         //------------------------
         //Adding elements to the board where each triangle/player is in front of it.
-        setBlueConveyorBeltInBoard();
+        setBlueConveyorBeltOnBoard();
         setwallOnBoard();
-        addCheckPoints();
+        //addCheckPoints();
         addGearToBoard();
         //------------------------
 
         Player player = space.getPlayer();
         if (player != null) {
             Polygon arrow = new Polygon(0.0, 0.0,
-                    20.0, 40.0,
-                    40.0, 0.0 );
+                    10.0, 20.0,
+                    20.0, 0.0 );
             try {
                 arrow.setFill(Color.valueOf(player.getColor()));
             } catch (Exception e) {

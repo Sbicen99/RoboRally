@@ -22,6 +22,7 @@
 package dk.dtu.compute.se.pisd.roborally.model;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +64,7 @@ public class Space extends Subject {
      * @author Najib s181663
      * @author Sercan, s185040
      */
-    public void blueConveyorBeltMoving() {
+    /*public void blueConveyorBeltMoving() {
         Space current = player.getSpace();
         if (x == 4 && y == 4 && current != null && player.board == current.board && player != null) {
             Space target = board.getSpace(4, 6);
@@ -76,18 +77,44 @@ public class Space extends Subject {
                 target.setPlayer(player);
 
             }
+        }
+    }*/
 
+
+    /**
+     * BlueConveyorBeltInBoard Move Action.
+     * @author Najib s181663
+     * @author Sercan, s185040
+     */
+
+    public void blueConveyorBeltAction() {
+        //Space currentPlayer = player.getSpace();
+        if (player != null) {
+            if (x == 3 && y == 4) {
+                Space target = board.getSpace(1, 4);
+                if (target != null && target.getPlayer() == null) {
+                    target.setPlayer(player);
+                }
+            }
+        }
+
+        if (x == 6 && y == 6) {
+            Space target = board.getSpace(6, 8);
+            if (target != null && target.getPlayer() == null) {
+                target.setPlayer(player);
+            }
         }
     }
+
 
     /**
      * gearTurnRight Move Action
      * @author Lauritz s191179
      * @author Pernille Lyngholm
      */
-    public void gearTurnRightMove() {
+    public void gearTurnRightAction() {
         Space current = player.getSpace();
-        if (x == 3 && y == 3 && current != null && player.board == current.board && player != null) {
+        if (x == 2 && y == 3 && current != null && player.board == current.board) {
             player.setHeading(player.getHeading().next());
         }
     }
@@ -97,13 +124,16 @@ public class Space extends Subject {
      * @author Lauritz s191179
      * @author Pernille Lyngholm
      */
-    public void gearTurnLeftMove() {
+    public void gearTurnLeftAction() {
         Space current = player.getSpace();
-        if (x == 5 && y == 7 && current != null && player.board == current.board && player != null) {
+        if (x == 5 && y == 7 && current != null && player.board == current.board) {
             player.setHeading(player.getHeading().prev());
         }
     }
 
+    public void wallsAction() {
+
+    }
 
 
     public void setPlayer(Player player) {

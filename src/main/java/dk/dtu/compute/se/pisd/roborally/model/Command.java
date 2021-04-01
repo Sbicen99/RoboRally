@@ -38,7 +38,7 @@ public enum Command {
     FORWARD("Fwd(Move one step)"),
     RIGHT("Turn Right"),
     LEFT("Turn Left"),
-    FAST_FORWARD1("Fwd(Move to steps)"),
+    FAST_FORWARD1("Fwd(Move two steps)"),
     FAST_FORWARD2("Fwd(Move three steps)"),
     U_Turn("Turn back"),
     MoveBack("Move Back(one step)"),

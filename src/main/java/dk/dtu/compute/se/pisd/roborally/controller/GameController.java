@@ -52,17 +52,22 @@ public class GameController {
             Player currentPlayer = board.getCurrentPlayer();
             currentPlayer.setSpace(space);
             board.setNotEmpty("");
+
             int number = board.getPlayerNumber(currentPlayer);
             Player nextPlayer = board.getPlayer((number + 1) % board.getPlayersNumber());
             board.setCurrentPlayer(nextPlayer);
             board.setCount(board.getCount() + 1);
 
 
-            space.blueConveyorBeltMoving();
+            //----------------------------
+            //Actions on the board
+            space.blueConveyorBeltAction();
+            space.gearTurnRightAction();
+            space.gearTurnLeftAction();
+            //----------------------------
 
         } else {
             board.setNotEmpty("The field isn't empty");
-
         }
     }
 
@@ -269,14 +274,15 @@ public class GameController {
                     e.getCause();
                     e.getMessage();
                     e.printStackTrace();
-// we don't do anything here for now;
-// we just catch the exception so that
-// we do no pass it on to the caller
-// (which would be very bad style).
+                    // we don't do anything here for now;
+                    // we just catch the exception so that
+                    // we do no pass it on to the caller
+                    // (which would be very bad style).
                 }
             }
         }
     }
+
     /**
      * @author Najib Hebrawi s181663
      * @author Sercan, s185040
@@ -301,11 +307,10 @@ public class GameController {
             }
         }
 
-        player.setSpace(space);
+        /*player.setSpace(space);
         space.blueConveyorBeltMoving();
         space.gearTurnRightMove();
-        space.gearTurnLeftMove();
-
+        space.gearTurnLeftMove();*/
     }
 
 
