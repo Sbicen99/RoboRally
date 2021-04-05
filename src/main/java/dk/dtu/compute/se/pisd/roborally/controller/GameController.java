@@ -308,10 +308,10 @@ public class GameController {
             }
         }
 
-        /*player.setSpace(space);
-        space.blueConveyorBeltMoving();
-        space.gearTurnRightMove();
-        space.gearTurnLeftMove();*/
+        player.setSpace(space);
+        space.blueConveyorBeltAction();
+        space.gearTurnRightAction();
+        space.gearTurnLeftAction();
     }
 
 
