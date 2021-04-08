@@ -47,7 +47,7 @@ public class BoardTemplate {
 
     public List<SpaceTemplate> spaces = new ArrayList<>();
 
-    GsonBuilder simpleBuilder = new GsonBuilder().
+    /*GsonBuilder simpleBuilder = new GsonBuilder().
             registerTypeAdapter(FieldAction.class,
                     new Adapter<FieldAction>());
     Gson gson = simpleBuilder.create();
@@ -61,7 +61,7 @@ public class BoardTemplate {
     JsonReader reader = gson.newJsonReader(streamReader);
     BoardTemplate boardTemplate =
             gson.fromJson(reader, BoardTemplate.class);
-
+*/
 
 
 
