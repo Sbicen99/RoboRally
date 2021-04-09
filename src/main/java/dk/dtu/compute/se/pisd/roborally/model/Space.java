@@ -23,6 +23,7 @@ package dk.dtu.compute.se.pisd.roborally.model;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.controller.AppController;
+import dk.dtu.compute.se.pisd.roborally.view.SpaceView;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -49,6 +50,7 @@ public class Space extends Subject {
     public final int y;
 
     private Player player;
+
 
     public Space(Board board, int x, int y) {
         this.board = board;
@@ -96,7 +98,6 @@ public class Space extends Subject {
      */
 
     public void blueConveyorBeltAction() {
-        //Space currentPlayer = player.getSpace();
         if (player != null) {
             if (x == 3 && y == 4) {
                 Space target = board.getSpace(1, 4);
@@ -121,8 +122,7 @@ public class Space extends Subject {
      * @author Pernille Lyngholm
      */
     public void gearTurnRightAction() {
-        Space current = player.getSpace();
-        if (x == 2 && y == 3 && current != null && player.board == current.board) {
+        if (x == 2 && y == 3) {
             player.setHeading(player.getHeading().next());
         }
     }
@@ -133,30 +133,28 @@ public class Space extends Subject {
      * @author Pernille Lyngholm
      */
     public void gearTurnLeftAction() {
-        Space current = player.getSpace();
-        if (x == 5 && y == 7 && current != null && player.board == current.board) {
+        if (x == 5 && y == 7) {
             player.setHeading(player.getHeading().prev());
         }
     }
 
 
     public void checkpointActions() {
-        String playerName = player.getName();
-
         if (x == 5 && y == 2) {
             System.out.println("Passed checkpoint 1..");
-            checkpointPassed.add(playerName);
+            checkpointPassed.add(player.getName());
 
-        } else if (x == 2 && y == 8) {
+        } else if (x == 2 && y == 6) {
             System.out.println("Passed checkpoint 2..");
-            checkpointPassed.add(playerName);
+            checkpointPassed.add(player.getName());
         }
 
         try {
             //checking for duplicates and return it as winner of the game.
             for (int i = 0; i < checkpointPassed.size(); i++) {
                 if (checkpointPassed.lastIndexOf(checkpointPassed.get(i)) != i) {
-                    System.out.println("Duplicated: " + checkpointPassed.get(i));
+                    //TODO: finding the duplicated player and returns it as winner.
+                    System.out.println("The winner is: " + checkpointPassed.get(i));
                 }
             }
         } catch (Exception e) {

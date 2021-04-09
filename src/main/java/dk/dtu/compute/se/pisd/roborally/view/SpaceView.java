@@ -193,7 +193,7 @@ public class SpaceView extends StackPane implements ViewObserver {
     private void addCheckPoints() {
         if (space.x == 5 && space.y == 2) {
             checkpointOne();
-        } else if (space.x == 2 && space.y == 8) {
+        } else if (space.x == 2 && space.y == 6) {
             checkpointTwo();
         }
     }
