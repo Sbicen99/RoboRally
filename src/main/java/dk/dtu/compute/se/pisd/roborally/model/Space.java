@@ -61,6 +61,12 @@ public class Space extends Subject {
         return player;
     }
 
+    //public void wall(){
+    //    Space curren = player.getSpace();
+    //    if
+
+   // }
+
     /**
      * BlueConveyorBeltInBoard Move Action.
      * @author Najib s181663

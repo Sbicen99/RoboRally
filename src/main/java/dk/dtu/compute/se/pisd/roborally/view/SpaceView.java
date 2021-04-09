@@ -22,29 +22,23 @@
 package dk.dtu.compute.se.pisd.roborally.view;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
-import dk.dtu.compute.se.pisd.roborally.controller.AppController;
+import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.scene.shape.Polygon;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 
-import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * ...
@@ -79,7 +73,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         if ((space.x + space.y) % 2 == 0) {
             this.setStyle("-fx-background-color: white;");
         } else {
-            this.setStyle("-fx-background-color: black;");
+            this.setStyle("-fx-background-color: #000000;");
         }
 
         // updatePlayer();
@@ -209,21 +203,30 @@ public class SpaceView extends StackPane implements ViewObserver {
      * Placing walls on board
      * @author Thamara Chellakooty & Camilla Boejden
      */
-    private void setwallOnBoard () {
-        if (space.x == 1 && space.y == 2) {
-            addingVerticalWallWithCanvas();
+    private void createStaticObject() {
+        List<Heading> spaceWalls = space.getWalls();
 
-        } else if (space.x == 7 && space.y == 2) {
-            addingVerticalWallWithCanvas();
+        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
+        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
+        graphicsContext.setStroke(Color.RED);
+        graphicsContext.setLineWidth(5);
+        graphicsContext.setLineCap(StrokeLineCap.ROUND);
 
-        } else if (space.x == 0 && space.y == 7) {
-            addingVerticalWallWithCanvas();
-
-        } else if (space.x == 7 && space.y == 7) {
-            addingVerticalWallWithCanvas();
-
+        for (Heading heading: spaceWalls) {
+            switch (heading){
+                case SOUTH: graphicsContext.strokeLine(2, SPACE_HEIGHT-2, SPACE_WIDTH-2, SPACE_HEIGHT-2);
+                    break;
+                case NORTH: graphicsContext.strokeLine(2, 2, SPACE_WIDTH-2, 2);
+                    break;
+                case EAST: graphicsContext.strokeLine(SPACE_HEIGHT-2, SPACE_HEIGHT-2, SPACE_WIDTH-2, 2);
+                    break;
+                default:
+            }
         }
+        this.getChildren().add(canvas);
+
     }
+
 
 
     /**
@@ -317,10 +320,10 @@ public class SpaceView extends StackPane implements ViewObserver {
 
         //------------------------
         //Adding elements to the board where each triangle/player is in front of it.
-        setBlueConveyorBeltOnBoard();
-        setwallOnBoard();
-        addCheckPoints();
-        addGearToBoard();
+        //setBlueConveyorBeltOnBoard();
+        createStaticObject();
+        //addCheckPoints();
+        //addGearToBoard();
         //------------------------
 
         Player player = space.getPlayer();

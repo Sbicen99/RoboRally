@@ -25,6 +25,8 @@ import dk.dtu.compute.se.pisd.designpatterns.observer.Observer;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.RoboRally;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
+import dk.dtu.compute.se.pisd.roborally.model.Gear;
+import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.database.GameInDB;
 import dk.dtu.compute.se.pisd.roborally.model.database.RepositoryAccess;
@@ -75,7 +77,7 @@ public class AppController implements Observer {
             }
             // XXX the board should eventually be created programmatically or loaded from a file
             //     here we just create an empty board with the required number of players.
-            Board board = new Board(10,10);
+            Board board = createBoard();
             gameController = new GameController(board);
             int no = result.get();
             for (int i = 0; i < no; i++) {
@@ -89,6 +91,27 @@ public class AppController implements Observer {
             roboRally.createBoardView(gameController);
         }
     }
+
+
+    /**
+     * @author Thamara Chellakooty
+     * @author Camilla Boejden
+     * @return
+     */
+    private Board createBoard(){
+        Board board = new Board(10,10);
+        Gear gear = new Gear();
+        board.getSpace(2,3).getActions().add(gear);
+        board.getSpace(2,3).getWalls().add(Heading.EAST);
+        board.getSpace(2,7).getWalls().add(Heading.SOUTH);
+        board.getSpace(8,3).getWalls().add(Heading.NORTH);
+        board.getSpace(8,7).getWalls().add(Heading.EAST);
+        return board;
+
+    }
+
+
+
     public void saveGame() {
         // XXX needs to be implemented eventually
         if (gameController != null) {
