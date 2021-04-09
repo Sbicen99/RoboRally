@@ -320,10 +320,10 @@ public class SpaceView extends StackPane implements ViewObserver {
 
         //------------------------
         //Adding elements to the board where each triangle/player is in front of it.
-        //setBlueConveyorBeltOnBoard();
+        setBlueConveyorBeltOnBoard();
         createStaticObject();
-        //addCheckPoints();
-        //addGearToBoard();
+        addCheckPoints();
+        addGearToBoard();
         //------------------------
 
         Player player = space.getPlayer();
