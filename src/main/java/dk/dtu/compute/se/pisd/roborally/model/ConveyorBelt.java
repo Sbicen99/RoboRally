@@ -19,7 +19,13 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  */
-package dk.dtu.compute.se.pisd.roborally.model.database;
+package dk.dtu.compute.se.pisd.roborally.model;
+
+import dk.dtu.compute.se.pisd.roborally.controller.GameController;
+import dk.dtu.compute.se.pisd.roborally.model.FieldAction;
+import dk.dtu.compute.se.pisd.roborally.model.Heading;
+import dk.dtu.compute.se.pisd.roborally.model.Space;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * ...
@@ -27,19 +33,22 @@ package dk.dtu.compute.se.pisd.roborally.model.database;
  * @author Ekkart Kindler, ekki@dtu.dk
  *
  */
-public class GameInDB {
+public class ConveyorBelt extends FieldAction {
 
-    public final int id;
-    public final String name;
+    private Heading heading;
 
-    public GameInDB(int id, String name) {
-        this.id = id;
-        this.name = name;
+    public Heading getHeading() {
+        return heading;
+    }
+
+    public void setHeading(Heading heading) {
+        this.heading = heading;
     }
 
     @Override
-    public String toString() {
-        return id + ": " + name;
+    public boolean doAction(@NotNull GameController gameController, @NotNull Space space) {
+        // TODO needs to be implemented
+        return false;
     }
 
 }

@@ -19,11 +19,7 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  */
-package dk.dtu.compute.se.pisd.roborally.model.database;
-
-import dk.dtu.compute.se.pisd.roborally.model.Board;
-
-import java.util.List;
+package dk.dtu.compute.se.pisd.roborally.dal;
 
 /**
  * ...
@@ -31,14 +27,19 @@ import java.util.List;
  * @author Ekkart Kindler, ekki@dtu.dk
  *
  */
-public interface IRepository {
-	
- 	boolean createGameInDB(Board game);
-	
-	boolean updateGameInDB(Board game);
-	
-	Board loadGameFromDB(int id);
-	
-	List<GameInDB> getGames();
+public class GameInDB {
+
+    public final int id;
+    public final String name;
+
+    public GameInDB(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return id + ": " + name;
+    }
 
 }
