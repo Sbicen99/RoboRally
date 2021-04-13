@@ -76,7 +76,6 @@ public class Repository implements IRepository {
 			Connection connection = connector.getConnection();
 			try {
 				connection.setAutoCommit(false);
-
 				PreparedStatement ps = getInsertGameStatementRGK();
 				// TODO: the name should eventually set by the user
 				//       for the game and should be then used 
