@@ -19,7 +19,7 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  */
-package dk.dtu.compute.se.pisd.roborally.model.database;
+package dk.dtu.compute.se.pisd.roborally.dal;
 
 import com.mysql.cj.util.StringUtils;
 
@@ -43,9 +43,9 @@ public class Connector {
 
 	private static final String HOST = "localhost";
 	private static final int PORT = 3306;
-	private static final String DATABASE = "roborally";
+	private static final String DATABASE = "RoboRally";
 	private static final String USERNAME = "root";
-	private static final String PASSWORD = "2Tkaufmann";
+	private static final String PASSWORD = "root";
 
 	private static final String DELIMITER = ";;";
 
@@ -54,7 +54,7 @@ public class Connector {
 	Connector() {
 		try {
 			// String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
-			String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE + "?serverTimezone=UTC";
+			String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE + "?serverTimezone=UTC&verifyServerCertificate=false&useSSL=true";
 			connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
 
 			createDatabaseSchema();

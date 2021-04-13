@@ -186,24 +186,31 @@ public class Board extends Subject {
     public Space getNeighbour(@NotNull Space space, @NotNull Heading heading) {
 
 
-        int x = space.x;
-        int y = space.y;
-        switch (heading) {
-            case SOUTH:
-                y = (y + 1) % height;
-                break;
-            case WEST:
-                x = (x + width - 1) % width;
-                break;
-            case NORTH:
-                y = (y + height - 1) % height;
-                break;
-            case EAST:
-                x = (x + 1) % width;
-                break;
-        }
-        return getSpace(x, y);
+        if (!space.getWalls().contains(heading)) {
 
+            int x = space.x;
+            int y = space.y;
+            switch (heading) {
+                case SOUTH:
+                    y = (y + 1) % height;
+                    break;
+                case WEST:
+                    x = (x + width - 1) % width;
+                    break;
+                case NORTH:
+                    y = (y + height - 1) % height;
+                    break;
+                case EAST:
+                    x = (x + 1) % width;
+                    break;
+            }
+            Space target = getSpace(x,y);
+
+            if (!target.getWalls().contains(heading.prev().prev())) {
+                return target;
+            }
+        }
+        return null;
     }
 
 
