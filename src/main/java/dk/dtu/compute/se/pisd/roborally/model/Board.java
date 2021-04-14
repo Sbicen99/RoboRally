@@ -53,6 +53,8 @@ public class Board extends Subject {
 
     private final List<Player> players = new ArrayList<>();
 
+    private List<Checkpoint> checkpoints = new ArrayList<>();
+
     private Player current;
 
     private Phase phase = INITIALISATION;
@@ -283,8 +285,6 @@ public class Board extends Subject {
     }
 
 
-
-
     private Command userChoice=null;
 
     public Command getUserChoice() {
@@ -298,8 +298,11 @@ public class Board extends Subject {
         }
     }
 
+    public List<Checkpoint> getCheckpoints() {
+        return this.checkpoints;
+    }
 
-
-
-
+    public void setCheckpoints(Checkpoint checkpoint) {
+        this.checkpoints.add(checkpoint);
+    }
 }

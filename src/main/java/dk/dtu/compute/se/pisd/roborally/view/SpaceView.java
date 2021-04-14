@@ -22,9 +22,7 @@
 package dk.dtu.compute.se.pisd.roborally.view;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
-import dk.dtu.compute.se.pisd.roborally.model.Heading;
-import dk.dtu.compute.se.pisd.roborally.model.Player;
-import dk.dtu.compute.se.pisd.roborally.model.Space;
+import dk.dtu.compute.se.pisd.roborally.model.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
@@ -38,6 +36,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.util.List;
 
 /**
@@ -188,14 +187,41 @@ public class SpaceView extends StackPane implements ViewObserver {
      * Adding the checkpoints to a specific position on the board.
      *  @author Sercan Bicen
      *  @author Najib Hebrawi
+     * @return
      */
 
-    private void addCheckPoints() {
+    /*private void addCheckPoints() {
         if (space.x == 5 && space.y == 2) {
             checkpointOne();
         } else if (space.x == 2 && space.y == 6) {
             checkpointTwo();
         }
+    }*/
+
+    private ImageView imagesOnBoard(String imageName) {
+        Image image = null;
+
+        try {
+            image = new Image(SpaceView.class.getClassLoader().getResource(imageName).toURI().toString());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        ImageView imageView = new ImageView(image);
+        imageView.setImage(image);
+        imageView.setFitHeight(SPACE_HEIGHT);
+        imageView.setFitWidth(SPACE_WIDTH);
+        imageView.setVisible(true);
+
+        for (FieldAction action : space.getActions()) {
+            if (action instanceof Checkpoint) {
+                //TODO: need to implement imageview here..
+            }
+        }
+
+        this.getChildren().add(imageView);
+
+        return imageView;
     }
 
 
@@ -224,7 +250,6 @@ public class SpaceView extends StackPane implements ViewObserver {
             }
         }
         this.getChildren().add(canvas);
-
     }
 
 
@@ -320,10 +345,10 @@ public class SpaceView extends StackPane implements ViewObserver {
 
         //------------------------
         //Adding elements to the board where each triangle/player is in front of it.
-        setBlueConveyorBeltOnBoard();
+        //setBlueConveyorBeltOnBoard();
         createStaticObject();
-        addCheckPoints();
-        addGearToBoard();
+        //addCheckPoints();
+        //addGearToBoard();
         //------------------------
 
         Player player = space.getPlayer();

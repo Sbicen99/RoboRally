@@ -22,6 +22,7 @@
 package dk.dtu.compute.se.pisd.roborally.controller;
 
 import dk.dtu.compute.se.pisd.roborally.model.*;
+import javafx.scene.control.Alert;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -33,7 +34,10 @@ import org.jetbrains.annotations.NotNull;
 public class GameController {
 
     Space space;
+
     final public Board board;
+
+    public boolean gameWin = false;
 
     public GameController(@NotNull Board board) {
         this.board = board;
@@ -414,6 +418,14 @@ public class GameController {
             return false;
         }
     }
+
+
+    public void gameWins(Player player) {
+        Alert alertMessage = new Alert(Alert.AlertType.INFORMATION, "Player " + player.getName() + " won the game.");
+        this.gameWin = true;
+        alertMessage.showAndWait();
+    }
+
 
     /**
      * A method called when no corresponding controller operation is implemented yet. This
