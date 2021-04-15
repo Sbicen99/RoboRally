@@ -46,6 +46,7 @@ public class Player extends Subject {
     private Space space;
     private Heading heading = SOUTH;
 
+    private int endCheckpoint;
 
     private CommandCardField[] program;
     private CommandCardField[] cards;
@@ -135,4 +136,18 @@ public class Player extends Subject {
         return cards[i];
     }
 
+    /**
+     * Checking if the number of the checkpoint is bigger than another.
+     * @return
+     */
+    public int getEndCheckpoint() {
+        return endCheckpoint;
+    }
+
+    public void setEndCheckpoint(int endCheckpoint) {
+        if (endCheckpoint == (this.endCheckpoint + 1)) {
+            this.endCheckpoint = endCheckpoint;
+            notifyChange();
+        }
+    }
 }
