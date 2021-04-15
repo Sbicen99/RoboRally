@@ -115,7 +115,6 @@ public class Space extends Subject {
         }
     }
 
-
     /**
      * gearTurnRight Move Action
      * @author Lauritz s191179
@@ -137,7 +136,6 @@ public class Space extends Subject {
             player.setHeading(player.getHeading().prev());
         }
     }
-
 
     public void checkpointActions() {
         if (x == 5 && y == 2) {
@@ -197,3 +195,5 @@ public class Space extends Subject {
     }
 
 }
+
+
