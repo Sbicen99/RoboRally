@@ -87,7 +87,7 @@ public class SpaceView extends StackPane implements ViewObserver {
      * @author Najib s181663
      * @author Sercan, s185040
      */
-    private void createBlueConveyorBelt(int rotation) {
+    /*private void createBlueConveyorBelt(int rotation) {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
 
         //creating the image object
@@ -109,21 +109,21 @@ public class SpaceView extends StackPane implements ViewObserver {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     /**
      * setBlueConveyorBeltInBoard with different directions.
      * @author Najib s181663
      * @author Sercan, s185040
      */
-    private void setBlueConveyorBeltOnBoard() {
+    /*private void setBlueConveyorBeltOnBoard() {
         if (space.x == 3 && space.y == 4) {
             createBlueConveyorBelt(180);
 
         } else if (space.x == 6 && space.y == 6) {
             createBlueConveyorBelt(90);
         }
-    }
+    }*/
 
 
 
@@ -133,7 +133,7 @@ public class SpaceView extends StackPane implements ViewObserver {
      * @author Najib Hebrawi
      */
 
-    private void checkpointOne() {
+    /*private void checkpointOne() {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
 
         //creating the image object
@@ -152,7 +152,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 
     /**
@@ -161,7 +161,7 @@ public class SpaceView extends StackPane implements ViewObserver {
      * @author Najib Hebrawi
      */
 
-    private void checkpointTwo() {
+    /*private void checkpointTwo() {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
 
         //creating the image object
@@ -180,7 +180,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 
     /**
@@ -265,7 +265,7 @@ public class SpaceView extends StackPane implements ViewObserver {
      * Adding vertical walls to the boards with Canvas.
      * @author Thamara Chellakooty & Camilla Boejden
      */
-    private void addingVerticalWallWithCanvas() {
+    /*private void addingVerticalWallWithCanvas() {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
         graphicsContext.setStroke(Color.RED);
@@ -274,7 +274,7 @@ public class SpaceView extends StackPane implements ViewObserver {
 
         graphicsContext.strokeLine(SPACE_HEIGHT-2, 2, SPACE_WIDTH-2, SPACE_WIDTH-2);
         this.getChildren().add(canvas);
-    }
+    }*/
 
 
 
@@ -353,6 +353,14 @@ public class SpaceView extends StackPane implements ViewObserver {
         //------------------------
         //Adding elements to the board where each triangle/player is in front of it.
         //setBlueConveyorBeltOnBoard();
+
+        // loop through actions. Can also be used to another board element.
+        for (FieldAction action : space.getActions()) {
+            if (action instanceof Checkpoint) {
+                addingImages("images/checkpoint" + ((Checkpoint) action).checkpointnumber + ".png", 180);
+            }
+        }
+
         createStaticObject();
         //addCheckPoints();
         //addGearToBoard();
@@ -372,15 +380,6 @@ public class SpaceView extends StackPane implements ViewObserver {
             arrow.setRotate((90*player.getHeading().ordinal())%360);
             this.getChildren().add(arrow);
         }
-
-
-        // loop throug actions.
-        for (FieldAction action : space.getActions()) {
-            if (action instanceof Checkpoint) {
-                addingImages("images/checkpoint" + ((Checkpoint) action).checkpointnumber + ".png", -90);
-            }
-        }
-
     }
 
     @Override
