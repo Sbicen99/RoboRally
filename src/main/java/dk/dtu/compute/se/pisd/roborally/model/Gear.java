@@ -5,8 +5,9 @@ import dk.dtu.compute.se.pisd.roborally.controller.GameController;
 public class Gear extends FieldAction {
 
     /**
-     * @author Thamara Chellakooty
-     * @author Camilla Boejden
+     * @author Thamara Chellakooty, Camilla Boejden
+     * @param gameController the gameController of the respective game
+     * @param space the space this action should be executed for
      * @return
      */
     public boolean doAction(GameController gameController, Space space) {

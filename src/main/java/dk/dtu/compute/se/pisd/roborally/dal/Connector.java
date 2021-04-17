@@ -22,6 +22,7 @@
 package dk.dtu.compute.se.pisd.roborally.dal;
 
 import com.mysql.cj.util.StringUtils;
+import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.net.URI;
@@ -51,6 +52,11 @@ public class Connector {
 
 	private Connection connection;
 
+
+	/**
+	 * @author Sercan Bicen
+	 * Database connection.
+	 */
 	Connector() {
 		try {
 			// String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
@@ -92,7 +98,8 @@ public class Connector {
 			connection.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
-// TODO error handling
+			// TODO error handling
+			errorHandler("Couldn't create database schema!");
 			try {
 				connection.rollback();
 			} catch (SQLException e1) {
@@ -142,4 +149,9 @@ public class Connector {
 			"...\n" +
 			");;";
 
+
+	private void errorHandler(String err) {
+		Alert errMessage = new Alert(Alert.AlertType.ERROR, err);
+		errMessage.showAndWait();
+	}
 }

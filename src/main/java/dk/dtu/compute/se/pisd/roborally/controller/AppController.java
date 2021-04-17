@@ -56,6 +56,11 @@ public class AppController implements Observer {
         this.roboRally = roboRally;
     }
 
+
+    /**
+     * Creating a new game where player choose how many player should be on the board.
+     */
+
     public void newGame() {
         ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
         dialog.setTitle("Player number");
@@ -89,9 +94,8 @@ public class AppController implements Observer {
 
 
     /**
-     * @author Thamara Chellakooty
-     * @author Camilla Boejden
-     * @return
+     * @author Camilla Boejden, Thamara Chellakooty & Sercan Bicen
+     * @return Returns board where different board elements are included on specific fields.
      */
     private Board createBoard(){
         Board board = new Board(10,10);
@@ -110,7 +114,9 @@ public class AppController implements Observer {
     }
 
 
-
+    /**
+     * Automatically saves games in the database when player start game.
+     */
     public void saveGame() {
         // XXX needs to be implemented eventually
         if (gameController != null) {
@@ -120,6 +126,11 @@ public class AppController implements Observer {
             }
         }
     }
+
+
+    /**
+     * This method load games from the database. Returns messages to the player when it is not possible to retrieve games from the database
+     */
     public void loadGame() {
 
         // XXX needs to be implememted eventually

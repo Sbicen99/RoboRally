@@ -10,7 +10,11 @@ public class Checkpoint extends FieldAction {
         this.checkpointnumber = checkpointnumber;
     }
 
-
+    /**
+     * @author Sercan Bicen
+     * @param gameController the gameController of the respective game
+     * @param space the space this action should be executed for
+     */
     @Override
     public boolean doAction(GameController gameController, Space space) {
         Player player = space.getPlayer();

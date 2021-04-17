@@ -26,6 +26,7 @@ import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import dk.dtu.compute.se.pisd.roborally.model.Phase;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
+import javafx.scene.control.Alert;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -268,7 +269,7 @@ public class Repository implements IRepository {
 			}
 			rs.close();
 		} catch (SQLException e) {
-			// TODO proper error handling
+			errorHandling("Couldn't get the list of games from the DB.");
 			e.printStackTrace();
 		}
 		return result;		
@@ -276,24 +277,27 @@ public class Repository implements IRepository {
 
 	private void createPlayersInDB(Board game) throws SQLException {
 		// TODO code should be more defensive
-		PreparedStatement ps = getSelectPlayersStatementU();
-		ps.setInt(1, game.getGameId());
-		
-		ResultSet resultSet = ps.executeQuery();
-		for (int i = 0; i < game.getPlayersNumber(); i++) {
-			Player player = game.getPlayer(i);
-			resultSet.moveToInsertRow();
-			resultSet.updateInt(PLAYER_GAMEID, game.getGameId());
-			resultSet.updateInt(PLAYER_PLAYERID, i);
-			resultSet.updateString(PLAYER_NAME, player.getName());
-			resultSet.updateString(PLAYER_COLOUR, player.getColor());
-			resultSet.updateInt(PLAYER_POSITION_X, player.getSpace().x);
-			resultSet.updateInt(PLAYER_POSITION_Y, player.getSpace().y);
-			resultSet.updateInt(PLAYER_HEADING, player.getHeading().ordinal());
-			resultSet.insertRow();
-		}
+		if (game != null) {
+			PreparedStatement ps = getSelectPlayersStatementU();
+			ps.setInt(1, game.getGameId());
 
-		resultSet.close();
+			ResultSet resultSet = ps.executeQuery();
+			for (int i = 0; i < game.getPlayersNumber(); i++) {
+				Player player = game.getPlayer(i);
+				resultSet.moveToInsertRow();
+				resultSet.updateInt(PLAYER_GAMEID, game.getGameId());
+				resultSet.updateInt(PLAYER_PLAYERID, i);
+				resultSet.updateString(PLAYER_NAME, player.getName());
+				resultSet.updateString(PLAYER_COLOUR, player.getColor());
+				resultSet.updateInt(PLAYER_POSITION_X, player.getSpace().x);
+				resultSet.updateInt(PLAYER_POSITION_Y, player.getSpace().y);
+				resultSet.updateInt(PLAYER_HEADING, player.getHeading().ordinal());
+				resultSet.insertRow();
+			}
+
+			resultSet.close();
+
+		}
 	}
 	
 	private void loadPlayersFromDB(Board game) throws SQLException {
@@ -319,7 +323,7 @@ public class Repository implements IRepository {
 
 				// TODO  should also load players program and hand here
 			} else {
-				// TODO error handling
+				errorHandling("Games in DB doesn't have the current player!");
 				System.err.println("Game in DB does not have a player with id " + i +"!");
 			}
 		}
@@ -447,5 +451,16 @@ public class Repository implements IRepository {
 			}
 		}
 		return select_games_stmt;
+	}
+
+
+	/**
+	 * Error handler as a dialogue.
+	 * @author Sercan Bicen, Najib Hebrawi
+	 * @param err is the error message that occurs.
+	 */
+	private void errorHandling(String err) {
+		Alert errorMessage = new Alert(Alert.AlertType.ERROR, err);
+		errorMessage.showAndWait();
 	}
 }

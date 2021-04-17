@@ -198,6 +198,12 @@ public class SpaceView extends StackPane implements ViewObserver {
         }
     }*/
 
+    /**
+     * @author Sercan Bicen, Najib Hebrawi
+     * @param imageName
+     * @return
+     */
+
     private ImageView imagesOnBoard(String imageName) {
         Image image = null;
 
@@ -367,6 +373,8 @@ public class SpaceView extends StackPane implements ViewObserver {
             this.getChildren().add(arrow);
         }
 
+
+        // loop throug actions.
         for (FieldAction action : space.getActions()) {
             if (action instanceof Checkpoint) {
                 addingImages("images/checkpoint" + ((Checkpoint) action).checkpointnumber + ".png", -90);
