@@ -213,15 +213,16 @@ public class SpaceView extends StackPane implements ViewObserver {
         imageView.setFitWidth(SPACE_WIDTH);
         imageView.setVisible(true);
 
-        for (FieldAction action : space.getActions()) {
-            if (action instanceof Checkpoint) {
-                //TODO: need to implement imageview here..
-            }
-        }
-
         this.getChildren().add(imageView);
 
         return imageView;
+    }
+
+    private ImageView addingImages(String name, int rotation) {
+        ImageView imgv = imagesOnBoard(name);
+        imgv.setRotate(rotation);
+
+        return imgv;
     }
 
 
@@ -365,6 +366,13 @@ public class SpaceView extends StackPane implements ViewObserver {
             arrow.setRotate((90*player.getHeading().ordinal())%360);
             this.getChildren().add(arrow);
         }
+
+        for (FieldAction action : space.getActions()) {
+            if (action instanceof Checkpoint) {
+                addingImages("images/checkpoint" + ((Checkpoint) action).checkpointnumber + ".png", -90);
+            }
+        }
+
     }
 
     @Override

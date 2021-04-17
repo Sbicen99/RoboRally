@@ -65,10 +65,10 @@ public class GameController {
 
             //----------------------------
             //Actions on the board
-            space.blueConveyorBeltAction();
-            space.gearTurnRightAction();
-            space.gearTurnLeftAction();
-            space.checkpointActions();
+            //space.blueConveyorBeltAction();
+            //space.gearTurnRightAction();
+            //space.gearTurnLeftAction();
+            //space.checkpointActions();
             //----------------------------
 
         } else {
@@ -313,9 +313,9 @@ public class GameController {
         }
 
         player.setSpace(space);
-        space.blueConveyorBeltAction();
-        space.gearTurnRightAction();
-        space.gearTurnLeftAction();
+        //space.blueConveyorBeltAction();
+        //space.gearTurnRightAction();
+        //space.gearTurnLeftAction();
     }
 
 
