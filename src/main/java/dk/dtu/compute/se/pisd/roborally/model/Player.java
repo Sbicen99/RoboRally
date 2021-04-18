@@ -138,7 +138,7 @@ public class Player extends Subject {
 
     /**
      * Checking if the number of the checkpoint is bigger than another.
-     * @return
+     * @return last checkpoint
      */
     public int getEndCheckpoint() {
         return endCheckpoint;

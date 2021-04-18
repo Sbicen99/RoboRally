@@ -95,6 +95,13 @@ public class Board extends Subject {
         }
     }
 
+    /**
+     * @author Sercan Bicen
+     * @param x defines the field on x-axis
+     * @param y defines the field on y-axis
+     * @return retrieves the field based on the value for x and y
+     */
+
     public Space getSpace(int x, int y) {
         if (x >= 0 && x < width &&
                 y >= 0 && y < height) {
@@ -104,10 +111,22 @@ public class Board extends Subject {
         }
     }
 
+    /**
+     * @author Sercan Bicen, Najib Hebrawi
+     * Method that handle number of players
+     * @return the size of players
+     */
+
     public int getPlayersNumber() {
         return players.size();
     }
 
+
+    /**
+     * Adding players to the game.
+     * @author Sercan Bicen, Najib Hebrawi
+     * @param player
+     */
     public void addPlayer(@NotNull Player player) {
         if (player.board == this && !players.contains(player)) {
             players.add(player);
@@ -217,9 +236,10 @@ public class Board extends Subject {
 
 
     /**
-     * Moving the player one field back( without changing the direction).
-     * @author Najib s181663
-     * @param space, heading.
+     * @author Najib Hebrawi
+     * @param space the space for which the neighbour should be computed
+     * @param heading the heading of the neighbour
+     * @return the space in the given direction
      */
     public Space getNeighbour(@NotNull Space space, @NotNull Heading heading) {
         if (!space.getWalls().contains(heading)) {
@@ -250,9 +270,7 @@ public class Board extends Subject {
 
     /**
      * Showing a message on the board that contains player name, moves, status on each field and the phase.
-     *
      */
-
     public String getStatusMessage() {
         // This is actually a view aspect, but for making the first task easy for
         // the students, this method gives a string representation of the current
@@ -303,6 +321,11 @@ public class Board extends Subject {
         }
     }
 
+    /**
+     * @author Sercan Bicen, Najib Hebrawi
+     * Get- and setter for checkpoints.
+     * @return checkpoints
+     */
     public List<Checkpoint> getCheckpoints() {
         return this.checkpoints;
     }

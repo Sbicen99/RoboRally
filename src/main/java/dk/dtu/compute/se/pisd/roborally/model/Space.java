@@ -97,7 +97,7 @@ public class Space extends Subject {
      * @author Sercan, s185040
      */
 
-    public void blueConveyorBeltAction() {
+    /*public void blueConveyorBeltAction() {
         if (player != null) {
             if (x == 3 && y == 4) {
                 Space target = board.getSpace(1, 4);
@@ -113,31 +113,31 @@ public class Space extends Subject {
                 target.setPlayer(player);
             }
         }
-    }
+    }*/
 
     /**
      * gearTurnRight Move Action
      * @author Lauritz s191179
      * @author Pernille Lyngholm
      */
-    public void gearTurnRightAction() {
+    /*public void gearTurnRightAction() {
         if (x == 2 && y == 3) {
             player.setHeading(player.getHeading().next());
         }
-    }
+    }*/
 
     /**
      * gearTurnLeft Move Action
      * @author Lauritz s191179
      * @author Pernille Lyngholm
      */
-    public void gearTurnLeftAction() {
+    /*public void gearTurnLeftAction() {
         if (x == 5 && y == 7) {
             player.setHeading(player.getHeading().prev());
         }
-    }
+    }*/
 
-    public void checkpointActions() {
+    /*public void checkpointActions() {
         if (x == 5 && y == 2) {
             System.out.println("Passed checkpoint 1..");
             checkpointPassed.add(player.getName());
@@ -158,7 +158,7 @@ public class Space extends Subject {
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
-    }
+    }*/
 
 
     public void setPlayer(Player player) {

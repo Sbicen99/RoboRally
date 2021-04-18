@@ -56,6 +56,11 @@ public class AppController implements Observer {
         this.roboRally = roboRally;
     }
 
+
+    /**
+     * Creating a new game where player choose how many player should be on the board.
+     */
+
     public void newGame() {
         ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
         dialog.setTitle("Player number");
@@ -89,24 +94,29 @@ public class AppController implements Observer {
 
 
     /**
-     * @author Thamara Chellakooty
-     * @author Camilla Boejden
-     * @return
+     * @author Camilla Boejden, Thamara Chellakooty & Sercan Bicen
+     * @return Returns board where different board elements are included on specific fields.
      */
     private Board createBoard(){
         Board board = new Board(10,10);
         Gear gear = new Gear();
+        Checkpoint firstCheckpoint = new Checkpoint(1);
+        Checkpoint secondCheckpoint = new Checkpoint(2);
+
+        board.getSpace(6,7).getActions().add(firstCheckpoint);
+        board.getSpace(4, 5).getActions().add(secondCheckpoint);
         board.getSpace(2,3).getActions().add(gear);
         board.getSpace(2,3).getWalls().add(Heading.EAST);
         board.getSpace(2,7).getWalls().add(Heading.SOUTH);
         board.getSpace(8,3).getWalls().add(Heading.NORTH);
         board.getSpace(8,7).getWalls().add(Heading.EAST);
         return board;
-
     }
 
 
-
+    /**
+     * Automatically saves games in the database when player start game.
+     */
     public void saveGame() {
         // XXX needs to be implemented eventually
         if (gameController != null) {
@@ -116,6 +126,11 @@ public class AppController implements Observer {
             }
         }
     }
+
+
+    /**
+     * This method load games from the database. Returns messages to the player when it is not possible to retrieve games from the database
+     */
     public void loadGame() {
 
         // XXX needs to be implememted eventually

@@ -46,8 +46,7 @@ public class GameController {
     /**
      * Moves the player and changes to another player.
      * Checks if the field is empty.
-     * @author Sercan Bicen, s185040
-     * @author Najib Hebrawi s181663
+     * @author Sercan Bicen, Najib Hebrawi
      * @implNote ( && space == board.getSpace(0,0)) do, we cant click in the board with the mouse.
      * @param space the space to which the current player should move
      */
@@ -65,10 +64,10 @@ public class GameController {
 
             //----------------------------
             //Actions on the board
-            space.blueConveyorBeltAction();
-            space.gearTurnRightAction();
-            space.gearTurnLeftAction();
-            space.checkpointActions();
+            //space.blueConveyorBeltAction();
+            //space.gearTurnRightAction();
+            //space.gearTurnLeftAction();
+            //space.checkpointActions();
             //----------------------------
 
         } else {
@@ -218,7 +217,7 @@ public class GameController {
     /**
      * Executing command with option on turn right and turn left and continue.
      * @author Najib, s181663
-     * @param option
+     * @param option the option for the player to select a command (right/left).
      */
     public void executeCommandOptionAndContinue(@NotNull Command option){
         assert board.getPhase() == Phase.PLAYER_INTERACTION;
@@ -265,7 +264,7 @@ public class GameController {
      * Moving the player one field forward.
      * @author Najib s181663
      * @author Sercan, s185040
-     * @param player
+     * @param player represent player(s) in game
      */
     public void moveForward(@NotNull Player player) {
         if (player.board == board && player != null) {
@@ -289,11 +288,10 @@ public class GameController {
     }
 
     /**
-     * @author Najib Hebrawi s181663
-     * @author Sercan, s185040
-     * @param player
-     * @param space
-     * @param heading
+     * @author Najib Hebrawi, Sercan Bicen
+     * @param player represent player(s) in game
+     * @param space space of the current and target player
+     * @param heading heading of the target player
      * @throws ImpossibleMoveException
      */
     private void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading) throws ImpossibleMoveException {
@@ -313,16 +311,16 @@ public class GameController {
         }
 
         player.setSpace(space);
-        space.blueConveyorBeltAction();
-        space.gearTurnRightAction();
-        space.gearTurnLeftAction();
+        //space.blueConveyorBeltAction();
+        //space.gearTurnRightAction();
+        //space.gearTurnLeftAction();
     }
 
 
     /**
-     * Moving the player one field back( without changing the direction).
+     * Moving the player one field back (without changing the direction).
      * @author Najib s181663
-     * @param player
+     * @param player represent player(s) in game
      */
     public void Moveback(@NotNull Player player){
         Space space = player.getSpace();
@@ -343,10 +341,9 @@ public class GameController {
 
     /**
      * Moving the player two fields forward.
-     * Calling the moveForward method two times
-     * @author Sercan Bicen, s185040
-     * @author Najib Hebrawi, s181663
-     * @param player
+     * Calling the moveForward method two times.
+     * @author Najib Hebrawi, Sercan Bicen
+     * @param player represent player(s) in game
      */
 
     // TODO Assignment V2
@@ -358,7 +355,7 @@ public class GameController {
     /**
      * Moving the player three field forward.
      * @author Najib s181663
-     * @param player
+     * @param player represent player(s) in game
      */
     public void fastForward2(@NotNull Player player) {
         moveForward(player);
@@ -371,7 +368,7 @@ public class GameController {
      * Turning the player to the right.
      * @author Sercan, s185040
      * @author Najib Hebrawi, s181663
-     * @param player
+     * @param player represent player(s) in game
      */
     // TODO Assignment V2
     public void turnRight(@NotNull Player player) {
@@ -386,7 +383,7 @@ public class GameController {
      * Turning the player to the left.
      * @author Sercan, s185040
      * @author Najib Hebrawi, s181663
-     * @param player
+     * @param player represent player(s) in game
      */
     // TODO Assignment V2
     public void turnLeft(@NotNull Player player) {
@@ -399,7 +396,7 @@ public class GameController {
     /**
      * Turning the player U-Turn.
      * @author Najib Hebrawi, s181663
-     * @param player
+     * @param player represent player(s) in game
      */
     public void UTurn(@NotNull Player player){
         if (player !=null && player.board == board){
