@@ -150,4 +150,55 @@ public class Player extends Subject {
             notifyChange();
         }
     }
+
+
+    public void moveForward(@NotNull Player player) {
+        if (player.board == board && player != null) {
+            Space space = player.getSpace();
+            Heading heading = player.getHeading();
+            Space target = board.getNeighbour(space, heading);
+            if (target != null ) {
+                try {
+                    moveToSpace(player, target, heading);
+                } catch (ImpossibleMoveException e) {
+                    e.getCause();
+                    e.getMessage();
+                    e.printStackTrace();
+                    // we don't do anything here for now;
+                    // we just catch the exception so that
+                    // we do no pass it on to the caller
+                    // (which would be very bad style).
+                }
+            }
+        }
+    }
+
+    /**
+     * @author Najib Hebrawi, Sercan Bicen
+     * @param player represent player(s) in game
+     * @param space space of the current and target player
+     * @param heading heading of the target player
+     * @throws ImpossibleMoveException
+     */
+    private void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading) throws ImpossibleMoveException {
+        Player other = space.getPlayer();
+        if (other != null) {
+            Space target = board.getNeighbour(space, heading);
+
+            if (target != null) {
+
+                // XXX Note that there might be additional problems
+                // with infinite recursion here!
+
+                moveToSpace(other, target, heading);
+            } else {
+                throw new ImpossibleMoveException(player, space, heading);
+            }
+        }
+
+        player.setSpace(space);
+        //space.blueConveyorBeltAction();
+        //space.gearTurnRightAction();
+        //space.gearTurnLeftAction();
+    }
 }

@@ -241,7 +241,7 @@ public class Board extends Subject {
      * @param heading the heading of the neighbour
      * @return the space in the given direction
      */
-    public Space getNeighbour(@NotNull Space space, @NotNull Heading heading) {
+    public Space getNeighbourr(@NotNull Space space, @NotNull Heading heading) {
         if (!space.getWalls().contains(heading)) {
 
             int x = space.x;

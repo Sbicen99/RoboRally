@@ -21,6 +21,7 @@
  */
 package dk.dtu.compute.se.pisd.roborally.view;
 
+import com.sun.xml.internal.org.jvnet.fastinfoset.FastInfosetException;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.model.*;
 import javafx.scene.canvas.Canvas;
@@ -259,6 +260,32 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.getChildren().add(canvas);
     }
 
+    /**
+     * Creating a Grafical Convauerbelts for each instance of a Conveyerbelt existing on the board.
+     *  @author Thamara Chellakooty
+     */
+    private void createConBelt (){
+        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
+        for (FieldAction beltOnBoard: space.getActions())
+            if(beltOnBoard instanceof ConveyorBelt) {
+                try {
+                    InputStream stream = new FileInputStream("src/main/resources/images/blue_arrow.png");
+                    Image image = new Image(stream);
+
+                    //creating the imageview
+                    ImageView imageView = new ImageView();
+                    imageView.setImage(image);
+                    imageView.setFitWidth(SPACE_WIDTH);
+                    imageView.setFitHeight(SPACE_HEIGHT);
+
+                    this.getChildren().addAll(canvas, imageView);
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+    }
+
 
 
     /**
@@ -362,6 +389,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         }
 
         createStaticObject();
+        createConBelt();
         //addCheckPoints();
         //addGearToBoard();
         //------------------------
