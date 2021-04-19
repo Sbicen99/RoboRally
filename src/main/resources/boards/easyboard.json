@@ -81,7 +81,7 @@
     {
       "actions": [
         {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Gear"
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Gear"
         }
       ],
       "x": 5,
@@ -90,7 +90,7 @@
     {
       "actions": [
         {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Gear"
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Gear"
         }
       ],
       "x": 6,
@@ -99,7 +99,7 @@
     {
       "actions": [
         {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Checkpoint"
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Checkpoint"
           }
       ],
       "x": 4,
@@ -108,7 +108,7 @@
     {
       "actions": [
         {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.controller.Checkpoint"
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Checkpoint"
         }
       ],
       "x": 6,
