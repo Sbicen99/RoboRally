@@ -94,7 +94,7 @@ public class AppController implements Observer {
 
 
     /**
-     * @author Camilla Boejden, Thamara Chellakooty & Sercan Bicen
+     * @author Camilla Boejden, Thamara Chellakooty, Sercan Bicen  & Lauritz Pepke
      * @return Returns board where different board elements are included on specific fields.
      */
     private Board createBoard(){
@@ -108,7 +108,6 @@ public class AppController implements Observer {
         ConveyorBelt conveyorBelt4 = new ConveyorBelt(2);
         board.getSpace(6,7).getActions().add(firstCheckpoint);
         board.getSpace(4, 5).getActions().add(secondCheckpoint);
-        board.getSpace(2,3).getActions().add(gear);
         board.getSpace(4,9).getActions().add(conveyorBelt1);
         board.getSpace(5,0).getActions().add(conveyorBelt2);
         board.getSpace(0,5).getActions().add(conveyorBelt3);
