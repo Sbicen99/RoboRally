@@ -105,7 +105,8 @@ public class AppController implements Observer {
 
         board.getSpace(6,7).getActions().add(firstCheckpoint);
         board.getSpace(4, 5).getActions().add(secondCheckpoint);
-        board.getSpace(2,3).getActions().add(gear);
+        board.getSpace(5,3).getActions().add(gear);
+        board.getSpace(6,6).getActions().add(gear);
         board.getSpace(2,3).getWalls().add(Heading.EAST);
         board.getSpace(2,7).getWalls().add(Heading.SOUTH);
         board.getSpace(8,3).getWalls().add(Heading.NORTH);

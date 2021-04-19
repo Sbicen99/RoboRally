@@ -284,7 +284,7 @@ public class SpaceView extends StackPane implements ViewObserver {
      * @author Pernille Lyngholm
      */
 
-    private void gearTurnRight() {
+    /*private void gearTurnRight() {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
 
         //creating the image object
@@ -303,7 +303,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     /**
      * Adding the gear turning left as an image
@@ -311,7 +311,7 @@ public class SpaceView extends StackPane implements ViewObserver {
      * @author Pernille Lyngholm
      */
 
-    private void gearTurnLeft() {
+    /*private void gearTurnLeft() {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
 
         //creating the image object
@@ -330,7 +330,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     /**
      * Adding the gear to a specific position on the board
@@ -338,12 +338,12 @@ public class SpaceView extends StackPane implements ViewObserver {
      * @author Pernille Lyngholm
      */
 
-    private void addGearToBoard() {
+    /*private void addGearToBoard() {
         if (space.x == 2 && space.y == 3) {
             gearTurnRight();
         } else if (space.x == 5 && space.y == 7)
             gearTurnLeft();
-    }
+    }*/
 
 
 
@@ -357,7 +357,10 @@ public class SpaceView extends StackPane implements ViewObserver {
         // loop through actions. Can also be used to another board element.
         for (FieldAction action : space.getActions()) {
             if (action instanceof Checkpoint) {
-                addingImages("images/checkpoint" + ((Checkpoint) action).checkpointnumber + ".png", 180);
+                addingImages("images/checkpoint" + ((Checkpoint) action).checkpointnumber + ".png", 270);
+            }
+            else if (action instanceof Gear) {
+                addingImages("images/gearright.png", 0);
             }
         }
 
