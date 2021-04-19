@@ -12,7 +12,7 @@ private Heading heading;
 public final int type;
 
 
-    public ConveyorBelt(int type) {
+    public ConveyorBelt(int type, Heading heading) {
         this.type = type;
     }
     public Heading getHeading(){
