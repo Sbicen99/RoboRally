@@ -103,10 +103,10 @@ public class AppController implements Observer {
         Gear gear = new Gear();
         Checkpoint firstCheckpoint = new Checkpoint(1);
         Checkpoint secondCheckpoint = new Checkpoint(2);
-        ConveyorBelt conveyorBelt1 = new ConveyorBelt(1,Heading.SOUTH);
+        ConveyorBelt conveyorBelt1 = new ConveyorBelt(1, Heading.SOUTH);
         ConveyorBelt conveyorBelt2 = new ConveyorBelt(2, Heading.NORTH);
         ConveyorBelt conveyorBelt3 = new ConveyorBelt(1, Heading.EAST);
-        ConveyorBelt conveyorBelt4 = new ConveyorBelt(2, Heading.NORTH);
+        ConveyorBelt conveyorBelt4 = new ConveyorBelt(2, Heading.WEST);
 
         // adding checkpoints to the board.
         board.getSpace(6,7).getActions().add(firstCheckpoint);

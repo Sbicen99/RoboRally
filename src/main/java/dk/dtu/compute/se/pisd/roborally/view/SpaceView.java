@@ -268,6 +268,10 @@ public class SpaceView extends StackPane implements ViewObserver {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
         for (FieldAction beltOnBoard: space.getActions())
             if(beltOnBoard instanceof ConveyorBelt) {
+
+                ConveyorBelt conveyorBelt = (ConveyorBelt) beltOnBoard;
+                Heading heading = conveyorBelt.getHeading();
+
                 try {
                     InputStream stream = new FileInputStream("src/main/resources/images/blue_arrow.png");
                     Image image = new Image(stream);
@@ -277,6 +281,7 @@ public class SpaceView extends StackPane implements ViewObserver {
                     imageView.setImage(image);
                     imageView.setFitWidth(SPACE_WIDTH);
                     imageView.setFitHeight(SPACE_HEIGHT);
+                    imageView.setRotate(heading.ordinal()*90);
 
                     this.getChildren().addAll(canvas, imageView);
 

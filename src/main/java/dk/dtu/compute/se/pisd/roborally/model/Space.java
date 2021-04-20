@@ -40,8 +40,6 @@ public class Space extends Subject {
     private List<Heading> walls = new ArrayList<>();
     private List<FieldAction> actions = new ArrayList<>();
 
-    private List<String> checkpointPassed = new ArrayList<>();
-
     public final Board board;
 
     private Heading heading = SOUTH;

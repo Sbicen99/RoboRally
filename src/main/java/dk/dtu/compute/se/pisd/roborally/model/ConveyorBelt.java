@@ -8,16 +8,18 @@ import dk.dtu.compute.se.pisd.roborally.controller.GameController;
  */
 public class ConveyorBelt extends FieldAction{
 
-private Heading heading;
-public final int type;
+    private Heading heading;
+    public final int type;
 
 
     public ConveyorBelt(int type, Heading heading) {
         this.type = type;
     }
+
     public Heading getHeading(){
         return heading;
     }
+
     public void setHeading ( Heading heading) {
         this.heading = heading;
     }
