@@ -201,7 +201,7 @@ public class SpaceView extends StackPane implements ViewObserver {
 
     /**
      * @author Sercan Bicen, Najib Hebrawi
-     * @param imageName
+     * @param imageName path to the respective image
      * @return
      */
 
