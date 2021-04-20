@@ -55,6 +55,8 @@ public class Board extends Subject {
 
     private List<Checkpoint> checkpoints = new ArrayList<>();
 
+    private List<ConveyorBelt> conveyorBelts = new ArrayList<>();
+
     private Player current;
 
     private Phase phase = INITIALISATION;
@@ -330,6 +332,7 @@ public class Board extends Subject {
         return this.checkpoints;
     }
 
+
     public void setCheckpoints(Checkpoint checkpoint) {
         this.checkpoints.add(checkpoint);
     }
@@ -337,4 +340,14 @@ public class Board extends Subject {
     public List<Player> getPlayers() {
         return players;
     }
+
+
+    public List<ConveyorBelt> getConveyerBelt() {
+        return this.conveyorBelts;
+    }
+
+    public void setCheckpoints(ConveyorBelt conveyorBelt) {
+        this.conveyorBelts.add(conveyorBelt);
+    }
+
 }

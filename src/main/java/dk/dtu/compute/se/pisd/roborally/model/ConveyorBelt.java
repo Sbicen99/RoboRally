@@ -25,11 +25,11 @@ public final int type;
     @Override
     public boolean doAction(GameController gameController, Space space) {
         Player player = space.getPlayer();
-        if (player != null & type == 1 ){
+        if (player != null & type == 1 & gameController.board.getConveyerBelt() != null){
             player.moveForward(player);
             return true;
         }
-        else if (player != null & type == 2 ) {
+        else if (player != null & type == 2 & gameController.board.getConveyerBelt() != null) {
             player.moveForward(player);
             player.moveForward(player);
         }
