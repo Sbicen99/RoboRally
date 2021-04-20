@@ -57,6 +57,8 @@ public class Board extends Subject {
 
     private List<ConveyorBelt> conveyorBelts = new ArrayList<>();
 
+    private List<Gear> gears = new ArrayList<>();
+
     private Player current;
 
     private Phase phase = INITIALISATION;
@@ -332,9 +334,22 @@ public class Board extends Subject {
         return this.checkpoints;
     }
 
-
     public void setCheckpoints(Checkpoint checkpoint) {
         this.checkpoints.add(checkpoint);
+    }
+
+    /**
+     * @author Lauritz Pepke
+     * Get- and setter for gears.
+     * @return
+     */
+
+    public List<Gear> getGears() {
+        return this.gears;
+    }
+
+    public void setGears(Gear gear) {
+        this.gears.add(gear);
     }
 
     public List<Player> getPlayers() {
