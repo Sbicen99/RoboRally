@@ -194,6 +194,13 @@ public class GameController {
                 if (nextPlayerNumber < board.getPlayersNumber()) {
                     board.setCurrentPlayer(board.getPlayer(nextPlayerNumber));
                 } else {
+                    for (Player player : this.board.getPlayers()) {
+                        for (FieldAction action : player.getSpace().getActions()) {
+                            if (gameWin)
+                                break;
+                            action.doAction(this, player.getSpace());
+                        }
+                    }
                     step++;
                     if (step < Player.NO_REGISTERS) {
                         makeProgramFieldsVisible(step);
@@ -418,7 +425,7 @@ public class GameController {
 
 
     public void gameWins(Player player) {
-        Alert alertMessage = new Alert(Alert.AlertType.INFORMATION, "Player " + player.getName() + " won the game.");
+        Alert alertMessage = new Alert(Alert.AlertType.INFORMATION,player.getName() + " won the game.");
         this.gameWin = true;
         alertMessage.showAndWait();
     }

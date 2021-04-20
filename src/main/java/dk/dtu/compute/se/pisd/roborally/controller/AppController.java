@@ -30,6 +30,7 @@ import dk.dtu.compute.se.pisd.roborally.dal.RepositoryAccess;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import org.jetbrains.annotations.NotNull;
@@ -106,14 +107,22 @@ public class AppController implements Observer {
         ConveyorBelt conveyorBelt2 = new ConveyorBelt(2, Heading.NORTH);
         ConveyorBelt conveyorBelt3 = new ConveyorBelt(1, Heading.EAST);
         ConveyorBelt conveyorBelt4 = new ConveyorBelt(2, Heading.NORTH);
+
+        // adding checkpoints to the board.
         board.getSpace(6,7).getActions().add(firstCheckpoint);
         board.getSpace(4, 5).getActions().add(secondCheckpoint);
+
+
         board.getSpace(4,9).getActions().add(conveyorBelt1);
         board.getSpace(5,0).getActions().add(conveyorBelt2);
         board.getSpace(0,5).getActions().add(conveyorBelt3);
         board.getSpace(9,4).getActions().add(conveyorBelt4);
+
+
         board.getSpace(5,3).getActions().add(gear);
         board.getSpace(6,6).getActions().add(gear);
+
+        // adding walls to the board.
         board.getSpace(2,3).getWalls().add(Heading.EAST);
         board.getSpace(2,7).getWalls().add(Heading.SOUTH);
         board.getSpace(8,3).getWalls().add(Heading.NORTH);
@@ -141,11 +150,8 @@ public class AppController implements Observer {
      */
     public void loadGame() {
 
-        // XXX needs to be implememted eventually
-        // for now, we just create a new game
-        /*if (gameController == null) {
-            newGame();
-        }*/
+        // XXX needs to be implemented eventually
+
         List<GameInDB> games = RepositoryAccess.getRepository().getGames();
         if (!games.isEmpty()) {
             ChoiceDialog<GameInDB> dialog = new ChoiceDialog<>(games.get(games.size()-1), games);
@@ -183,6 +189,18 @@ public class AppController implements Observer {
      */
     public boolean stopGame() {
         if (gameController != null) {
+            /*Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("Do you want to save the game?");
+            alert.setContentText("Choose your option.");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (!result.isPresent() || result.get() != ButtonType.OK) {
+                Platform.exit();
+            } else {
+                saveGame();
+            }*/
+
             // here we save the game (without asking the user).
             saveGame();
 

@@ -375,8 +375,6 @@ public class SpaceView extends StackPane implements ViewObserver {
 
 
     private void updatePlayer() {
-        this.getChildren().clear();
-
         //------------------------
         //Adding elements to the board where each triangle/player is in front of it.
         //setBlueConveyorBeltOnBoard();
@@ -416,6 +414,7 @@ public class SpaceView extends StackPane implements ViewObserver {
     @Override
     public void updateView(Subject subject) {
         if (subject == this.space) {
+            this.getChildren().clear();
             updatePlayer();
         }
     }

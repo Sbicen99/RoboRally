@@ -167,7 +167,7 @@ public class Repository implements IRepository {
 				rs.updateInt(GAME_STEP, game.getStep());
 				rs.updateRow();
 			} else {
-				// TODO error handling
+				errorHandling("Couldn't get current player, game phase or step.");
 			}
 			rs.close();
 
