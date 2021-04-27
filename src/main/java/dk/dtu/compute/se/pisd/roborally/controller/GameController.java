@@ -54,7 +54,7 @@ public class GameController {
      * @param space the space to which the current player should move
      */
     public void moveCurrentPlayerToSpace(@NotNull Space space)  {
-        if (space.getPlayer() == null && space.board == board){
+        if (space.getPlayer() == null && space.board == board && space == board.getSpace(0,0)){
             Player currentPlayer = board.getCurrentPlayer();
             currentPlayer.setSpace(space);
             board.setNotEmpty("");
@@ -63,6 +63,7 @@ public class GameController {
             Player nextPlayer = board.getPlayer((number + 1) % board.getPlayersNumber());
             board.setCurrentPlayer(nextPlayer);
             board.setCount(board.getCount() + 1);
+
 
 
             //----------------------------
@@ -427,12 +428,57 @@ public class GameController {
     }
 
 
+
+
+
+
+
+
+
+
+
+    public void finishgame() {
+        finishgameFieldsInvisiblee();
+        finishgameFieldsVisible(0);
+        board.setPhase(WON);
+        board.setCurrentPlayer(board.getPlayer(0));
+        board.setStep(0);
+    }
+
+    // XXX: V2
+    private void finishgameFieldsVisible(int register) {
+        if (register >= 0 && register < Player.NO_REGISTERS) {
+            for (int i = 0; i < board.getPlayersNumber(); i++) {
+                Player player = board.getPlayer(i);
+                CommandCardField field = player.getProgramField(register);
+                field.setVisible(true);
+            }
+        }
+    }
+
+    // XXX: V2
+    private void finishgameFieldsInvisiblee() {
+        for (int i = 0; i < board.getPlayersNumber(); i++) {
+            Player player = board.getPlayer(i);
+            for (int j = 0; j < Player.NO_REGISTERS; j++) {
+                CommandCardField field = player.getProgramField(j);
+                field.setVisible(false);
+            }
+        }
+    }
     public void gameWins(Player player) {
         Alert alertMessage = new Alert(Alert.AlertType.INFORMATION,player.getName() + " won the game.");
         this.gameWin = true;
         alertMessage.showAndWait();
-        // TODO: add "won" phase.
+        finishgame();
+
     }
+
+
+
+
+
+
 
 
     /**
