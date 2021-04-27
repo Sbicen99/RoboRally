@@ -246,31 +246,25 @@ public class Board extends Subject {
      * @return the space in the given direction
      */
     public Space getNeighbourr(@NotNull Space space, @NotNull Heading heading) {
-        if (!space.getWalls().contains(heading)) {
+        int x = space.x;
+        int y = space.y;
+        switch (heading) {
+            case NORTH:
+                y = (y + 1) % height;
+                break;
+            case EAST:
+                x = (x + width - 1) % width;
+                break;
+            case SOUTH:
+                y = (y + height - 1) % height;
+                break;
+            case WEST:
+                x = (x + 1) % width;
+                break;
+        }
 
-            int x = space.x;
-            int y = space.y;
-            switch (heading) {
-                case SOUTH:
-                    y = (y + 1) % height;
-                    break;
-                case WEST:
-                    x = (x + width - 1) % width;
-                    break;
-                case NORTH:
-                    y = (y + height - 1) % height;
-                    break;
-                case EAST:
-                    x = (x + 1) % width;
-                    break;
-            }
-            return getSpace(x, y);
-        }
-        else {
-            return null;
-        }
+        return getSpace(x, y);
     }
-
 
     /**
      * Showing a message on the board that contains player name, moves, status on each field and the phase.
