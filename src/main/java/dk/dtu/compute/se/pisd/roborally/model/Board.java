@@ -64,7 +64,6 @@ public class Board extends Subject {
     private Phase phase = INITIALISATION;
 
 
-
     private int step = 0;
 
     private boolean stepMode;

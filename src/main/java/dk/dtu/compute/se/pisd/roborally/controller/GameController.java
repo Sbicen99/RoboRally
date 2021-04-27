@@ -429,10 +429,9 @@ public class GameController {
 
     public void gameWins(Player player) {
         Alert alertMessage = new Alert(Alert.AlertType.INFORMATION,player.getName() + " won the game.");
-        //this.gameWin = true;
+        this.gameWin = true;
         alertMessage.showAndWait();
         // TODO: add "won" phase.
-        board.setPhase(WON);
     }
 
 
