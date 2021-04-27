@@ -225,6 +225,13 @@ public class SpaceView extends StackPane implements ViewObserver {
         return imageView;
     }
 
+    /**
+     * @author Sercan Bicen
+     * @param name path to the image
+     * @param rotation rotating the image
+     * @return the rotated image
+     */
+
     private ImageView addingImages(String name, int rotation) {
         ImageView imgv = imagesOnBoard(name);
         imgv.setRotate(rotation);
