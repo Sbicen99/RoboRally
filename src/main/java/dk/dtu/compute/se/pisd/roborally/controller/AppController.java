@@ -145,6 +145,11 @@ public class AppController implements Observer {
     }
 
 
+    public void loadGameFromFile() {
+        // TODO: need to be implemented.
+    }
+
+
     /**
      * This method load games from the database. Returns messages to the player when it is not possible to retrieve games from the database
      */
@@ -178,6 +183,8 @@ public class AppController implements Observer {
             alert.showAndWait();
         }
     }
+
+
     /**
      * Stop playing the current game, giving the user the option to save
      * the game or to cancel stopping the game. The method returns true

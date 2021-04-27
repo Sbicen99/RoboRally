@@ -1,6 +1,7 @@
 package dk.dtu.compute.se.pisd.roborally.model;
 
 import dk.dtu.compute.se.pisd.roborally.controller.GameController;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Gameboard element that can push the player one or two spaces forward.
@@ -12,8 +13,9 @@ public class ConveyorBelt extends FieldAction{
     public final int type;
 
 
-    public ConveyorBelt(int type, Heading heading) {
+    public ConveyorBelt(int type, @NotNull Heading heading) {
         this.type = type;
+        this.heading = heading;
     }
 
     public Heading getHeading(){

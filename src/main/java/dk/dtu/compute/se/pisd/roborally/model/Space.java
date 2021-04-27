@@ -61,11 +61,6 @@ public class Space extends Subject {
         return player;
     }
 
-    //public void wall(){
-    //    Space curren = player.getSpace();
-    //    if
-
-   // }
 
     /**
      * BlueConveyorBeltInBoard Move Action.
@@ -134,30 +129,6 @@ public class Space extends Subject {
             player.setHeading(player.getHeading().prev());
         }
     }*/
-
-    /*public void checkpointActions() {
-        if (x == 5 && y == 2) {
-            System.out.println("Passed checkpoint 1..");
-            checkpointPassed.add(player.getName());
-
-        } else if (x == 2 && y == 6) {
-            System.out.println("Passed checkpoint 2..");
-            checkpointPassed.add(player.getName());
-        }
-
-        try {
-            //checking for duplicates and return it as winner of the game.
-            for (int i = 0; i < checkpointPassed.size(); i++) {
-                if (checkpointPassed.lastIndexOf(checkpointPassed.get(i)) != i) {
-                    //TODO: finding the duplicated player and returns it as winner.
-                    System.out.println("The winner is: " + checkpointPassed.get(i));
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Error: " + e);
-        }
-    }*/
-
 
     public void setPlayer(Player player) {
         Player oldPlayer = this.player;

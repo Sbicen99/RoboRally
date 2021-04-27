@@ -21,7 +21,6 @@
  */
 package dk.dtu.compute.se.pisd.roborally.view;
 
-import com.sun.xml.internal.org.jvnet.fastinfoset.FastInfosetException;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.model.*;
 import javafx.scene.canvas.Canvas;
@@ -288,7 +287,10 @@ public class SpaceView extends StackPane implements ViewObserver {
                     imageView.setImage(image);
                     imageView.setFitWidth(SPACE_WIDTH);
                     imageView.setFitHeight(SPACE_HEIGHT);
-                    imageView.setRotate(heading.ordinal()*90);
+
+                    if (heading != null) {
+                        imageView.setRotate(heading.ordinal()*90);
+                    }
 
                     this.getChildren().addAll(canvas, imageView);
 

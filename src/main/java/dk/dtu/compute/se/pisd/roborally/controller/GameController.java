@@ -25,6 +25,9 @@ import dk.dtu.compute.se.pisd.roborally.model.*;
 import javafx.scene.control.Alert;
 import org.jetbrains.annotations.NotNull;
 
+import static dk.dtu.compute.se.pisd.roborally.model.Phase.INITIALISATION;
+import static dk.dtu.compute.se.pisd.roborally.model.Phase.WON;
+
 /**
  * ...
  *
@@ -426,8 +429,10 @@ public class GameController {
 
     public void gameWins(Player player) {
         Alert alertMessage = new Alert(Alert.AlertType.INFORMATION,player.getName() + " won the game.");
-        this.gameWin = true;
+        //this.gameWin = true;
         alertMessage.showAndWait();
+        // TODO: add "won" phase.
+        board.setPhase(WON);
     }
 
 
