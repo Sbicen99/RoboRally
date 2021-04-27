@@ -336,7 +336,7 @@ public class GameController {
         Space space = player.getSpace();
         if (player.board == board && player != null) {
             Heading heading = player.getHeading();
-            Space target = board.getNeighbourr(space, heading);
+            Space target = board.Backorder(space, heading);
             if (target != null ) {
                 try {
                     moveToSpace(player, target, heading);

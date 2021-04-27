@@ -246,7 +246,7 @@ public class Board extends Subject {
      * @param heading the heading of the neighbour
      * @return the space in the given direction
      */
-    public Space getNeighbourr(@NotNull Space space, @NotNull Heading heading) {
+    public Space Backorder(@NotNull Space space, @NotNull Heading heading) {
         int x = space.x;
         int y = space.y;
         switch (heading) {
