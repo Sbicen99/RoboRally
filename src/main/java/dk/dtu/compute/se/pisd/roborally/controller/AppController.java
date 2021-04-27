@@ -24,6 +24,7 @@ package dk.dtu.compute.se.pisd.roborally.controller;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Observer;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.RoboRally;
+import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
 import dk.dtu.compute.se.pisd.roborally.model.*;
 import dk.dtu.compute.se.pisd.roborally.dal.GameInDB;
 import dk.dtu.compute.se.pisd.roborally.dal.RepositoryAccess;
@@ -99,6 +100,10 @@ public class AppController implements Observer {
      * @return Returns board where different board elements are included on specific fields.
      */
     private Board createBoard(){
+        Board board = LoadBoard.loadBoard("easyboard");
+        return board;
+
+        /*
         Board board = new Board(10,10);
         Gear gear = new Gear();
         Checkpoint firstCheckpoint = new Checkpoint(1);
@@ -127,7 +132,7 @@ public class AppController implements Observer {
         board.getSpace(2,7).getWalls().add(Heading.SOUTH);
         board.getSpace(8,3).getWalls().add(Heading.NORTH);
         board.getSpace(8,7).getWalls().add(Heading.EAST);
-        return board;
+        return board;*/
     }
 
 

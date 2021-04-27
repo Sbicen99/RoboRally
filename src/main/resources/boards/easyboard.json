@@ -35,7 +35,25 @@
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
           "INSTANCE": {
-            "heading": "WEST"
+            "heading": "SOUTH"
+          },
+          "INSTANCE": {
+            "type": 1
+          }
+        }
+      ],
+      "x": 4,
+      "y": 9
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "NORTH"
+          },
+          "INSTANCE": {
+            "type": 2
           }
         }
       ],
@@ -47,36 +65,31 @@
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
           "INSTANCE": {
-            "heading": "SOUTH"
-          }
-        }
-      ],
-      "x": 9,
-      "y": 5
-    },
-    {
-      "actions": [
-        {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+            "heading": "EAST"
+          },
           "INSTANCE": {
-            "heading": "NORTH"
+            "type": 2
           }
         }
       ],
       "x": 0,
-      "y": 6
+      "y": 5
     },
+
     {
       "actions": [
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
           "INSTANCE": {
-            "heading": "EAST"
+            "heading": "WEST"
+          },
+          "INSTANCE": {
+            "type": 1
           }
         }
       ],
-      "x": 5,
-      "y": 9
+      "x": 9,
+      "y": 4
     },
     {
       "actions": [
@@ -96,23 +109,31 @@
       "x": 6,
       "y": 6
     },
+
     {
       "actions": [
         {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Checkpoint"
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Checkpoint",
+          "INSTANCE": {
+            "checkpointnumber": 1
           }
-      ],
-      "x": 4,
-      "y": 5
-    },
-    {
-      "actions": [
-        {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Checkpoint"
         }
       ],
       "x": 6,
       "y": 7
+    },
+
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Checkpoint",
+          "INSTANCE": {
+            "checkpointnumber": 2
+          }
+        }
+      ],
+      "x": 4,
+      "y": 5
     }
   ]
 }
