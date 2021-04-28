@@ -430,55 +430,20 @@ public class GameController {
 
 
 
-
-
-
-
-
-
-
-    public void finishgame() {
-        finishgameFieldsInvisiblee();
-        finishgameFieldsVisible(0);
+    public void winningPhase() {
         board.setPhase(WON);
         board.setCurrentPlayer(board.getPlayer(0));
         board.setStep(0);
     }
 
-    // XXX: V2
-    private void finishgameFieldsVisible(int register) {
-        if (register >= 0 && register < Player.NO_REGISTERS) {
-            for (int i = 0; i < board.getPlayersNumber(); i++) {
-                Player player = board.getPlayer(i);
-                CommandCardField field = player.getProgramField(register);
-                field.setVisible(true);
-            }
-        }
-    }
 
-    // XXX: V2
-    private void finishgameFieldsInvisiblee() {
-        for (int i = 0; i < board.getPlayersNumber(); i++) {
-            Player player = board.getPlayer(i);
-            for (int j = 0; j < Player.NO_REGISTERS; j++) {
-                CommandCardField field = player.getProgramField(j);
-                field.setVisible(false);
-            }
-        }
-    }
     public void gameWins(Player player) {
         Alert alertMessage = new Alert(Alert.AlertType.INFORMATION,player.getName() + " won the game.");
         this.gameWin = true;
         alertMessage.showAndWait();
-        finishgame();
+        winningPhase();
 
     }
-
-
-
-
-
-
 
 
     /**
@@ -489,5 +454,4 @@ public class GameController {
         // XXX just for now to indicate that the actual method is not yet implemented
         assert false;
     }
-
 }
