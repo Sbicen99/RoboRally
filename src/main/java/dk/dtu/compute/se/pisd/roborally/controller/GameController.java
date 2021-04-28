@@ -22,8 +22,11 @@
 package dk.dtu.compute.se.pisd.roborally.controller;
 
 import dk.dtu.compute.se.pisd.roborally.model.*;
+import dk.dtu.compute.se.pisd.roborally.view.PlayerView;
 import javafx.scene.control.Alert;
 import org.jetbrains.annotations.NotNull;
+
+import javax.swing.text.PlainView;
 
 import static dk.dtu.compute.se.pisd.roborally.model.Phase.INITIALISATION;
 import static dk.dtu.compute.se.pisd.roborally.model.Phase.WON;
@@ -37,6 +40,7 @@ import static dk.dtu.compute.se.pisd.roborally.model.Phase.WON;
 public class GameController {
 
     Space space;
+    PlayerView playerView;
 
     final public Board board;
 
@@ -54,7 +58,7 @@ public class GameController {
      * @param space the space to which the current player should move
      */
     public void moveCurrentPlayerToSpace(@NotNull Space space)  {
-        if (space.getPlayer() == null && space.board == board && space == board.getSpace(0,0)){
+        if (space.getPlayer() == null && space.board == board ){
             Player currentPlayer = board.getCurrentPlayer();
             currentPlayer.setSpace(space);
             board.setNotEmpty("");
@@ -429,14 +433,22 @@ public class GameController {
 
 
 
-
+    /**
+     * @author Najib s181663
+     * @author Sercan, s185040
+     */
     public void winningPhase() {
+        makeProgramFieldsInvisible();
+        makeProgramFieldsVisible(0);
         board.setPhase(WON);
         board.setCurrentPlayer(board.getPlayer(0));
         board.setStep(0);
     }
 
-
+    /**
+     * @author Najib s181663
+     * @author Sercan, s185040
+     */
     public void gameWins(Player player) {
         Alert alertMessage = new Alert(Alert.AlertType.INFORMATION,player.getName() + " won the game.");
         this.gameWin = true;

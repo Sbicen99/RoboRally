@@ -45,8 +45,8 @@ public class Connector {
 	private static final String HOST = "localhost";
 	private static final int PORT = 3306;
 	private static final String DATABASE = "RoboRally";
-	private static final String USERNAME = "najibhebrawi1991";
-	private static final String PASSWORD = "";
+	private static final String USERNAME = "root";
+	private static final String PASSWORD = "root";
 
 	private static final String DELIMITER = ";;";
 
@@ -54,8 +54,8 @@ public class Connector {
 
 
 	/**
-	 * @author Sercan Bicen
-	 * Database connection.
+	 * @author Najib s181663
+	 * @author Sercan, s185040
 	 */
 	Connector() {
 		try {
