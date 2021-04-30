@@ -22,11 +22,9 @@
 package dk.dtu.compute.se.pisd.roborally.model;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
-import dk.dtu.compute.se.pisd.roborally.controller.AppController;
-import dk.dtu.compute.se.pisd.roborally.view.SpaceView;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static dk.dtu.compute.se.pisd.roborally.model.Heading.SOUTH;
 
@@ -34,7 +32,6 @@ import static dk.dtu.compute.se.pisd.roborally.model.Heading.SOUTH;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class Space extends Subject {
     private List<Heading> walls = new ArrayList<>();
@@ -61,74 +58,6 @@ public class Space extends Subject {
         return player;
     }
 
-
-    /**
-     * BlueConveyorBeltInBoard Move Action.
-     * @author Najib s181663
-     * @author Sercan, s185040
-     */
-    /*public void blueConveyorBeltMoving() {
-        Space current = player.getSpace();
-        if (x == 4 && y == 4 && current != null && player.board == current.board && player != null) {
-            Space target = board.getSpace(4, 6);
-            if (target != null && target.getPlayer() == null) {
-                target.setPlayer(player);
-            }
-        } else if (x == 6 && y == 6 && current != null && player.board == current.board && player != null) {
-            Space target = board.getSpace(8, 6);
-            if (target != null && target.getPlayer() == null) {
-                target.setPlayer(player);
-
-            }
-        }
-    }*/
-
-
-    /**
-     * BlueConveyorBeltInBoard Move Action.
-     * @author Najib s181663
-     * @author Sercan, s185040
-     */
-
-    /*public void blueConveyorBeltAction() {
-        if (player != null) {
-            if (x == 3 && y == 4) {
-                Space target = board.getSpace(1, 4);
-                if (target != null && target.getPlayer() == null) {
-                    target.setPlayer(player);
-                }
-            }
-        }
-
-        if (x == 6 && y == 6) {
-            Space target = board.getSpace(6, 8);
-            if (target != null && target.getPlayer() == null) {
-                target.setPlayer(player);
-            }
-        }
-    }*/
-
-    /**
-     * gearTurnRight Move Action
-     * @author Lauritz s191179
-     * @author Pernille Lyngholm
-     */
-    /*public void gearTurnRightAction() {
-        if (x == 2 && y == 3) {
-            player.setHeading(player.getHeading().next());
-        }
-    }*/
-
-    /**
-     * gearTurnLeft Move Action
-     * @author Lauritz s191179
-     * @author Pernille Lyngholm
-     */
-    /*public void gearTurnLeftAction() {
-        if (x == 5 && y == 7) {
-            player.setHeading(player.getHeading().prev());
-        }
-    }*/
 
     public void setPlayer(Player player) {
         Player oldPlayer = this.player;

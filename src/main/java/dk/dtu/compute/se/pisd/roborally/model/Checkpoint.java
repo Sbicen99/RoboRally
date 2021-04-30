@@ -20,7 +20,7 @@ public class Checkpoint extends FieldAction {
         Player player = space.getPlayer();
         if (player != null) {
             player.setEndCheckpoint(this.checkpointnumber);
-            if (player.getEndCheckpoint() > gameController.board.getCheckpoints().size()) {
+            if (player.getEndCheckpoint() >= gameController.board.getCheckpoints().size()) {
                 gameController.gameWins(player);
             }
         }

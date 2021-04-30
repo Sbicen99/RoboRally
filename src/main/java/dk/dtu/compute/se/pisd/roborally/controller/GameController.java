@@ -25,11 +25,7 @@ import dk.dtu.compute.se.pisd.roborally.model.*;
 import dk.dtu.compute.se.pisd.roborally.view.PlayerView;
 import javafx.scene.control.Alert;
 import org.jetbrains.annotations.NotNull;
-
-import javax.swing.text.PlainView;
-
-import static dk.dtu.compute.se.pisd.roborally.model.Phase.INITIALISATION;
-import static dk.dtu.compute.se.pisd.roborally.model.Phase.WON;
+import static dk.dtu.compute.se.pisd.roborally.model.Phase.WINNING;
 
 /**
  * ...
@@ -361,7 +357,6 @@ public class GameController {
      * @param player represent player(s) in game
      */
 
-    // TODO Assignment V2
     public void fastForward1(@NotNull Player player) {
         moveForward(player);
         moveForward(player);
@@ -385,7 +380,6 @@ public class GameController {
      * @author Najib Hebrawi, s181663
      * @param player represent player(s) in game
      */
-    // TODO Assignment V2
     public void turnRight(@NotNull Player player) {
         if (player != null && player.board == board){
             player.setHeading(player.getHeading().next());
@@ -400,7 +394,6 @@ public class GameController {
      * @author Najib Hebrawi, s181663
      * @param player represent player(s) in game
      */
-    // TODO Assignment V2
     public void turnLeft(@NotNull Player player) {
         if (player != null && player.board == board){
             player.setHeading(player.getHeading().prev());
@@ -432,29 +425,25 @@ public class GameController {
     }
 
 
-
     /**
-     * @author Najib s181663
-     * @author Sercan, s185040
+     * @author Sercan Bicen, Najib Hebrawi
      */
     public void winningPhase() {
         makeProgramFieldsInvisible();
         makeProgramFieldsVisible(0);
-        board.setPhase(WON);
+        board.setPhase(WINNING);
         board.setCurrentPlayer(board.getPlayer(0));
         board.setStep(0);
     }
 
     /**
-     * @author Najib s181663
-     * @author Sercan, s185040
+     * @author Sercan Bicen, Najib Hebrawi
      */
     public void gameWins(Player player) {
         Alert alertMessage = new Alert(Alert.AlertType.INFORMATION,player.getName() + " won the game.");
         this.gameWin = true;
         alertMessage.showAndWait();
         winningPhase();
-
     }
 
 
