@@ -84,7 +84,7 @@ public class AppController implements Observer {
             for (int i = 0; i < no; i++) {
                 Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1));
                 board.addPlayer(player);
-                player.setSpace(board.getSpace(i % board.width, i));
+                player.setSpace(board.getSpace(i % board.width + 1, 1));
             }
             board.setCurrentPlayer(board.getPlayer(0));
             gameController.startProgrammingPhase();
@@ -95,15 +95,15 @@ public class AppController implements Observer {
 
 
     /**
-     * @author Camilla Boejden, Thamara Chellakooty, Sercan Bicen  & Lauritz Pepke
+     * @author Camilla Boejden, Thamara Chellakooty, Sercan Bicen & Lauritz Pepke
      * @return Returns board where different board elements are included on specific fields.
      */
     private Board createBoard(){
         Board board = LoadBoard.loadBoard("easyboard");
         return board;
 
-        /*
-        Board board = new Board(10,10);
+
+        /*Board board = new Board(10,10);
         Gear gear = new Gear();
         Checkpoint firstCheckpoint = new Checkpoint(1);
         Checkpoint secondCheckpoint = new Checkpoint(2);
@@ -207,7 +207,7 @@ public class AppController implements Observer {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (!result.isPresent() || result.get() != ButtonType.OK) {
-                Platform.exit();
+                System.exit(-1);
             } else {
                 saveGame();
             }*/

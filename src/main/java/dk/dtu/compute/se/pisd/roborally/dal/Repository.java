@@ -337,16 +337,19 @@ public class Repository implements IRepository {
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
 			int playerId = rs.getInt(PLAYER_PLAYERID);
-			// TODO should be more defensive
-			Player player = game.getPlayer(playerId);
-			// rs.updateString(PLAYER_NAME, player.getName()); // not needed: player's names does not change
-			rs.updateInt(PLAYER_POSITION_X, player.getSpace().x);
-			rs.updateInt(PLAYER_POSITION_Y, player.getSpace().y);
-			rs.updateInt(PLAYER_HEADING, player.getHeading().ordinal());
-			// TODO error handling
-			// TODO take care of case when number of players changes, etc
-			rs.updateRow();
+
+			if (game != null) {
+				Player player = game.getPlayer(playerId);
+				// rs.updateString(PLAYER_NAME, player.getName()); // not needed: player's names does not change
+				rs.updateInt(PLAYER_POSITION_X, player.getSpace().x);
+				rs.updateInt(PLAYER_POSITION_Y, player.getSpace().y);
+				rs.updateInt(PLAYER_HEADING, player.getHeading().ordinal());
+				// TODO error handling
+				// TODO take care of case when number of players changes, etc
+				rs.updateRow();
+			}
 		}
+
 		rs.close();
 		
 		// TODO error handling/consistency check: check whether all players were updated
@@ -364,9 +367,8 @@ public class Repository implements IRepository {
 				insert_game_stmt = connection.prepareStatement(
 						SQL_INSERT_GAME,
 						Statement.RETURN_GENERATED_KEYS);
-			} catch (SQLException e) {
-				// TODO error handling
-				e.printStackTrace();
+			} catch (SQLException sqlException) {
+				System.err.format("SQL: %s\n%s", sqlException.getSQLState(), sqlException.getMessage());
 			}
 		}
 		return insert_game_stmt;
@@ -385,9 +387,8 @@ public class Repository implements IRepository {
 						SQL_SELECT_GAME,
 						ResultSet.TYPE_FORWARD_ONLY,
 					    ResultSet.CONCUR_UPDATABLE);
-			} catch (SQLException e) {
-				// TODO error handling
-				e.printStackTrace();
+			} catch (SQLException sqlException) {
+				System.err.format("SQL: %s\n%s", sqlException.getSQLState(), sqlException.getMessage());
 			}
 		}
 		return select_game_stmt;
@@ -407,8 +408,7 @@ public class Repository implements IRepository {
 						ResultSet.TYPE_FORWARD_ONLY,
 						ResultSet.CONCUR_UPDATABLE);
 			} catch (SQLException e) {
-				// TODO error handling
-				e.printStackTrace();
+				System.err.format("SQL: %s\n%s", e.getSQLState(), e.getMessage());
 			}
 		}
 		return select_players_stmt;
@@ -426,9 +426,8 @@ public class Repository implements IRepository {
 				// This statement does not need to be updatable
 				select_players_asc_stmt = connection.prepareStatement(
 						SQL_SELECT_PLAYERS_ASC);
-			} catch (SQLException e) {
-				// TODO error handling
-				e.printStackTrace();
+			} catch (SQLException sqlEx) {
+				System.err.format("SQL: %s\n%s", sqlEx.getSQLState(), sqlEx.getMessage());
 			}
 		}
 		return select_players_asc_stmt;
@@ -445,9 +444,8 @@ public class Repository implements IRepository {
 			try {
 				select_games_stmt = connection.prepareStatement(
 						SQL_SELECT_GAMES);
-			} catch (SQLException e) {
-				// TODO error handling
-				e.printStackTrace();
+			} catch (SQLException sqlException) {
+				System.err.format("SQL: %s\n%s", sqlException.getSQLState(), sqlException.getMessage());
 			}
 		}
 		return select_games_stmt;

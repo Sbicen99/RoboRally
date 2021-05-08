@@ -25,12 +25,12 @@ import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.model.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.*;
-import javafx.scene.shape.Polygon;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
+import javafx.scene.shape.StrokeLineCap;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.FileInputStream;
@@ -82,128 +82,12 @@ public class SpaceView extends StackPane implements ViewObserver {
         update(space);
     }
 
-    /**
-     * setBlueConveyorBeltInBoard
-     * @author Najib s181663
-     * @author Sercan, s185040
-     */
-    /*private void createBlueConveyorBelt(int rotation) {
-        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
-
-        //creating the image object
-        try {
-            InputStream stream = new FileInputStream("src/main/resources/images/blue_arrow.png");
-            Image image = new Image(stream);
-
-            //creating the imageview
-            ImageView imageView = new ImageView();
-            imageView.setImage(image);
-            imageView.setFitWidth(SPACE_WIDTH);
-            imageView.setFitHeight(SPACE_HEIGHT);
-
-            //Changing the rotation of the conveyor belt. 90 := --> , -90 := <--, 0 := up and 180 := down
-            imageView.setRotate(rotation);
-
-            this.getChildren().addAll(canvas, imageView);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    /**
-     * setBlueConveyorBeltInBoard with different directions.
-     * @author Najib s181663
-     * @author Sercan, s185040
-     */
-    /*private void setBlueConveyorBeltOnBoard() {
-        if (space.x == 3 && space.y == 4) {
-            createBlueConveyorBelt(180);
-
-        } else if (space.x == 6 && space.y == 6) {
-            createBlueConveyorBelt(90);
-        }
-    }*/
-
-
-
-    /**
-     * Adding the first checkpoint as an image.
-     * @author Sercan Bicen
-     * @author Najib Hebrawi
-     */
-
-    /*private void checkpointOne() {
-        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
-
-        //creating the image object
-        try {
-            InputStream stream = new FileInputStream("src/main/resources/images/checkpoint1.png");
-            Image image = new Image(stream);
-
-            //creating the imageview
-            ImageView imageView = new ImageView();
-            imageView.setImage(image);
-            imageView.setFitWidth(SPACE_WIDTH);
-            imageView.setFitHeight(SPACE_HEIGHT);
-
-            this.getChildren().addAll(canvas, imageView);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }*/
-
-
-    /**
-     * Adding the second checkpoint as an image.
-     * @author Sercan Bicen
-     * @author Najib Hebrawi
-     */
-
-    /*private void checkpointTwo() {
-        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
-
-        //creating the image object
-        try {
-            InputStream stream = new FileInputStream("src/main/resources/images/checkpoint2.png");
-            Image image = new Image(stream);
-
-            //creating the imageview
-            ImageView imageView = new ImageView();
-            imageView.setImage(image);
-            imageView.setFitWidth(SPACE_WIDTH);
-            imageView.setFitHeight(SPACE_HEIGHT);
-
-            this.getChildren().addAll(canvas, imageView);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }*/
-
-
-    /**
-     * Adding the checkpoints to a specific position on the board.
-     *  @author Sercan Bicen
-     *  @author Najib Hebrawi
-     * @return
-     */
-
-    /*private void addCheckPoints() {
-        if (space.x == 5 && space.y == 2) {
-            checkpointOne();
-        } else if (space.x == 2 && space.y == 6) {
-            checkpointTwo();
-        }
-    }*/
 
     /**
      * @author Sercan Bicen, Najib Hebrawi
      * @param imageName path to the respective image
      * @return
      */
-
     private ImageView imagesOnBoard(String imageName) {
         Image image = null;
 
@@ -273,7 +157,7 @@ public class SpaceView extends StackPane implements ViewObserver {
     private void createConBelt (){
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
         for (FieldAction beltOnBoard: space.getActions())
-            if(beltOnBoard instanceof ConveyorBelt) {
+            if (beltOnBoard instanceof ConveyorBelt) {
 
                 ConveyorBelt conveyorBelt = (ConveyorBelt) beltOnBoard;
                 Heading heading = conveyorBelt.getHeading();
@@ -288,6 +172,7 @@ public class SpaceView extends StackPane implements ViewObserver {
                     imageView.setFitWidth(SPACE_WIDTH);
                     imageView.setFitHeight(SPACE_HEIGHT);
 
+                    // Defensive programming
                     if (heading != null) {
                         imageView.setRotate(heading.ordinal()*90);
                     }
@@ -299,94 +184,6 @@ public class SpaceView extends StackPane implements ViewObserver {
                 }
             }
     }
-
-
-
-    /**
-     * Adding vertical walls to the boards with Canvas.
-     * @author Thamara Chellakooty & Camilla Boejden
-     */
-    /*private void addingVerticalWallWithCanvas() {
-        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
-        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
-        graphicsContext.setStroke(Color.RED);
-        graphicsContext.setLineWidth(5);
-        graphicsContext.setLineCap(StrokeLineCap.ROUND);
-
-        graphicsContext.strokeLine(SPACE_HEIGHT-2, 2, SPACE_WIDTH-2, SPACE_WIDTH-2);
-        this.getChildren().add(canvas);
-    }*/
-
-
-
-    /**
-     * Adding the gear turning right as an image
-     * @author Lauritz s191179
-     * @author Pernille Lyngholm
-     */
-
-    /*private void gearTurnRight() {
-        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
-
-        //creating the image object
-        try {
-            InputStream stream = new FileInputStream("src/main/resources/images/gearright.png");
-            Image image = new Image(stream);
-
-            //creating the imageview
-            ImageView imageView = new ImageView();
-            imageView.setImage(image);
-            imageView.setFitWidth(SPACE_WIDTH);
-            imageView.setFitHeight(SPACE_HEIGHT);
-
-            this.getChildren().addAll(canvas, imageView);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    /**
-     * Adding the gear turning left as an image
-     * @author Lauritz s191179
-     * @author Pernille Lyngholm
-     */
-
-    /*private void gearTurnLeft() {
-        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
-
-        //creating the image object
-        try {
-            InputStream stream = new FileInputStream("src/main/resources/images/gearleft.png");
-            Image image = new Image(stream);
-
-            //creating the imageview
-            ImageView imageView = new ImageView();
-            imageView.setImage(image);
-            imageView.setFitWidth(SPACE_WIDTH);
-            imageView.setFitHeight(SPACE_HEIGHT);
-
-            this.getChildren().addAll(canvas, imageView);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    /**
-     * Adding the gear to a specific position on the board
-     * @author Lauritz s191179
-     * @author Pernille Lyngholm
-     */
-
-    /*private void addGearToBoard() {
-        if (space.x == 2 && space.y == 3) {
-            gearTurnRight();
-        } else if (space.x == 5 && space.y == 7)
-            gearTurnLeft();
-    }*/
-
-
 
     private void updatePlayer() {
         //------------------------
