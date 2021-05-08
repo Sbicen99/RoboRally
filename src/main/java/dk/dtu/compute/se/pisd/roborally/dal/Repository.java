@@ -128,16 +128,13 @@ public class Repository implements IRepository {
                 connection.setAutoCommit(true);
                 return true;
             } catch (SQLException e) {
-                // TODO error handling
-                e.printStackTrace();
-                System.err.println("Some DB error");
+                System.err.format("SQL: %s\n%s", e.getSQLState(), e.getMessage());
 
                 try {
                     connection.rollback();
                     connection.setAutoCommit(true);
-                } catch (SQLException e1) {
-                    // TODO error handling
-                    e1.printStackTrace();
+                } catch (SQLException sqlException) {
+                    System.err.format("SQL: %s\n%s", sqlException.getSQLState(), sqlException.getMessage());
                 }
             }
         } else {
@@ -177,15 +174,13 @@ public class Repository implements IRepository {
             connection.setAutoCommit(true);
             return true;
         } catch (SQLException e) {
-            // TODO error handling
-            e.printStackTrace();
-            System.err.println("Some DB error");
+            System.err.format("SQL: %s\n%s", e.getSQLState(), e.getMessage());
 
             try {
                 connection.rollback();
                 connection.setAutoCommit(true);
             } catch (SQLException e1) {
-                // TODO error handling
+                System.err.format("SQL: %s\n%s", e1.getSQLState(), e1.getMessage());
                 e1.printStackTrace();
             }
         }
@@ -242,9 +237,7 @@ public class Repository implements IRepository {
 
             return game;
         } catch (SQLException e) {
-            // TODO error handling
-            e.printStackTrace();
-            System.err.println("Some DB error");
+            System.err.format("SQL: %s\n%s", e.getSQLState(), e.getMessage());
         }
         return null;
     }
