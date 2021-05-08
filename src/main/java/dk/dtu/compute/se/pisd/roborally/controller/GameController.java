@@ -25,13 +25,13 @@ import dk.dtu.compute.se.pisd.roborally.model.*;
 import dk.dtu.compute.se.pisd.roborally.view.PlayerView;
 import javafx.scene.control.Alert;
 import org.jetbrains.annotations.NotNull;
+
 import static dk.dtu.compute.se.pisd.roborally.model.Phase.WINNING;
 
 /**
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class GameController {
 
@@ -49,12 +49,13 @@ public class GameController {
     /**
      * Moves the player and changes to another player.
      * Checks if the field is empty.
-     * @author Sercan Bicen, Najib Hebrawi
-     * @implNote ( && space == board.getSpace(0,0)) do, we cant click in the board with the mouse.
+     *
      * @param space the space to which the current player should move
+     * @author Sercan Bicen, Najib Hebrawi
+     * @implNote (& & space = = board.getSpace ( 0, 0)) do, we cant click in the board with the mouse.
      */
-    public void moveCurrentPlayerToSpace(@NotNull Space space)  {
-        if (space.getPlayer() == null && space.board == board ){
+    public void moveCurrentPlayerToSpace(@NotNull Space space) {
+        if (space.getPlayer() == null && space.board == board) {
             Player currentPlayer = board.getCurrentPlayer();
             currentPlayer.setSpace(space);
             board.setNotEmpty("");
@@ -63,7 +64,6 @@ public class GameController {
             Player nextPlayer = board.getPlayer((number + 1) % board.getPlayersNumber());
             board.setCurrentPlayer(nextPlayer);
             board.setCount(board.getCount() + 1);
-
 
 
             //----------------------------
@@ -174,16 +174,16 @@ public class GameController {
     // XXX: V2
     private void executeNextStep() {
         Player currentPlayer = board.getCurrentPlayer();
-        if ((board.getPhase() == Phase.ACTIVATION  || (board.getPhase() == Phase.PLAYER_INTERACTION && board.getUserChoice() != null)) && currentPlayer != null) {
+        if ((board.getPhase() == Phase.ACTIVATION || (board.getPhase() == Phase.PLAYER_INTERACTION && board.getUserChoice() != null)) && currentPlayer != null) {
             int step = board.getStep();
 
             if (step >= 0 && step < Player.NO_REGISTERS) {
-                Command userChoice  = board.getUserChoice();
-                if (userChoice != null ){
+                Command userChoice = board.getUserChoice();
+                if (userChoice != null) {
                     board.setUserChoice(null);
                     board.setPhase(Phase.ACTIVATION);
                     executeCommand(currentPlayer, userChoice);
-                }else {
+                } else {
                     CommandCard card = currentPlayer.getProgramField(step).getCard();
                     if (card != null) {
                         Command command = card.command;
@@ -227,10 +227,11 @@ public class GameController {
 
     /**
      * Executing command with option on turn right and turn left and continue.
-     * @author Najib, s181663
+     *
      * @param option the option for the player to select a command (right/left).
+     * @author Najib, s181663
      */
-    public void executeCommandOptionAndContinue(@NotNull Command option){
+    public void executeCommandOptionAndContinue(@NotNull Command option) {
         assert board.getPhase() == Phase.PLAYER_INTERACTION;
         assert board.getCurrentPlayer() != null;
         board.setUserChoice(option);
@@ -273,16 +274,17 @@ public class GameController {
 
     /**
      * Moving the player one field forward.
+     *
+     * @param player represent player(s) in game
      * @author Najib s181663
      * @author Sercan, s185040
-     * @param player represent player(s) in game
      */
     public void moveForward(@NotNull Player player) {
         if (player.board == board && player != null) {
             Space space = player.getSpace();
             Heading heading = player.getHeading();
             Space target = board.getNeighbour(space, heading);
-            if (target != null ) {
+            if (target != null) {
                 try {
                     moveToSpace(player, target, heading);
                 } catch (ImpossibleMoveException e) {
@@ -299,11 +301,11 @@ public class GameController {
     }
 
     /**
-     * @author Najib Hebrawi, Sercan Bicen
-     * @param player represent player(s) in game
-     * @param space space of the current and target player
+     * @param player  represent player(s) in game
+     * @param space   space of the current and target player
      * @param heading heading of the target player
      * @throws ImpossibleMoveException
+     * @author Najib Hebrawi, Sercan Bicen
      */
     private void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading) throws ImpossibleMoveException {
         Player other = space.getPlayer();
@@ -330,15 +332,16 @@ public class GameController {
 
     /**
      * Moving the player one field back (without changing the direction).
-     * @author Najib s181663
+     *
      * @param player represent player(s) in game
+     * @author Najib s181663
      */
-    public void Moveback(@NotNull Player player){
+    public void Moveback(@NotNull Player player) {
         Space space = player.getSpace();
         if (player.board == board && player != null) {
             Heading heading = player.getHeading();
             Space target = board.Backorder(space, heading);
-            if (target != null ) {
+            if (target != null) {
                 try {
                     moveToSpace(player, target, heading);
                 } catch (ImpossibleMoveException e) {
@@ -353,8 +356,9 @@ public class GameController {
     /**
      * Moving the player two fields forward.
      * Calling the moveForward method two times.
-     * @author Najib Hebrawi, Sercan Bicen
+     *
      * @param player represent player(s) in game
+     * @author Najib Hebrawi, Sercan Bicen
      */
 
     public void fastForward1(@NotNull Player player) {
@@ -364,8 +368,9 @@ public class GameController {
 
     /**
      * Moving the player three field forward.
-     * @author Najib s181663
+     *
      * @param player represent player(s) in game
+     * @author Najib s181663
      */
     public void fastForward2(@NotNull Player player) {
         moveForward(player);
@@ -376,26 +381,27 @@ public class GameController {
 
     /**
      * Turning the player to the right.
+     *
+     * @param player represent player(s) in game
      * @author Sercan, s185040
      * @author Najib Hebrawi, s181663
-     * @param player represent player(s) in game
      */
     public void turnRight(@NotNull Player player) {
-        if (player != null && player.board == board){
+        if (player != null && player.board == board) {
             player.setHeading(player.getHeading().next());
         }
     }
 
 
-
     /**
      * Turning the player to the left.
+     *
+     * @param player represent player(s) in game
      * @author Sercan, s185040
      * @author Najib Hebrawi, s181663
-     * @param player represent player(s) in game
      */
     public void turnLeft(@NotNull Player player) {
-        if (player != null && player.board == board){
+        if (player != null && player.board == board) {
             player.setHeading(player.getHeading().prev());
         }
 
@@ -403,11 +409,12 @@ public class GameController {
 
     /**
      * Turning the player U-Turn.
-     * @author Najib Hebrawi, s181663
+     *
      * @param player represent player(s) in game
+     * @author Najib Hebrawi, s181663
      */
-    public void UTurn(@NotNull Player player){
-        if (player !=null && player.board == board){
+    public void UTurn(@NotNull Player player) {
+        if (player != null && player.board == board) {
             player.setHeading(player.getHeading().BackUTurn());
         }
     }
@@ -440,7 +447,7 @@ public class GameController {
      * @author Sercan Bicen, Najib Hebrawi
      */
     public void gameWins(Player player) {
-        Alert alertMessage = new Alert(Alert.AlertType.INFORMATION,player.getName() + " won the game.");
+        Alert alertMessage = new Alert(Alert.AlertType.INFORMATION, player.getName() + " won the game.");
         this.gameWin = true;
         alertMessage.showAndWait();
         winningPhase();

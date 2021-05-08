@@ -43,7 +43,6 @@ import java.util.List;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class SpaceView extends StackPane implements ViewObserver {
 
@@ -84,9 +83,9 @@ public class SpaceView extends StackPane implements ViewObserver {
 
 
     /**
-     * @author Sercan Bicen, Najib Hebrawi
      * @param imageName path to the respective image
      * @return
+     * @author Sercan Bicen, Najib Hebrawi
      */
     private ImageView imagesOnBoard(String imageName) {
         Image image = null;
@@ -109,10 +108,10 @@ public class SpaceView extends StackPane implements ViewObserver {
     }
 
     /**
-     * @author Sercan Bicen
-     * @param name path to the image
+     * @param name     path to the image
      * @param rotation rotating the image
      * @return the rotated image
+     * @author Sercan Bicen
      */
 
     private ImageView addingImages(String name, int rotation) {
@@ -125,6 +124,7 @@ public class SpaceView extends StackPane implements ViewObserver {
 
     /**
      * Placing walls on board
+     *
      * @author Thamara Chellakooty & Camilla Boejden
      */
     private void createStaticObject() {
@@ -136,13 +136,16 @@ public class SpaceView extends StackPane implements ViewObserver {
         graphicsContext.setLineWidth(5);
         graphicsContext.setLineCap(StrokeLineCap.ROUND);
 
-        for (Heading heading: spaceWalls) {
-            switch (heading){
-                case SOUTH: graphicsContext.strokeLine(2, SPACE_HEIGHT-2, SPACE_WIDTH-2, SPACE_HEIGHT-2);
+        for (Heading heading : spaceWalls) {
+            switch (heading) {
+                case SOUTH:
+                    graphicsContext.strokeLine(2, SPACE_HEIGHT - 2, SPACE_WIDTH - 2, SPACE_HEIGHT - 2);
                     break;
-                case NORTH: graphicsContext.strokeLine(2, 2, SPACE_WIDTH-2, 2);
+                case NORTH:
+                    graphicsContext.strokeLine(2, 2, SPACE_WIDTH - 2, 2);
                     break;
-                case EAST: graphicsContext.strokeLine(SPACE_HEIGHT-2, SPACE_HEIGHT-2, SPACE_WIDTH-2, 2);
+                case EAST:
+                    graphicsContext.strokeLine(SPACE_HEIGHT - 2, SPACE_HEIGHT - 2, SPACE_WIDTH - 2, 2);
                     break;
                 default:
             }
@@ -152,18 +155,19 @@ public class SpaceView extends StackPane implements ViewObserver {
 
     /**
      * Creating a Grafical Convauerbelts for each instance of a Conveyerbelt existing on the board.
-     *  @author Thamara Chellakooty
+     *
+     * @author Thamara Chellakooty
      */
-    private void createConBelt (){
+    private void createConBelt() {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
-        for (FieldAction beltOnBoard: space.getActions())
+        for (FieldAction beltOnBoard : space.getActions())
             if (beltOnBoard instanceof ConveyorBelt) {
 
                 ConveyorBelt conveyorBelt = (ConveyorBelt) beltOnBoard;
                 Heading heading = conveyorBelt.getHeading();
 
                 try {
-                    InputStream stream = new FileInputStream("src/main/resources/images/blue_arrow.png");
+                    InputStream stream = new FileInputStream("src/main/resources/images/conveyorbelt.png");
                     Image image = new Image(stream);
 
                     //creating the imageview
@@ -174,7 +178,7 @@ public class SpaceView extends StackPane implements ViewObserver {
 
                     // Defensive programming
                     if (heading != null) {
-                        imageView.setRotate(heading.ordinal()*90);
+                        imageView.setRotate(heading.ordinal() * 90);
                     }
 
                     this.getChildren().addAll(canvas, imageView);
@@ -188,36 +192,33 @@ public class SpaceView extends StackPane implements ViewObserver {
     private void updatePlayer() {
         //------------------------
         //Adding elements to the board where each triangle/player is in front of it.
-        //setBlueConveyorBeltOnBoard();
 
         // loop through actions. Can also be used to another board element.
         for (FieldAction action : space.getActions()) {
             if (action instanceof Checkpoint) {
                 addingImages("images/checkpoint" + ((Checkpoint) action).checkpointnumber + ".png", 270);
-            }
-            else if (action instanceof Gear) {
+
+            } else if (action instanceof Gear) {
                 addingImages("images/gearright.png", 0);
             }
         }
 
         createStaticObject();
         createConBelt();
-        //addCheckPoints();
-        //addGearToBoard();
         //------------------------
 
         Player player = space.getPlayer();
         if (player != null) {
             Polygon arrow = new Polygon(0.0, 0.0,
                     10.0, 20.0,
-                    20.0, 0.0 );
+                    20.0, 0.0);
             try {
                 arrow.setFill(Color.valueOf(player.getColor()));
             } catch (Exception e) {
                 arrow.setFill(Color.MEDIUMPURPLE);
             }
 
-            arrow.setRotate((90*player.getHeading().ordinal())%360);
+            arrow.setRotate((90 * player.getHeading().ordinal()) % 360);
             this.getChildren().add(arrow);
         }
     }

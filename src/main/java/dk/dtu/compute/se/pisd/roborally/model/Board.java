@@ -28,12 +28,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static dk.dtu.compute.se.pisd.roborally.model.Phase.INITIALISATION;
+
 /**
-/**
+ * /**
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class Board extends Subject {
 
@@ -74,7 +74,7 @@ public class Board extends Subject {
         this.height = height;
         spaces = new Space[width][height];
         for (int x = 0; x < width; x++) {
-            for(int y = 0; y < height; y++) {
+            for (int y = 0; y < height; y++) {
                 Space space = new Space(this, x, y);
                 spaces[x][y] = space;
             }
@@ -101,10 +101,10 @@ public class Board extends Subject {
     }
 
     /**
-     * @author Sercan Bicen
      * @param x defines the field on x-axis
      * @param y defines the field on y-axis
      * @return retrieves the field based on the value for x and y
+     * @author Sercan Bicen
      */
 
     public Space getSpace(int x, int y) {
@@ -117,9 +117,9 @@ public class Board extends Subject {
     }
 
     /**
+     * @return the size of players
      * @author Sercan Bicen, Najib Hebrawi
      * Method that handle number of players
-     * @return the size of players
      */
 
     public int getPlayersNumber() {
@@ -129,8 +129,9 @@ public class Board extends Subject {
 
     /**
      * Adding players to the game.
-     * @author Sercan Bicen, Najib Hebrawi
+     *
      * @param player
+     * @author Sercan Bicen, Najib Hebrawi
      */
     public void addPlayer(@NotNull Player player) {
         if (player.board == this && !players.contains(player)) {
@@ -205,7 +206,7 @@ public class Board extends Subject {
      * (no walls or obstacles in either of the involved spaces); otherwise,
      * null will be returned.
      *
-     * @param space the space for which the neighbour should be computed
+     * @param space   the space for which the neighbour should be computed
      * @param heading the heading of the neighbour
      * @return the space in the given direction; null if there is no (reachable) neighbour
      */
@@ -230,7 +231,7 @@ public class Board extends Subject {
                     x = (x + 1) % width;
                     break;
             }
-            Space target = getSpace(x,y);
+            Space target = getSpace(x, y);
 
             if (!target.getWalls().contains(heading.prev().prev())) {
                 return target;
@@ -241,10 +242,10 @@ public class Board extends Subject {
 
 
     /**
-     * @author Najib Hebrawi
-     * @param space the space for which the neighbour should be computed
+     * @param space   the space for which the neighbour should be computed
      * @param heading the heading of the neighbour
      * @return the space in the given direction
+     * @author Najib Hebrawi
      */
     public Space Backorder(@NotNull Space space, @NotNull Heading heading) {
         int x = space.x;
@@ -280,6 +281,7 @@ public class Board extends Subject {
 
     /**
      * Get- and setter
+     *
      * @return count moves on the board
      */
     public int getCount() {
@@ -287,7 +289,7 @@ public class Board extends Subject {
     }
 
     public void setCount(int count) {
-        if (this.count != count){
+        if (this.count != count) {
             this.count = count;
             notifyChange();
         }
@@ -295,10 +297,11 @@ public class Board extends Subject {
 
     /**
      * Get- and setter
+     *
      * @return if the field isn't empty return the message "the field isn't empty"
      */
     public String getNotEmpty() {
-        return (this.notEmpty == null ? "" :this.notEmpty);
+        return (this.notEmpty == null ? "" : this.notEmpty);
     }
 
     public void setNotEmpty(String notEmpty) {
@@ -307,23 +310,23 @@ public class Board extends Subject {
     }
 
 
-    private Command userChoice=null;
+    private Command userChoice = null;
 
     public Command getUserChoice() {
         return userChoice;
     }
 
     public void setUserChoice(Command userChoice) {
-        if (this.userChoice != userChoice){
-            this.userChoice=userChoice;
+        if (this.userChoice != userChoice) {
+            this.userChoice = userChoice;
             notifyChange();
         }
     }
 
     /**
+     * @return checkpoints
      * @author Sercan Bicen, Najib Hebrawi
      * Get- and setter for checkpoints.
-     * @return checkpoints
      */
     public List<Checkpoint> getCheckpoints() {
         return this.checkpoints;
@@ -334,9 +337,9 @@ public class Board extends Subject {
     }
 
     /**
+     * @return
      * @author Lauritz Pepke
      * Get- and setter for gears.
-     * @return
      */
 
     public List<Gear> getGears() {

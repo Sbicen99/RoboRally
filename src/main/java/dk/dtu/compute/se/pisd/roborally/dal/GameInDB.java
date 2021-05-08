@@ -25,7 +25,6 @@ package dk.dtu.compute.se.pisd.roborally.dal;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class GameInDB {
 

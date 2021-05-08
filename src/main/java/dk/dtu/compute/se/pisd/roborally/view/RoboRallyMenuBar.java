@@ -30,7 +30,6 @@ import javafx.scene.control.MenuItem;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class RoboRallyMenuBar extends MenuBar {
 
@@ -57,7 +56,7 @@ public class RoboRallyMenuBar extends MenuBar {
         this.getMenus().add(controlMenu);
 
         newGame = new MenuItem("New Game");
-        newGame.setOnAction( e -> this.appController.newGame());
+        newGame.setOnAction(e -> this.appController.newGame());
         controlMenu.getItems().add(newGame);
 
         loadGameFromFile = new MenuItem("Load game from file");
@@ -65,19 +64,19 @@ public class RoboRallyMenuBar extends MenuBar {
         controlMenu.getItems().add(loadGameFromFile);
 
         stopGame = new MenuItem("Stop Game");
-        stopGame.setOnAction( e -> this.appController.stopGame());
+        stopGame.setOnAction(e -> this.appController.stopGame());
         controlMenu.getItems().add(stopGame);
 
         saveGame = new MenuItem("Save Game");
-        saveGame.setOnAction( e -> this.appController.saveGame());
+        saveGame.setOnAction(e -> this.appController.saveGame());
         controlMenu.getItems().add(saveGame);
 
         loadGame = new MenuItem("Load Game");
-        loadGame.setOnAction( e -> this.appController.loadGame());
+        loadGame.setOnAction(e -> this.appController.loadGame());
         controlMenu.getItems().add(loadGame);
 
         exitApp = new MenuItem("Exit");
-        exitApp.setOnAction( e -> this.appController.exit());
+        exitApp.setOnAction(e -> this.appController.exit());
         controlMenu.getItems().add(exitApp);
 
         controlMenu.setOnShowing(e -> update());
@@ -86,7 +85,6 @@ public class RoboRallyMenuBar extends MenuBar {
     }
 
     /**
-     *
      * @author Ekkart Kindler, ekki@dtu.dk
      * @author Najib Hebrawi, s181663.
      */

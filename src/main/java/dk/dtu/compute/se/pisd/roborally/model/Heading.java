@@ -25,7 +25,6 @@ package dk.dtu.compute.se.pisd.roborally.model;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public enum Heading {
 
@@ -42,6 +41,7 @@ public enum Heading {
 
     /**
      * Turning the player 180 degrees.
+     *
      * @author Najib Hebrawi, s181663
      */
     public Heading BackUTurn() {

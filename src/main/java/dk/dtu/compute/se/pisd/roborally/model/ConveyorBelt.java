@@ -5,9 +5,10 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Gameboard element that can push the player one or two spaces forward.
+ *
  * @author Thamara Chellakooty
  */
-public class ConveyorBelt extends FieldAction{
+public class ConveyorBelt extends FieldAction {
 
     private Heading heading;
     public final int type;
@@ -18,29 +19,28 @@ public class ConveyorBelt extends FieldAction{
         this.heading = heading;
     }
 
-    public Heading getHeading(){
+    public Heading getHeading() {
         return heading;
     }
 
-    public void setHeading ( Heading heading) {
+    public void setHeading(Heading heading) {
         this.heading = heading;
     }
 
     @Override
     public boolean doAction(GameController gameController, Space space) {
         Player player = space.getPlayer();
-        if (player != null & type == 1 & gameController.board.getConveyerBelt() != null){
+        if (player != null & type == 1 & gameController.board.getConveyerBelt() != null) {
             player.moveForward(player);
             return true;
-        }
-        else if (player != null & type == 2 & gameController.board.getConveyerBelt() != null) {
+        } else if (player != null & type == 2 & gameController.board.getConveyerBelt() != null) {
             player.moveForward(player);
             player.moveForward(player);
         }
         return true;
     }
 
-    public int getType(){
+    public int getType() {
         return this.type;
     }
 }

@@ -24,16 +24,18 @@ package dk.dtu.compute.se.pisd.roborally.controller;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Observer;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.RoboRally;
-import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
-import dk.dtu.compute.se.pisd.roborally.model.*;
 import dk.dtu.compute.se.pisd.roborally.dal.GameInDB;
 import dk.dtu.compute.se.pisd.roborally.dal.RepositoryAccess;
+import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
+import dk.dtu.compute.se.pisd.roborally.model.Board;
+import dk.dtu.compute.se.pisd.roborally.model.Player;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import org.jetbrains.annotations.NotNull;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -42,7 +44,6 @@ import java.util.Optional;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class AppController implements Observer {
 
@@ -95,10 +96,10 @@ public class AppController implements Observer {
 
 
     /**
-     * @author Camilla Boejden, Thamara Chellakooty, Sercan Bicen & Lauritz Pepke
      * @return Returns board where different board elements are included on specific fields.
+     * @author Camilla Boejden, Thamara Chellakooty, Sercan Bicen & Lauritz Pepke
      */
-    private Board createBoard(){
+    private Board createBoard() {
         Board board = LoadBoard.loadBoard("easyboard");
         return board;
 
@@ -163,7 +164,7 @@ public class AppController implements Observer {
 
         List<GameInDB> games = RepositoryAccess.getRepository().getGames();
         if (!games.isEmpty()) {
-            ChoiceDialog<GameInDB> dialog = new ChoiceDialog<>(games.get(games.size()-1), games);
+            ChoiceDialog<GameInDB> dialog = new ChoiceDialog<>(games.get(games.size() - 1), games);
             dialog.setTitle("Select game");
             dialog.setHeaderText("Select a game number");
             Optional<GameInDB> result = dialog.showAndWait();

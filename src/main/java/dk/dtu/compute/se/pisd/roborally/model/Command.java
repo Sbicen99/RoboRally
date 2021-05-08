@@ -44,18 +44,10 @@ public enum Command {
     MoveBack("Move one step Back"),
 
 
-
     // XXX Assignment V3
     OPTION_LEFT_RIGHT("Left OR Right", LEFT, RIGHT);
 
     final public String displayName;
-
-    // XXX Assignment V3
-    // Command(String displayName) {
-    //     this.displayName = displayName;
-    // }
-    //
-    // replaced by the code below:
 
     final private List<Command> options;
 
