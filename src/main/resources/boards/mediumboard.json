@@ -301,9 +301,8 @@
         }
       ],
       "x": 10,
-      "y": 3
+      "y": 2
     },
-
     {
       "actions": [
         {
@@ -315,6 +314,18 @@
       ],
       "x": 3,
       "y": 11
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Checkpoint",
+          "INSTANCE": {
+            "checkpointnumber": 2
+          }
+        }
+      ],
+      "x": 5,
+      "y": 5
     }
   ]
 }
