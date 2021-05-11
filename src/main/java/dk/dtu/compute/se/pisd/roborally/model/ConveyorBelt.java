@@ -37,6 +37,10 @@ public class ConveyorBelt extends FieldAction {
             player.moveForward(player);
             player.moveForward(player);
         }
+        else if (player!=null & type == 3 & gameController.board.getConveyerBelt() != null){
+            player.turnLeft(player);
+            player.moveForward(player);
+        }
         return true;
     }
 

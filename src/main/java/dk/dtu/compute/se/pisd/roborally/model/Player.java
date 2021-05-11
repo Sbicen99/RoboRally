@@ -24,12 +24,14 @@ package dk.dtu.compute.se.pisd.roborally.model;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import org.jetbrains.annotations.NotNull;
 
+import static dk.dtu.compute.se.pisd.roborally.model.Heading.NORTH;
 import static dk.dtu.compute.se.pisd.roborally.model.Heading.SOUTH;
 
 /**
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
+ *
  */
 public class Player extends Subject {
 
@@ -134,7 +136,6 @@ public class Player extends Subject {
         return cards[i];
     }
 
-
     /**
      * Checking if the number of the checkpoint is bigger than another.
      * @return last checkpoint
@@ -156,7 +157,7 @@ public class Player extends Subject {
             Space space = player.getSpace();
             Heading heading = player.getHeading();
             Space target = board.getNeighbour(space, heading);
-            if (target != null) {
+            if (target != null ) {
                 try {
                     moveToSpace(player, target, heading);
                 } catch (ImpossibleMoveException e) {
@@ -172,13 +173,19 @@ public class Player extends Subject {
         }
     }
 
-    /**
-     * @param player  represent player(s) in game
-     * @param space   space of the current and target player
-     * @param heading heading of the target player
-     * @throws ImpossibleMoveException
-     * @author Najib Hebrawi, Sercan Bicen
-     */
+    public void turnLeft(@NotNull Player player) {
+        if (player != null && player.board == board){
+            player.setHeading(player.getHeading().prev());
+        }
+    }
+
+        /**
+         * @author Najib Hebrawi, Sercan Bicen
+         * @param player represent player(s) in game
+         * @param space space of the current and target player
+         * @param heading heading of the target player
+         * @throws ImpossibleMoveException
+         */
     private void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading) throws ImpossibleMoveException {
         Player other = space.getPlayer();
         if (other != null) {
