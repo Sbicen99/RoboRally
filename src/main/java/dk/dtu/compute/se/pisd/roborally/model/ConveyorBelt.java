@@ -5,8 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Gameboard element that can push the player one or two spaces forward.
- *
- * @author Thamara Chellakooty
+ * @author Thamara Chellakooty, Camilla Boejden.
  */
 public class ConveyorBelt extends FieldAction {
 

@@ -100,7 +100,7 @@ public class AppController implements Observer {
      * @author Camilla Boejden, Thamara Chellakooty, Sercan Bicen & Lauritz Pepke
      */
     private Board createBoard() {
-        Board board = LoadBoard.loadBoard("easyboard");
+        Board board = LoadBoard.loadBoard("mediumborad");
         return board;
 
 
@@ -134,8 +134,6 @@ public class AppController implements Observer {
         board.getSpace(8,7).getWalls().add(Heading.EAST);
         return board;*/
     }
-
-
     /**
      * Automatically saves games in the database when player start game.
      */
