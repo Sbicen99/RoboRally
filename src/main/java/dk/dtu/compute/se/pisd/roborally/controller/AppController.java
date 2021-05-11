@@ -100,7 +100,7 @@ public class AppController implements Observer {
      * @author Camilla Boejden, Thamara Chellakooty, Sercan Bicen & Lauritz Pepke
      */
     private Board createBoard() {
-        Board board = LoadBoard.loadBoard("mediumborad");
+        Board board = LoadBoard.loadBoard("mediumboard");
         return board;
 
 

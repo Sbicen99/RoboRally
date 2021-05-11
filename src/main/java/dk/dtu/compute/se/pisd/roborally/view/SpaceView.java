@@ -156,7 +156,7 @@ public class SpaceView extends StackPane implements ViewObserver {
     /**
      * Creating a Grafical Convauerbelts for each instance of a Conveyerbelt existing on the board.
      *
-     * @author Thamara Chellakooty
+     * @author Thamara Chellakooty, Camilla Boejden
      */
     private void createConBelt() {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
