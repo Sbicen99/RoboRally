@@ -248,7 +248,7 @@
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Gear",
           "INSTANCE": {
-            "type": "right"
+            "type": 1
           }
         }
       ],
@@ -260,7 +260,7 @@
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Gear",
           "INSTANCE": {
-            "type": "left"
+            "type": 1
           }
         }
       ],
@@ -272,7 +272,7 @@
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Gear",
           "INSTANCE": {
-            "type": "left"
+            "type": 2
           }
         }
       ],
@@ -284,7 +284,7 @@
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Gear",
           "INSTANCE": {
-            "type": "left"
+            "type": 2
           }
         }
       ],

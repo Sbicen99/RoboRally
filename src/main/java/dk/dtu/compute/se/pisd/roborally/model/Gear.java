@@ -4,9 +4,9 @@ import dk.dtu.compute.se.pisd.roborally.controller.GameController;
 
 public class Gear extends FieldAction {
 
-    public final String type;
+    public final  int type;
 
-    public Gear(String type) {
+    public Gear(int type) {
         this.type = type;
     }
 
@@ -19,11 +19,13 @@ public class Gear extends FieldAction {
     @Override
     public boolean doAction(GameController gameController, Space space) {
         Player player = space.getPlayer();
-        if (player != null & type == "right") {
+        // next = right
+        if (player != null & type == 1  & gameController.board.getGears() != null) {
             player.setHeading(player.getHeading().next());
             return true;
 
-        } else if  (player != null & type == "left") {
+        // prev = left
+        } else if  (player != null & type == 2 & gameController.board.getGears() != null) {
             player.setHeading(player.getHeading().prev());
             return true;
         }
