@@ -156,7 +156,7 @@ public class SpaceView extends StackPane implements ViewObserver {
     /**
      * Creating a Grafical Convauerbelts for each instance of a Conveyerbelt existing on the board.
      *
-     * @author Sercan Bicen, Thamara Chellakooty, Camilla Boejden
+     * @author Thamara Chellakooty, Camilla Boejden
      */
     private void createConBelt() {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
@@ -167,7 +167,7 @@ public class SpaceView extends StackPane implements ViewObserver {
                 Heading heading = conveyorBelt.getHeading();
 
                 try {
-                    InputStream stream = new FileInputStream("src/main/resources/images/conveyorbelt1.png");
+                    InputStream stream = new FileInputStream("src/main/resources/images/conveyorbelt.png");
                     Image image = new Image(stream);
 
                     //creating the imageview
@@ -188,11 +188,7 @@ public class SpaceView extends StackPane implements ViewObserver {
                 }
             }
     }
-    /**
-     * Pictures for board
-     *
-     * @author Thamara Chellakooty, Camilla Boejden, Lauritz Pepke
-     */
+
     private void updatePlayer() {
         //------------------------
         //Adding elements to the board where each triangle/player is in front of it.
@@ -203,12 +199,7 @@ public class SpaceView extends StackPane implements ViewObserver {
                 addingImages("images/checkpoint" + ((Checkpoint) action).checkpointnumber + ".png", 270);
 
             } else if (action instanceof Gear) {
-                addingImages("images/gear" + ((Gear) action).direction + ".png", 0);
-                addingImages("images/gearright.png", 0);
-
-            } else if (action instanceof ConveyorBelt){
-                addingImages("images/conveyorbelt" + ((ConveyorBelt) action). type + ".png", 0);
-
+                addingImages("images/gear"+ ((Gear) action).direction + ".png", 0);
             }
         }
 
