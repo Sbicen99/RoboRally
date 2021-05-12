@@ -1,0 +1,396 @@
+{
+  "width": 12,
+  "height": 12,
+  "spaces": [
+
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "EAST"
+          },
+          "INSTANCE": {
+            "type": 3
+          }
+        }
+      ],
+      "x": 8,
+      "y": 3
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "EAST",
+            "type": 2
+          }
+        }
+      ],
+      "x": 8,
+      "y": 4
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "EAST",
+            "type": 2
+          }
+        }
+      ],
+      "x": 8,
+      "y": 5
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "EAST",
+            "type": 2
+          }
+        }
+      ],
+      "x": 8,
+      "y": 6
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "EAST",
+            "type": 2
+          }
+        }
+      ],
+      "x": 8,
+      "y": 7
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "WEST",
+            "type": 3
+          }
+        }
+      ],
+      "x": 3,
+      "y": 8
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "WEST",
+            "type": 2
+          }
+        }
+      ],
+      "x": 3,
+      "y": 7
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "WEST",
+            "type": 2
+          }
+        }
+      ],
+      "x": 3,
+      "y": 6
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "WEST",
+            "type": 2
+          }
+        }
+      ],
+      "x": 3,
+      "y": 5
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "WEST",
+            "type": 2
+          }
+        }
+      ],
+      "x": 3,
+      "y": 4
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "NORTH",
+            "type": 1
+          }
+        }
+      ],
+      "x": 4,
+      "y": 3
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "NORTH",
+            "type": 3
+          }
+        }
+      ],
+      "x": 3,
+      "y": 3
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "NORTH",
+            "type": 1
+          }
+        }
+      ],
+      "x": 5,
+      "y": 3
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "NORTH",
+            "type": 1
+          }
+        }
+      ],
+      "x": 6,
+      "y": 3
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "NORTH",
+            "type": 1
+          }
+        }
+      ],
+      "x": 7,
+      "y": 3
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "SOUTH",
+            "type": 3
+          }
+        }
+      ],
+      "x": 8,
+      "y": 8
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "SOUTH",
+            "type": 1
+          }
+        }
+      ],
+      "x": 7,
+      "y": 8
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "SOUTH",
+            "type": 1
+          }
+        }
+      ],
+      "x": 5,
+      "y": 8
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "SOUTH",
+            "type": 1
+          }
+        }
+      ],
+      "x": 4,
+      "y": 8
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "SOUTH",
+            "type": 1
+          }
+        }
+      ],
+      "x": 6,
+      "y": 8
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Gear",
+          "INSTANCE": {
+            "direction": 1
+          }
+        }
+      ],
+      "x": 5,
+      "y": 1
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Gear",
+          "INSTANCE": {
+            "direction": 1
+          }
+        }
+      ],
+      "x": 1,
+      "y": 6
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Gear",
+          "INSTANCE": {
+            "direction": 2
+          }
+        }
+      ],
+      "x": 6,
+      "y": 10
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Gear",
+          "INSTANCE": {
+            "direction": 2
+          }
+        }
+      ],
+      "x": 10,
+      "y": 5
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Checkpoint",
+          "INSTANCE": {
+            "checkpointnumber": 1
+          }
+        }
+      ],
+      "x": 10,
+      "y": 2
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Checkpoint",
+          "INSTANCE": {
+            "checkpointnumber": 2
+          }
+        }
+      ],
+      "x": 3,
+      "y": 11
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Checkpoint",
+          "INSTANCE": {
+            "checkpointnumber": 2
+          }
+        }
+      ],
+      "x": 5,
+      "y": 5
+    },
+
+    {
+      "walls": [
+        "NORTH"
+      ],
+      "x": 10,
+      "y": 1
+    },
+    {
+      "walls": [
+        "NORTH"
+      ],
+      "x": 9,
+      "y": 1
+    },
+    {
+      "walls": [
+        "NORTH"
+      ],
+      "x": 2,
+      "y": 10
+    },
+    {
+      "walls": [
+        "NORTH"
+      ],
+      "x": 1,
+      "y": 10
+    },
+    {
+      "walls": [
+        "EAST"
+      ],
+      "x": 9,
+      "y": 9
+    },
+    {
+      "walls": [
+        "EAST"
+      ],
+      "x": 9,
+      "y": 10
+    }
+  ]
+}
