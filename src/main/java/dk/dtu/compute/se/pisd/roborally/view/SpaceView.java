@@ -199,7 +199,7 @@ public class SpaceView extends StackPane implements ViewObserver {
                 addingImages("images/checkpoint" + ((Checkpoint) action).checkpointnumber + ".png", 270);
 
             } else if (action instanceof Gear) {
-                addingImages("images/gearright.png", 0);
+                addingImages("images/gear"+ ((Gear) action).direction + ".png", 0);
             }
         }
 
