@@ -4,10 +4,10 @@ import dk.dtu.compute.se.pisd.roborally.controller.GameController;
 
 public class Gear extends FieldAction {
 
-    public final  int type;
+    public final  int direction;
 
     public Gear(int type) {
-        this.type = type;
+        this.direction = type;
     }
 
     /**
@@ -20,12 +20,12 @@ public class Gear extends FieldAction {
     public boolean doAction(GameController gameController, Space space) {
         Player player = space.getPlayer();
         // next = right
-        if (player != null & type == 1  & gameController.board.getGears() != null) {
+        if (player != null & direction == 1 & gameController.board.getGears() != null) {
             player.setHeading(player.getHeading().next());
             return true;
 
         // prev = left
-        } else if  (player != null & type == 2 & gameController.board.getGears() != null) {
+        } else if  (player != null & direction == 2 & gameController.board.getGears() != null) {
             player.setHeading(player.getHeading().prev());
             return true;
         }
