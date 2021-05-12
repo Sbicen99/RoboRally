@@ -111,9 +111,9 @@ public class AppController implements Observer {
                 }
             }
             String value = dialogg.getSelectedItem();
-            if (value == "Big board") {
+            if (value == "Medium game") {
                 newGameBigBoard();
-            } else if (value == "Small board") {
+            } else if (value == "Easy game") {
                 newGameSmallBoard();
             }
         }
