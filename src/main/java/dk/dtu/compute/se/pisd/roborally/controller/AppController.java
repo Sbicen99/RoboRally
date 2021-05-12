@@ -24,18 +24,16 @@ package dk.dtu.compute.se.pisd.roborally.controller;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Observer;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.RoboRally;
+import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
+import dk.dtu.compute.se.pisd.roborally.model.*;
 import dk.dtu.compute.se.pisd.roborally.dal.GameInDB;
 import dk.dtu.compute.se.pisd.roborally.dal.RepositoryAccess;
-import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
-import dk.dtu.compute.se.pisd.roborally.model.Board;
-import dk.dtu.compute.se.pisd.roborally.model.Player;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import org.jetbrains.annotations.NotNull;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -44,11 +42,15 @@ import java.util.Optional;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
+ *
  */
 public class AppController implements Observer {
 
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
     final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "grey", "magenta");
+
+    final private List<String> Player_Board_Option = Arrays.asList("Big board", "Small board");
+
 
     final private RoboRally roboRally;
 
@@ -58,12 +60,69 @@ public class AppController implements Observer {
         this.roboRally = roboRally;
     }
 
-
     /**
-     * Creating a new game where player choose how many player should be on the board.
+     * This method creates a table with 12 * 12..
+     * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
      */
-
+    public void newGameBigBoard() {
+        ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
+        dialog.setTitle("Player number");
+        dialog.setHeaderText("Select number of players");
+        Optional<Integer> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            if (gameController != null) {
+                // The UI should not allow this, but in case this happens anyway.
+                // give the user the option to save the game or abort this operation!
+                if (!stopGame()) {
+                    return;
+                }
+            }
+            // XXX the board should eventually be created programmatically or loaded from a file
+            //     here we just create an empty board with the required number of players.
+            Board board = createBigBoard();
+            gameController = new GameController(board);
+            int no = result.get();
+            for (int i = 0; i < no; i++) {
+                Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1));
+                board.addPlayer(player);
+                player.setSpace(board.getSpace(i % board.width, i));
+            }
+            // XXX: V2
+            board.setCurrentPlayer(board.getPlayer(0));
+            gameController.startProgrammingPhase();
+            roboRally.createBoardView(gameController);
+        }
+    }
+    /**
+     * This method of choosing between large or small board and starting the game.
+     * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
+     */
     public void newGame() {
+        ChoiceDialog<String> dialogg = new ChoiceDialog<>(Player_Board_Option.get(0), Player_Board_Option);
+        dialogg.setTitle("Board choice");
+        dialogg.setHeaderText("Select board");
+        Optional<String> results = dialogg.showAndWait();
+        if (results.isPresent()) {
+            if (gameController != null) {
+                // The UI should not allow this, but in case this happens anyway.
+                // give the user the option to save the game or abort this operation!
+                if (!stopGame()) {
+                    return;
+                }
+            }
+            String value = dialogg.getSelectedItem();
+            if (value == "Big board") {
+                newGameBigBoard();
+            } else if (value == "Small board") {
+                newGameSmallBoard();
+            }
+        }
+    }
+    /**
+     * This method creates a table with 8*8.
+     * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
+     */
+    public void newGameSmallBoard() {
         ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
         dialog.setTitle("Player number");
         dialog.setHeaderText("Select number of players");
@@ -79,32 +138,43 @@ public class AppController implements Observer {
             }
             // XXX the board should eventually be created programmatically or loaded from a file
             //     here we just create an empty board with the required number of players.
-            Board board = createBoard();
+            Board board =  createSmaleBoard();
             gameController = new GameController(board);
             int no = result.get();
             for (int i = 0; i < no; i++) {
                 Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1));
                 board.addPlayer(player);
-                player.setSpace(board.getSpace(i % board.width + 1, 1));
+                player.setSpace(board.getSpace(i % board.width, i));
             }
+            // XXX: V2
             board.setCurrentPlayer(board.getPlayer(0));
             gameController.startProgrammingPhase();
-            RepositoryAccess.getRepository().createGameInDB(board);
             roboRally.createBoardView(gameController);
         }
     }
 
 
+
+
+
     /**
-     * @return Returns board where different board elements are included on specific fields.
-     * @author Camilla Boejden, Thamara Chellakooty, Sercan Bicen & Lauritz Pepke
-     */
-    private Board createBoard() {
+    * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
+    **/
+    private Board createBigBoard(){
         Board board = LoadBoard.loadBoard("mediumboard");
         return board;
+    }
 
+    /**
+     * @author Camilla Boejden, Thamara Chellakooty, Sercan Bicen  & Lauritz Pepke
+     * @return Returns board where different board elements are included on specific fields.
+     */
+    private Board createSmaleBoard(){
+        Board board = LoadBoard.loadBoard("easyboard");
+        return board;
 
-        /*Board board = new Board(10,10);
+        /*
+        Board board = new Board(10,10);
         Gear gear = new Gear();
         Checkpoint firstCheckpoint = new Checkpoint(1);
         Checkpoint secondCheckpoint = new Checkpoint(2);
@@ -134,6 +204,7 @@ public class AppController implements Observer {
         board.getSpace(8,7).getWalls().add(Heading.EAST);
         return board;*/
     }
+
     /**
      * Automatically saves games in the database when player start game.
      */
