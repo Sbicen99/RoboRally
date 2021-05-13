@@ -52,6 +52,7 @@ public class SpaceView extends StackPane implements ViewObserver {
     final public static int SPACE_HEIGHT = 40; // 60; // 75;
     final public static int SPACE_WIDTH = 40;  // 60; // 75;
 
+
     public final Space space;
 
     public SpaceView(@NotNull Space space) {
@@ -165,9 +166,11 @@ public class SpaceView extends StackPane implements ViewObserver {
 
                 ConveyorBelt conveyorBelt = (ConveyorBelt) beltOnBoard;
                 Heading heading = conveyorBelt.getHeading();
+                int type = conveyorBelt.getType();
 
+                if ( type == 1){
                 try {
-                    InputStream stream = new FileInputStream("src/main/resources/images/conveyorbelt.png");
+                    InputStream stream = new FileInputStream("src/main/resources/images/conveyorbelt1.png");
                     Image image = new Image(stream);
 
                     //creating the imageview
@@ -185,6 +188,51 @@ public class SpaceView extends StackPane implements ViewObserver {
 
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
+                }
+            }
+                if ( type == 2){
+                    try {
+                        InputStream stream = new FileInputStream("src/main/resources/images/conveyorbelt2.png");
+                        Image image = new Image(stream);
+
+                        //creating the imageview
+                        ImageView imageView = new ImageView();
+                        imageView.setImage(image);
+                        imageView.setFitWidth(SPACE_WIDTH);
+                        imageView.setFitHeight(SPACE_HEIGHT);
+
+                        // Defensive programming
+                        if (heading != null) {
+                            imageView.setRotate(heading.ordinal() * 90);
+                        }
+
+                        this.getChildren().addAll(canvas, imageView);
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if ( type == 3){
+                    try {
+                        InputStream stream = new FileInputStream("src/main/resources/images/conveyorbelt3.png");
+                        Image image = new Image(stream);
+
+                        //creating the imageview
+                        ImageView imageView = new ImageView();
+                        imageView.setImage(image);
+                        imageView.setFitWidth(SPACE_WIDTH);
+                        imageView.setFitHeight(SPACE_HEIGHT);
+
+                        // Defensive programming
+                        if (heading != null) {
+                            imageView.setRotate(heading.ordinal() * 90);
+                        }
+
+                        this.getChildren().addAll(canvas, imageView);
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
     }
@@ -214,7 +262,6 @@ public class SpaceView extends StackPane implements ViewObserver {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
 
@@ -230,6 +277,7 @@ public class SpaceView extends StackPane implements ViewObserver {
             } else if (action instanceof Gear) {
                 addingImages("images/gear" + ((Gear) action).direction + ".png", 0);
             }
+
         }
 
         createStaticObject();
