@@ -46,6 +46,9 @@ public class Player extends Subject {
 
     private int endCheckpoint;
 
+    private int startpointX;
+    private int startpointY;
+
     private CommandCardField[] program;
     private CommandCardField[] cards;
 
@@ -181,6 +184,22 @@ public class Player extends Subject {
         if (player != null && player.board == board) {
             player.setHeading(player.getHeading().next());
         }
+    }
+
+    public int getStartpointX() {
+        return startpointX;
+    }
+
+    public void setStartpointX(int startpointX) {
+        this.startpointX = startpointX;
+    }
+
+    public int getStartpointY() {
+        return startpointY;
+    }
+
+    public void setStartpointY(int startpointY) {
+        this.startpointY = startpointY;
     }
 
     /**

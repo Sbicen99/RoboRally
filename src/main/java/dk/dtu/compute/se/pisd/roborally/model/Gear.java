@@ -12,7 +12,7 @@ public class Gear extends FieldAction {
 
     /**
      * @param gameController the gameController of the respective game
-     * @param space          the space this action should be executed for
+     * @param space the space this action should be executed for
      * @return
      * @author Thamara Chellakooty, Camilla Boejden, Lauritz Pepke
      */

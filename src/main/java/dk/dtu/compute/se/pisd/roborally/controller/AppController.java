@@ -29,6 +29,7 @@ import dk.dtu.compute.se.pisd.roborally.dal.RepositoryAccess;
 import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
+import dk.dtu.compute.se.pisd.roborally.model.Space;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -87,6 +88,8 @@ public class AppController implements Observer {
                 Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1));
                 board.addPlayer(player);
                 player.setSpace(board.getSpace(13 % board.width, (i + 1) * 2));
+                player.setStartpointX(13 % board.width);
+                player.setStartpointY((i + 1) * 2);
             }
             // XXX: V2
             board.setCurrentPlayer(board.getPlayer(0));
@@ -114,9 +117,9 @@ public class AppController implements Observer {
                 }
             }
             String value = dialogg.getSelectedItem();
-            if (value == "Medium board") {
+            if (value.equals("Medium board")) {
                 newGameMediumBoard();
-            } else if (value == "Easy board") {
+            } else if (value.equals("Easy board")) {
                 newGameEasyBoard();
             }
         }
@@ -150,6 +153,8 @@ public class AppController implements Observer {
                 Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1));
                 board.addPlayer(player);
                 player.setSpace(board.getSpace(11 % board.width, i + 1));
+                player.setStartpointX(11 % board.width);
+                player.setStartpointY(i + 1);
             }
             // XXX: V2
             board.setCurrentPlayer(board.getPlayer(0));
@@ -163,8 +168,7 @@ public class AppController implements Observer {
      * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
      **/
     private Board createMediumBoard() {
-        Board board = LoadBoard.loadBoard("mediumboard");
-        return board;
+        return LoadBoard.loadBoard("mediumboard");
     }
 
     /**
@@ -172,8 +176,7 @@ public class AppController implements Observer {
      * @author Camilla Boejden, Thamara Chellakooty, Sercan Bicen  & Lauritz Pepke
      */
     private Board createEasyBoard() {
-        Board board = LoadBoard.loadBoard("easyboard");
-        return board;
+        return LoadBoard.loadBoard("easyboard");
 
         /*
         Board board = new Board(10,10);
@@ -220,10 +223,6 @@ public class AppController implements Observer {
         }
     }
 
-
-    public void loadGameFromFile() {
-        // TODO: need to be implemented.
-    }
 
 
     /**
