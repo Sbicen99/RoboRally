@@ -328,7 +328,7 @@
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Checkpoint",
           "INSTANCE": {
-            "checkpointnumber": 2
+            "checkpointnumber": 3
           }
         }
       ],
