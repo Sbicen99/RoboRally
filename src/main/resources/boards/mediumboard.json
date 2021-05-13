@@ -2,7 +2,58 @@
   "width": 14,
   "height": 12,
   "spaces": [
-
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "EAST",
+            "type": 2
+          }
+        }
+      ],
+      "x": 11,
+      "y": 0
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "EAST",
+            "type": 2
+          }
+        }
+      ],
+      "x": 10,
+      "y": 0
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "EAST",
+            "type": 2
+          }
+        }
+      ],
+      "x": 11,
+      "y": 11
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "EAST",
+            "type": 2
+          }
+        }
+      ],
+      "x": 10,
+      "y": 11
+    },
     {
       "actions": [
         {
@@ -378,17 +429,87 @@
     },
     {
       "walls": [
-        "EAST"
+        "SOUTH"
+      ],
+      "x": 10,
+      "y": 10
+    },
+    {
+      "walls": [
+        "SOUTH"
       ],
       "x": 9,
+      "y": 10
+    },
+    {
+      "walls": [
+        "SOUTH"
+      ],
+      "x": 11,
+      "y": 10
+    },
+    {
+      "walls": [
+        "EAST"
+      ],
+      "x": 11,
+      "y": 10
+    },
+    {
+      "walls": [
+        "EAST"
+      ],
+      "x": 11,
       "y": 9
     },
     {
       "walls": [
         "EAST"
       ],
-      "x": 9,
-      "y": 10
+      "x": 11,
+      "y": 8
+    },
+    {
+      "walls": [
+        "EAST"
+      ],
+      "x": 11,
+      "y": 7
+    },
+    {
+      "walls": [
+        "NORTH"
+      ],
+      "x": 11,
+      "y": 1
+    },
+    {
+      "walls": [
+        "EAST"
+      ],
+      "x": 11,
+      "y": 1
+    },
+    {
+      "walls": [
+        "EAST"
+      ],
+      "x": 11,
+      "y": 2
+    },
+    {
+      "walls": [
+        "EAST"
+      ],
+      "x": 11,
+      "y": 3
+    },
+    {
+      "walls": [
+        "EAST"
+      ],
+      "x": 11,
+      "y": 4
     }
   ]
 }
