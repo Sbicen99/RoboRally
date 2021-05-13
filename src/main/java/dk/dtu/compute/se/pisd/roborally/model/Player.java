@@ -177,6 +177,11 @@ public class Player extends Subject {
             player.setHeading(player.getHeading().prev());
         }
     }
+    public void turnRight(@NotNull Player player) {
+        if (player != null && player.board == board) {
+            player.setHeading(player.getHeading().next());
+        }
+    }
 
     /**
      * @param player  represent player(s) in game
