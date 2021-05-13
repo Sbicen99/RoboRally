@@ -234,6 +234,28 @@ public class SpaceView extends StackPane implements ViewObserver {
                         e.printStackTrace();
                     }
                 }
+                if ( type == 4){
+                    try {
+                        InputStream stream = new FileInputStream("src/main/resources/images/conveyorbelt4.png");
+                        Image image = new Image(stream);
+
+                        //creating the imageview
+                        ImageView imageView = new ImageView();
+                        imageView.setImage(image);
+                        imageView.setFitWidth(SPACE_WIDTH);
+                        imageView.setFitHeight(SPACE_HEIGHT);
+
+                        // Defensive programming
+                        if (heading != null) {
+                            imageView.setRotate(heading.ordinal() * 90);
+                        }
+
+                        this.getChildren().addAll(canvas, imageView);
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
     }
 

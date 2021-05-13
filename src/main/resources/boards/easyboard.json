@@ -58,7 +58,7 @@
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
           "INSTANCE": {
             "heading": "EAST",
-            "type": 1
+            "type": 2
           }
         }
       ],
@@ -71,7 +71,7 @@
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
           "INSTANCE": {
             "heading": "EAST",
-            "type": 1
+            "type": 2
           }
         }
       ],
@@ -83,8 +83,8 @@
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
           "INSTANCE": {
-            "heading": "EAST",
-            "type": 3
+            "heading": "SOUTH",
+            "type": 4
           }
         }
       ],
@@ -98,7 +98,7 @@
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
           "INSTANCE": {
             "heading": "NORTH",
-            "type": 1
+            "type": 2
           }
         }
       ],
@@ -118,6 +118,63 @@
       "x": 8,
       "y": 0
     },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "NORTH",
+            "type": 2
+          }
+        }
+      ],
+      "x": 8,
+      "y": 1
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "NORTH",
+            "type": 4
+          }
+        }
+      ],
+      "x": 8,
+      "y": 2
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "NORTH",
+            "type": 2
+          }
+        }
+      ],
+      "x": 9,
+      "y": 2
+    },
+    {
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "NORTH",
+            "type": 2
+          }
+        }
+      ],
+      "x":
+      "y":
+    },
+
+
+
+
+
     {
       "actions": [
         {
