@@ -239,6 +239,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         Player player = space.getPlayer();
         if (player != null) {
 
+            // adding startpoints to the board.
             addingStartpoint();
 
             Polygon arrow = new Polygon(0.0, 0.0,
