@@ -63,7 +63,7 @@ public class AppController implements Observer {
     /**
      * This method creates a table with 12 * 12..
      *
-     * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
+     * @author Najib s181663, Camilla Boejden, Thamara Chellakooty, Sercan Bicen.
      */
     public void newGameMediumBoard() {
         ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
@@ -86,7 +86,7 @@ public class AppController implements Observer {
             for (int i = 0; i < no; i++) {
                 Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1));
                 board.addPlayer(player);
-                player.setSpace(board.getSpace(i * 2 % board.width, 0));
+                player.setSpace(board.getSpace(13 % board.width, (i + 1) * 2));
             }
             // XXX: V2
             board.setCurrentPlayer(board.getPlayer(0));
@@ -125,7 +125,7 @@ public class AppController implements Observer {
     /**
      * This method creates a table with 8*8.
      *
-     * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
+     * @author Najib s181663, Camilla Boejden, Thamara Chellakooty, Sercan Bicen.
      */
     public void newGameEasyBoard() {
         ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
@@ -149,13 +149,7 @@ public class AppController implements Observer {
             for (int i = 0; i < no; i++) {
                 Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1));
                 board.addPlayer(player);
-                player.setSpace(board.getSpace(i * 2 % board.width, 0));
-
-
-                if (player.getSpace() == board.getSpace(i % board.width, i)) {
-                    // TODO: needs to be implemented.
-
-                }
+                player.setSpace(board.getSpace(11 % board.width, i + 1));
             }
             // XXX: V2
             board.setCurrentPlayer(board.getPlayer(0));

@@ -39,8 +39,6 @@ public class Space extends Subject {
 
     public final Board board;
 
-    private Heading heading = SOUTH;
-
     public final int x;
     public final int y;
 
