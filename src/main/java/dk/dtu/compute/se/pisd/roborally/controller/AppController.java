@@ -50,7 +50,7 @@ public class AppController implements Observer {
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
     final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "grey", "magenta");
 
-    final private List<String> Player_Board_Option = Arrays.asList("Big board", "Small board");
+    final private List<String> Player_Board_Option = Arrays.asList("Easy board", "Medium board");
 
     final private RoboRally roboRally;
 
@@ -65,7 +65,7 @@ public class AppController implements Observer {
      *
      * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
      */
-    public void newGameBigBoard() {
+    public void newGameMediumBoard() {
         ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
         dialog.setTitle("Player number");
         dialog.setHeaderText("Select number of players");
@@ -80,7 +80,7 @@ public class AppController implements Observer {
             }
             // XXX the board should eventually be created programmatically or loaded from a file
             //     here we just create an empty board with the required number of players.
-            Board board = createBigBoard();
+            Board board = createMediumBoard();
             gameController = new GameController(board);
             int no = result.get();
             for (int i = 0; i < no; i++) {
@@ -114,10 +114,10 @@ public class AppController implements Observer {
                 }
             }
             String value = dialogg.getSelectedItem();
-            if (value == "Big board") {
-                newGameBigBoard();
-            } else if (value == "Small board") {
-                newGameSmallBoard();
+            if (value == "Medium board") {
+                newGameMediumBoard();
+            } else if (value == "Easy board") {
+                newGameEasyBoard();
             }
         }
     }
@@ -127,7 +127,7 @@ public class AppController implements Observer {
      *
      * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
      */
-    public void newGameSmallBoard() {
+    public void newGameEasyBoard() {
         ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
         dialog.setTitle("Player number");
         dialog.setHeaderText("Select number of players");
@@ -143,7 +143,7 @@ public class AppController implements Observer {
             }
             // XXX the board should eventually be created programmatically or loaded from a file
             //     here we just create an empty board with the required number of players.
-            Board board = createSmaleBoard();
+            Board board = createEasyBoard();
             gameController = new GameController(board);
             int no = result.get();
             for (int i = 0; i < no; i++) {
@@ -168,7 +168,7 @@ public class AppController implements Observer {
     /**
      * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
      **/
-    private Board createBigBoard() {
+    private Board createMediumBoard() {
         Board board = LoadBoard.loadBoard("mediumboard");
         return board;
     }
@@ -177,7 +177,7 @@ public class AppController implements Observer {
      * @return Returns board where different board elements are included on specific fields.
      * @author Camilla Boejden, Thamara Chellakooty, Sercan Bicen  & Lauritz Pepke
      */
-    private Board createSmaleBoard() {
+    private Board createEasyBoard() {
         Board board = LoadBoard.loadBoard("easyboard");
         return board;
 
