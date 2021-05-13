@@ -29,7 +29,6 @@ import java.util.List;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class BoardTemplate {
 
@@ -53,7 +52,6 @@ public class BoardTemplate {
     BoardTemplate boardTemplate =
             gson.fromJson(reader, BoardTemplate.class);
 */
-
 
 
 }

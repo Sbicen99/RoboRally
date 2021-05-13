@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Gameboard element that can push the player one or two spaces forward.
+ *
  * @author Thamara Chellakooty, Camilla Boejden.
  */
 public class ConveyorBelt extends FieldAction {
@@ -36,8 +37,7 @@ public class ConveyorBelt extends FieldAction {
             player.moveForward(player);
             player.moveForward(player);
             return true;
-        }
-        else if (player!=null & type == 3 & gameController.board.getConveyerBelt() != null){
+        } else if (player != null & type == 3 & gameController.board.getConveyerBelt() != null) {
             player.turnLeft(player);
             player.moveForward(player);
         }

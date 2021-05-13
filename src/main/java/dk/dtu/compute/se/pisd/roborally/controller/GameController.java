@@ -49,6 +49,7 @@ public class GameController {
     /**
      * Moves the player and changes to another player.
      * Checks if the field is empty.
+     *
      * @param space the space to which the current player should move
      * @author Sercan Bicen, Najib Hebrawi
      * @implNote (& & space = = board.getSpace ( 0, 0)) do, we cant click in the board with the mouse.
@@ -226,6 +227,7 @@ public class GameController {
 
     /**
      * Executing command with option on turn right and turn left and continue.
+     *
      * @param option the option for the player to select a command (right/left).
      * @author Najib, s181663
      */
@@ -272,6 +274,7 @@ public class GameController {
 
     /**
      * Moving the player one field forward.
+     *
      * @param player represent player(s) in game
      * @author Najib s181663
      * @author Sercan, s185040
@@ -329,6 +332,7 @@ public class GameController {
 
     /**
      * Moving the player one field back (without changing the direction).
+     *
      * @param player represent player(s) in game
      * @author Najib s181663
      */
@@ -352,6 +356,7 @@ public class GameController {
     /**
      * Moving the player two fields forward.
      * Calling the moveForward method two times.
+     *
      * @param player represent player(s) in game
      * @author Najib Hebrawi, Sercan Bicen
      */
@@ -364,6 +369,7 @@ public class GameController {
 
     /**
      * Moving the player three field forward.
+     *
      * @param player represent player(s) in game
      * @author Najib s181663
      */
@@ -376,6 +382,7 @@ public class GameController {
 
     /**
      * Turning the player to the right.
+     *
      * @param player represent player(s) in game
      * @author Sercan, s185040
      * @author Najib Hebrawi, s181663
@@ -389,6 +396,7 @@ public class GameController {
 
     /**
      * Turning the player to the left.
+     *
      * @param player represent player(s) in game
      * @author Sercan, s185040
      * @author Najib Hebrawi, s181663
@@ -402,6 +410,7 @@ public class GameController {
 
     /**
      * Turning the player U-Turn.
+     *
      * @param player represent player(s) in game
      * @author Najib Hebrawi, s181663
      */
@@ -426,6 +435,7 @@ public class GameController {
 
     /**
      * Setting the current phase to winning when a player passes checkpoints.
+     *
      * @author Sercan Bicen, Najib Hebrawi
      */
     public void winningPhase() {
@@ -438,6 +448,7 @@ public class GameController {
 
     /**
      * Message that appears when a player passes checkpoints.
+     *
      * @author Sercan Bicen, Najib Hebrawi
      */
     public void gameWins(Player player) {
@@ -446,7 +457,6 @@ public class GameController {
         alertMessage.showAndWait();
         winningPhase();
     }
-
 
     /**
      * A method called when no corresponding controller operation is implemented yet. This

@@ -189,6 +189,35 @@ public class SpaceView extends StackPane implements ViewObserver {
             }
     }
 
+
+    /**
+     * @author Sercan Bicen
+     * Adding a startpoint behind each player.
+     */
+
+    private void addingStartpoint() {
+
+        Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
+
+        try {
+            InputStream stream = new FileInputStream("src/main/resources/images/startpoint.png");
+            Image image = new Image(stream);
+
+            //creating the imageview
+            ImageView imageView = new ImageView();
+            imageView.setImage(image);
+            imageView.setFitWidth(SPACE_WIDTH);
+            imageView.setFitHeight(SPACE_HEIGHT);
+
+            this.getChildren().addAll(canvas, imageView);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
     private void updatePlayer() {
         //------------------------
         //Adding elements to the board where each triangle/player is in front of it.
@@ -199,7 +228,7 @@ public class SpaceView extends StackPane implements ViewObserver {
                 addingImages("images/checkpoint" + ((Checkpoint) action).checkpointnumber + ".png", 270);
 
             } else if (action instanceof Gear) {
-                addingImages("images/gear"+ ((Gear) action).direction + ".png", 0);
+                addingImages("images/gear" + ((Gear) action).direction + ".png", 0);
             }
         }
 
@@ -209,9 +238,12 @@ public class SpaceView extends StackPane implements ViewObserver {
 
         Player player = space.getPlayer();
         if (player != null) {
+
+            addingStartpoint();
+
             Polygon arrow = new Polygon(0.0, 0.0,
-                    10.0, 20.0,
-                    20.0, 0.0);
+                    7.5, 15.0,
+                    15.0, 0.0);
             try {
                 arrow.setFill(Color.valueOf(player.getColor()));
             } catch (Exception e) {

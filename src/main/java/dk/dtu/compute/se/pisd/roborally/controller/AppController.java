@@ -24,16 +24,18 @@ package dk.dtu.compute.se.pisd.roborally.controller;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Observer;
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.RoboRally;
-import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
-import dk.dtu.compute.se.pisd.roborally.model.*;
 import dk.dtu.compute.se.pisd.roborally.dal.GameInDB;
 import dk.dtu.compute.se.pisd.roborally.dal.RepositoryAccess;
+import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
+import dk.dtu.compute.se.pisd.roborally.model.Board;
+import dk.dtu.compute.se.pisd.roborally.model.Player;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import org.jetbrains.annotations.NotNull;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -42,7 +44,6 @@ import java.util.Optional;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class AppController implements Observer {
 
@@ -50,7 +51,6 @@ public class AppController implements Observer {
     final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "grey", "magenta");
 
     final private List<String> Player_Board_Option = Arrays.asList("Big board", "Small board");
-
 
     final private RoboRally roboRally;
 
@@ -62,6 +62,7 @@ public class AppController implements Observer {
 
     /**
      * This method creates a table with 12 * 12..
+     *
      * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
      */
     public void newGameBigBoard() {
@@ -85,7 +86,7 @@ public class AppController implements Observer {
             for (int i = 0; i < no; i++) {
                 Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1));
                 board.addPlayer(player);
-                player.setSpace(board.getSpace(i % board.width, i));
+                player.setSpace(board.getSpace(i * 2 % board.width, 0));
             }
             // XXX: V2
             board.setCurrentPlayer(board.getPlayer(0));
@@ -93,8 +94,10 @@ public class AppController implements Observer {
             roboRally.createBoardView(gameController);
         }
     }
+
     /**
      * This method of choosing between large or small board and starting the game.
+     *
      * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
      */
     public void newGame() {
@@ -118,8 +121,10 @@ public class AppController implements Observer {
             }
         }
     }
+
     /**
      * This method creates a table with 8*8.
+     *
      * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
      */
     public void newGameSmallBoard() {
@@ -138,13 +143,19 @@ public class AppController implements Observer {
             }
             // XXX the board should eventually be created programmatically or loaded from a file
             //     here we just create an empty board with the required number of players.
-            Board board =  createSmaleBoard();
+            Board board = createSmaleBoard();
             gameController = new GameController(board);
             int no = result.get();
             for (int i = 0; i < no; i++) {
                 Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1));
                 board.addPlayer(player);
-                player.setSpace(board.getSpace(i % board.width, i));
+                player.setSpace(board.getSpace(i * 2 % board.width, 0));
+
+
+                if (player.getSpace() == board.getSpace(i % board.width, i)) {
+                    // TODO: needs to be implemented.
+
+                }
             }
             // XXX: V2
             board.setCurrentPlayer(board.getPlayer(0));
@@ -154,22 +165,19 @@ public class AppController implements Observer {
     }
 
 
-
-
-
     /**
      * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
      **/
-    private Board createBigBoard(){
+    private Board createBigBoard() {
         Board board = LoadBoard.loadBoard("mediumboard");
         return board;
     }
 
     /**
-     * @author Camilla Boejden, Thamara Chellakooty, Sercan Bicen  & Lauritz Pepke
      * @return Returns board where different board elements are included on specific fields.
+     * @author Camilla Boejden, Thamara Chellakooty, Sercan Bicen  & Lauritz Pepke
      */
-    private Board createSmaleBoard(){
+    private Board createSmaleBoard() {
         Board board = LoadBoard.loadBoard("easyboard");
         return board;
 
@@ -257,7 +265,6 @@ public class AppController implements Observer {
             alert.showAndWait();
         }
     }
-
 
 
     /**
