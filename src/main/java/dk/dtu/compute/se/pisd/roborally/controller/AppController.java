@@ -57,8 +57,6 @@ public class AppController implements Observer {
 
     private GameController gameController;
 
-    private Space space;
-
     public AppController(@NotNull RoboRally roboRally) {
         this.roboRally = roboRally;
     }
@@ -221,10 +219,11 @@ public class AppController implements Observer {
             Board board = gameController.board;
             if (board.getGameId() != null) {
                 RepositoryAccess.getRepository().updateGameInDB(board);
+            } else {
+                RepositoryAccess.getRepository().createGameInDB(board);
             }
         }
     }
-
 
 
     /**

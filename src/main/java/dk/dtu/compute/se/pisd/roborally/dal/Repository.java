@@ -166,7 +166,7 @@ public class Repository implements IRepository {
             rs.close();
 
             updatePlayersInDB(game);
-			/* TOODO this method needs to be implemented first
+			/* TODO this method needs to be implemented first
 			updateCardFieldsInDB(game);
 			*/
 
@@ -259,6 +259,7 @@ public class Repository implements IRepository {
             }
             rs.close();
         } catch (SQLException e) {
+            System.err.format("SQL: %s\n%s", e.getSQLState(), e.getMessage());
             errorHandling("Couldn't get the list of games from the DB.");
             e.printStackTrace();
         }
