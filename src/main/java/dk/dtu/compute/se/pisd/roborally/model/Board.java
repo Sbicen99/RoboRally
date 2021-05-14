@@ -281,8 +281,9 @@ public class Board extends Subject {
 
     /**
      * Get- and setter
-     * @author Sercan Bicen
+     *
      * @return count moves on the board
+     * @author Sercan Bicen
      */
     public int getCount() {
         return count;
@@ -297,8 +298,9 @@ public class Board extends Subject {
 
     /**
      * Get- and setter
-     * @author Sercan Bicen
+     *
      * @return if the field isn't empty return the message "the field isn't empty"
+     * @author Sercan Bicen
      */
     public String getNotEmpty() {
         return (this.notEmpty == null ? "" : this.notEmpty);

@@ -29,7 +29,6 @@ import dk.dtu.compute.se.pisd.roborally.dal.RepositoryAccess;
 import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
-import dk.dtu.compute.se.pisd.roborally.model.Space;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -230,10 +229,9 @@ public class AppController implements Observer {
      * This method load games from the database. Returns messages to the player when it is not possible to retrieve games from the database
      */
     public void loadGame() {
-
         // XXX needs to be implemented eventually
-
         List<GameInDB> games = RepositoryAccess.getRepository().getGames();
+
         if (!games.isEmpty()) {
             ChoiceDialog<GameInDB> dialog = new ChoiceDialog<>(games.get(games.size() - 1), games);
             dialog.setTitle("Select game");
