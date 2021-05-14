@@ -192,6 +192,7 @@ public class Player extends Subject {
 
     public void setStartpointX(int startpointX) {
         this.startpointX = startpointX;
+        notifyChange();
     }
 
     public int getStartpointY() {
@@ -200,6 +201,7 @@ public class Player extends Subject {
 
     public void setStartpointY(int startpointY) {
         this.startpointY = startpointY;
+        notifyChange();
     }
 
     /**

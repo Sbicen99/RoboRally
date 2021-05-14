@@ -265,7 +265,6 @@ public class SpaceView extends StackPane implements ViewObserver {
      * Adding a startpoint behind each player.
      */
     private void addingStartpoint() {
-
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
 
         try {
@@ -286,6 +285,16 @@ public class SpaceView extends StackPane implements ViewObserver {
     }
 
 
+    private void startpoint() {
+        Player player = space.getPlayer();
+        if (player != null) {
+            if (space.x == player.getStartpointX() && space.y == player.getStartpointY()) {
+                addingStartpoint();
+            }
+        }
+    }
+
+
     private void updatePlayer() {
         //------------------------
         //Adding elements to the board where each triangle/player is in front of it.
@@ -301,13 +310,14 @@ public class SpaceView extends StackPane implements ViewObserver {
 
         createStaticObject();
         createConBelt();
+        startpoint();
         //------------------------
         Player player = space.getPlayer();
         if (player != null) {
 
-            if (space.x == player.getStartpointX() && space.y == player.getStartpointY()) {
+            /*if (space.x == player.getStartpointX() && space.y == player.getStartpointY()) {
                 addingStartpoint();
-            }
+            }*/
 
             Polygon arrow = new Polygon(0.0, 0.0,
                     7.5, 15.0,

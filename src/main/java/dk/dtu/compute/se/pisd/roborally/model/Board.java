@@ -281,7 +281,7 @@ public class Board extends Subject {
 
     /**
      * Get- and setter
-     *
+     * @author Sercan Bicen
      * @return count moves on the board
      */
     public int getCount() {
@@ -354,11 +354,9 @@ public class Board extends Subject {
         return players;
     }
 
-
     public List<ConveyorBelt> getConveyerBelt() {
         return this.conveyorBelts;
     }
-
 
     public void setConveyerBelt(ConveyorBelt conveyorBelt) {
         this.conveyorBelts.add(conveyorBelt);

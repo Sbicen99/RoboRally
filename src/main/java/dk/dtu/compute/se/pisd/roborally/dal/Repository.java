@@ -120,7 +120,7 @@ public class Repository implements IRepository {
                     rs.updateInt(GAME_CURRENTPLAYER, game.getPlayerNumber(game.getCurrentPlayer()));
                     rs.updateRow();
                 } else {
-                    // TODO error handling
+                    errorHandling("Error, couldn't update.");
                 }
                 rs.close();
 
@@ -266,27 +266,29 @@ public class Repository implements IRepository {
     }
 
     private void createPlayersInDB(Board game) throws SQLException {
-        // TODO code should be more defensive
-        if (game != null) {
-            PreparedStatement ps = getSelectPlayersStatementU();
-            ps.setInt(1, game.getGameId());
+        try {
+            if (game != null) {
+                PreparedStatement ps = getSelectPlayersStatementU();
+                ps.setInt(1, game.getGameId());
 
-            ResultSet resultSet = ps.executeQuery();
-            for (int i = 0; i < game.getPlayersNumber(); i++) {
-                Player player = game.getPlayer(i);
-                resultSet.moveToInsertRow();
-                resultSet.updateInt(PLAYER_GAMEID, game.getGameId());
-                resultSet.updateInt(PLAYER_PLAYERID, i);
-                resultSet.updateString(PLAYER_NAME, player.getName());
-                resultSet.updateString(PLAYER_COLOUR, player.getColor());
-                resultSet.updateInt(PLAYER_POSITION_X, player.getSpace().x);
-                resultSet.updateInt(PLAYER_POSITION_Y, player.getSpace().y);
-                resultSet.updateInt(PLAYER_HEADING, player.getHeading().ordinal());
-                resultSet.insertRow();
+                ResultSet resultSet = ps.executeQuery();
+                for (int i = 0; i < game.getPlayersNumber(); i++) {
+                    Player player = game.getPlayer(i);
+                    resultSet.moveToInsertRow();
+                    resultSet.updateInt(PLAYER_GAMEID, game.getGameId());
+                    resultSet.updateInt(PLAYER_PLAYERID, i);
+                    resultSet.updateString(PLAYER_NAME, player.getName());
+                    resultSet.updateString(PLAYER_COLOUR, player.getColor());
+                    resultSet.updateInt(PLAYER_POSITION_X, player.getSpace().x);
+                    resultSet.updateInt(PLAYER_POSITION_Y, player.getSpace().y);
+                    resultSet.updateInt(PLAYER_HEADING, player.getHeading().ordinal());
+                    resultSet.insertRow();
+                }
+
+                resultSet.close();
             }
-
-            resultSet.close();
-
+        } catch (SQLException e) {
+            System.err.format("SQL: %s\n%s", e.getSQLState(), e.getMessage());
         }
     }
 

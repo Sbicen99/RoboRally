@@ -57,6 +57,8 @@ public class AppController implements Observer {
 
     private GameController gameController;
 
+    private Space space;
+
     public AppController(@NotNull RoboRally roboRally) {
         this.roboRally = roboRally;
     }
@@ -271,20 +273,20 @@ public class AppController implements Observer {
      */
     public boolean stopGame() {
         if (gameController != null) {
-            /*Alert alert = new Alert(AlertType.CONFIRMATION);
+            Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
             alert.setHeaderText("Do you want to save the game?");
             alert.setContentText("Choose your option.");
 
             Optional<ButtonType> result = alert.showAndWait();
-            if (!result.isPresent() || result.get() != ButtonType.OK) {
+            if (result.isEmpty() || result.get() != ButtonType.OK) {
                 System.exit(-1);
             } else {
                 saveGame();
-            }*/
+            }
 
             // here we save the game (without asking the user).
-            saveGame();
+            //saveGame();
 
             gameController = null;
             roboRally.createBoardView(null);
