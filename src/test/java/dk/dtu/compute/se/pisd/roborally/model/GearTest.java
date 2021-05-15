@@ -7,77 +7,68 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class GearTest {
 
+    Board board = new Board(10,10);
+    Player player = new Player(board, "blue", "TestPlayer");
+
     @Test
     void gearTurnedPlayerRight() {
-        Board board = new Board(10,10);
-        Player player = new Player(board, "blue", "TestPlayer");
 
         //player default heading is south
         assertEquals(Heading.SOUTH, player.getHeading());
 
-        //turn player right so heading west
-        player.setHeading(player.getHeading().next());
+        //turn player right once so heading west
+        player.turnRight(player);
 
         assertNotEquals(Heading.SOUTH, player.getHeading());
-        assertEquals(player.getHeading(), Heading.SOUTH.next());
-        assertEquals(Heading.WEST, player.getHeading());
+        assertEquals(Heading.SOUTH.next(), player.getHeading());
 
-        //turn player right so heading north
-        player.setHeading(player.getHeading().next());
+        //turn player right once so heading north
+        player.turnRight(player);
 
         assertNotEquals(Heading.WEST, player.getHeading());
-        assertEquals(player.getHeading(), Heading.WEST.next());
-        assertEquals(Heading.NORTH, player.getHeading());
+        assertEquals(Heading.WEST.next(), player.getHeading());
 
-        //turn player right so heading east
-        player.setHeading(player.getHeading().next());
+        //turn player right once so heading east
+        player.turnRight(player);
 
         assertNotEquals(Heading.NORTH, player.getHeading());
-        assertEquals(player.getHeading(), Heading.NORTH.next());
-        assertEquals(Heading.EAST, player.getHeading());
+        assertEquals(Heading.NORTH.next(), player.getHeading());
 
-        //turn player right so heading south
-        player.setHeading(player.getHeading().next());
+        //turn player right once so heading south
+        player.turnRight(player);
 
         assertNotEquals(Heading.EAST, player.getHeading());
-        assertEquals(player.getHeading(), Heading.EAST.next());
-        assertEquals(Heading.SOUTH, player.getHeading());
+        assertEquals(Heading.EAST.next(), player.getHeading());
     }
 
-    @Test
+   @Test
     void gearTurnedPlayerLeft() {
-        Board board = new Board(10,10);
-        Player player = new Player(board, "red", "TestPlayerTwo");
 
         //player default heading is south
         assertEquals(Heading.SOUTH, player.getHeading());
 
-        //turn player left so heading east
-        player.setHeading(player.getHeading().prev());
+        //turn player left once so heading east
+        player.turnLeft(player);
 
         assertNotEquals(Heading.SOUTH, player.getHeading());
-        assertEquals(player.getHeading(), Heading.SOUTH.prev());
-        assertEquals(Heading.EAST, player.getHeading());
+        assertEquals(Heading.SOUTH.prev(), player.getHeading());
 
-        //turn player left so heading north
-        player.setHeading(player.getHeading().prev());
+        //turn player left once so heading north
+        player.turnLeft(player);
 
         assertNotEquals(Heading.EAST, player.getHeading());
-        assertEquals(player.getHeading(), Heading.EAST.prev());
-        assertEquals(Heading.NORTH, player.getHeading());
+        assertEquals(Heading.EAST.prev(), player.getHeading());
 
-        //turn player left so heading west
-        player.setHeading(player.getHeading().prev());
+        //turn player left once so heading west
+        player.turnLeft(player);
 
         assertNotEquals(Heading.NORTH, player.getHeading());
-        assertEquals(player.getHeading(), Heading.NORTH.prev());
-        assertEquals(Heading.WEST, player.getHeading());
+        assertEquals(Heading.NORTH.prev(), player.getHeading());
 
-        //turn player left so heading south
-        player.setHeading(player.getHeading().prev());
+        //turn player left once so heading south
+        player.turnLeft(player);
 
         assertNotEquals(Heading.WEST, player.getHeading());
-        assertEquals(player.getHeading(), Heading.WEST.prev());
-        assertEquals(Heading.SOUTH, player.getHeading());
+        assertEquals(Heading.WEST.prev(), player.getHeading());
     }
 }
