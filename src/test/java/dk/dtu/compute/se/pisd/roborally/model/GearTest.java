@@ -44,6 +44,9 @@ class GearTest {
    @Test
     void gearTurnedPlayerLeft() {
 
+        //reset players heading to default
+        player.setHeading(Heading.SOUTH);
+
         //player default heading is south
         assertEquals(Heading.SOUTH, player.getHeading());
 
