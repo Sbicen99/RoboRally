@@ -266,7 +266,9 @@ public class SpaceView extends StackPane implements ViewObserver {
      */
     private void addingStartpoint() {
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
+        List <Heading> viewStartFields = space.getStartFields();
 
+        for (Heading heading: viewStartFields){
         try {
             InputStream stream = new FileInputStream("src/main/resources/images/startpoint.png");
             Image image = new Image(stream);
@@ -283,7 +285,7 @@ public class SpaceView extends StackPane implements ViewObserver {
             e.printStackTrace();
         }
     }
-
+    }
 
     private void startpoint() {
         Player player = space.getPlayer();

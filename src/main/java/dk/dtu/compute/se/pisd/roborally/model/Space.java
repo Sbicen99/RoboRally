@@ -36,6 +36,7 @@ import static dk.dtu.compute.se.pisd.roborally.model.Heading.SOUTH;
 public class Space extends Subject {
     private List<Heading> walls = new ArrayList<>();
     private List<FieldAction> actions = new ArrayList<>();
+    private List<Heading> startFields = new ArrayList<>();
 
     public final Board board;
 
@@ -81,6 +82,9 @@ public class Space extends Subject {
         return actions;
     }
 
+    public List<Heading> getStartFields() {
+        return startFields;
+    }
 
     void playerChanged() {
         // This is a minor hack; since some views that are registered with the space
