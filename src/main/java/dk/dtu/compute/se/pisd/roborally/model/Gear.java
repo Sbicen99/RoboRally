@@ -21,12 +21,12 @@ public class Gear extends FieldAction {
         Player player = space.getPlayer();
         // next = right
         if (player != null & direction == 1 & gameController.board.getGears() != null) {
-            player.setHeading(player.getHeading().next());
+            player.turnRight(player);
             return true;
 
             // prev = left
         } else if (player != null & direction == 2 & gameController.board.getGears() != null) {
-            player.setHeading(player.getHeading().prev());
+            player.turnLeft(player);
             return true;
         } else {
             return false;
