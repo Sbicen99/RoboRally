@@ -176,37 +176,6 @@ public class AppController implements Observer {
      */
     private Board createEasyBoard() {
         return LoadBoard.loadBoard("easyboard");
-
-        /*
-        Board board = new Board(10,10);
-        Gear gear = new Gear();
-        Checkpoint firstCheckpoint = new Checkpoint(1);
-        Checkpoint secondCheckpoint = new Checkpoint(2);
-        ConveyorBelt conveyorBelt1 = new ConveyorBelt(1, Heading.SOUTH);
-        ConveyorBelt conveyorBelt2 = new ConveyorBelt(2, Heading.NORTH);
-        ConveyorBelt conveyorBelt3 = new ConveyorBelt(1, Heading.EAST);
-        ConveyorBelt conveyorBelt4 = new ConveyorBelt(2, Heading.WEST);
-
-        // adding checkpoints to the board.
-        board.getSpace(6,7).getActions().add(firstCheckpoint);
-        board.getSpace(4, 5).getActions().add(secondCheckpoint);
-
-
-        board.getSpace(4,9).getActions().add(conveyorBelt1);
-        board.getSpace(5,0).getActions().add(conveyorBelt2);
-        board.getSpace(0,5).getActions().add(conveyorBelt3);
-        board.getSpace(9,4).getActions().add(conveyorBelt4);
-
-
-        board.getSpace(5,3).getActions().add(gear);
-        board.getSpace(6,6).getActions().add(gear);
-
-        // adding walls to the board.
-        board.getSpace(2,3).getWalls().add(Heading.EAST);
-        board.getSpace(2,7).getWalls().add(Heading.SOUTH);
-        board.getSpace(8,3).getWalls().add(Heading.NORTH);
-        board.getSpace(8,7).getWalls().add(Heading.EAST);
-        return board;*/
     }
 
     /**
