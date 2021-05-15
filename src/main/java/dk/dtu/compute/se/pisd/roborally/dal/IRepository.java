@@ -32,7 +32,7 @@ import java.util.List;
  */
 public interface IRepository {
 
-    boolean createGameInDB(Board game);
+    boolean createGameInDB(Board game, String boardname);
 
     boolean updateGameInDB(Board game);
 

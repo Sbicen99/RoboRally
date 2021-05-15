@@ -21,6 +21,8 @@
  */
 package dk.dtu.compute.se.pisd.roborally.model;
 
+import dk.dtu.compute.se.pisd.roborally.fileaccess.model.SpaceTemplate;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -117,40 +117,6 @@ public class Connector {
         return connection;
     }
 
-
-    /**
-     * @author Najib s181663
-     * @author Sercan, s185040
-     */
-    private static final String CreateTableGame = "  CREATE TABLE IF NOT EXISTS Game (\n" +
-            "gameID int NOT NULL UNIQUE AUTO_INCREMENT,\n" +
-            "name varchar(255),\n" +
-            "currentPlayer tinyint NULL,\n" +
-            "phase tinyint,\n" +
-            "step tinyint,\n" +
-            "PRIMARY KEY (gameID),\n" +
-            "...\n" +
-            ");; ";
-
-
-    /**
-     * @author Najib s181663
-     * @author Sercan, s185040
-     */
-    private static final String CreateTablePlayer = " CREATE TABLE IF NOT EXISTS Player (\n" +
-            "gameID int NOT NULL,\n" +
-            "playerID tinyint NOT NULL,\n" +
-            "name varchar(255),\n" +
-            "colour varchar(31),\n" +
-            "positionX int,\n" +
-            "positionY int,\n" +
-            "heading tinyint,\n" +
-            "PRIMARY KEY (gameID, playerID),\n" +
-            "FOREIGN KEY (gameID) REFERENCES Game(gameID)\n" +
-            "...\n" +
-            ");;";
-
-
     private void errorHandler(String err) {
         Alert errMessage = new Alert(Alert.AlertType.ERROR, err);
         errMessage.showAndWait();

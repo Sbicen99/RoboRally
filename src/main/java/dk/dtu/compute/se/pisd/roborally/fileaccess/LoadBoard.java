@@ -44,20 +44,20 @@ import java.io.InputStreamReader;
 public class LoadBoard {
 
     private static final String BOARDSFOLDER = "boards";
-    private static final String DEFAULTBOARD = "easyboard";
+    private static final String EASYBOARD = "easyboard";
     private static final String JSON_EXT = "json";
 
     public static Board loadBoard(String boardname) {
         if (boardname == null) {
-            boardname = DEFAULTBOARD;
+            boardname = EASYBOARD;
         }
 
         ClassLoader classLoader = LoadBoard.class.getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(BOARDSFOLDER + "/" + boardname + "." + JSON_EXT);
-        if (inputStream == null) {
+        /*if (inputStream == null) {
             // TODO these constants should be defined somewhere
             return new Board(8,8);
-        }
+        }*/
 
 		// In simple cases, we can create a Gson object with new Gson():
         GsonBuilder simpleBuilder = new GsonBuilder().
@@ -157,5 +157,4 @@ public class LoadBoard {
             }
         }
     }
-
 }

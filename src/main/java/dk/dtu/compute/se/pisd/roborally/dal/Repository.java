@@ -71,7 +71,7 @@ public class Repository implements IRepository {
     }
 
     @Override
-    public boolean createGameInDB(Board game) {
+    public boolean createGameInDB(Board game, String boardName) {
         if (game.getGameId() == null) {
             Connection connection = connector.getConnection();
             try {
@@ -80,7 +80,8 @@ public class Repository implements IRepository {
                 // TODO: the name should eventually set by the user
                 //       for the game and should be then used
                 //       game.getName();
-                ps.setString(1, "Date: " + new Date()); // instead of name
+                //ps.setString(1, "Date: " + new Date()); // instead of name
+                ps.setString(1, boardName);
                 ps.setNull(2, Types.TINYINT); // game.getPlayerNumber(game.getCurrentPlayer())); is inserted after players!
                 ps.setInt(3, game.getPhase().ordinal());
                 ps.setInt(4, game.getStep());
@@ -207,7 +208,8 @@ public class Repository implements IRepository {
                 // game = new Board(width,height);
                 // TODO and we should also store the used game board in the database
                 //      for now, we use the default game board
-                game = LoadBoard.loadBoard(null);
+                String name = rs.getString(GAME_NAME);
+                game = LoadBoard.loadBoard(name);
                 if (game == null) {
                     return null;
                 }

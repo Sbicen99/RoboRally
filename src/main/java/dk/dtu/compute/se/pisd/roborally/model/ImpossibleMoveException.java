@@ -1,8 +1,5 @@
 package dk.dtu.compute.se.pisd.roborally.model;
 
-import org.jetbrains.annotations.NotNull;
-
-
 public class ImpossibleMoveException extends Exception {
 
    private Board board;

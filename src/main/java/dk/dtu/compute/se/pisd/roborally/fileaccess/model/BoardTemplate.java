@@ -21,6 +21,15 @@
  */
 package dk.dtu.compute.se.pisd.roborally.fileaccess.model;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
+import dk.dtu.compute.se.pisd.roborally.fileaccess.Adapter;
+import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
+import dk.dtu.compute.se.pisd.roborally.model.FieldAction;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,9 +60,6 @@ public class BoardTemplate {
     InputStreamReader streamReader = new InputStreamReader(inputStream);
     JsonReader reader = gson.newJsonReader(streamReader);
     BoardTemplate boardTemplate =
-            gson.fromJson(reader, BoardTemplate.class);
-*/
-
-
+            gson.fromJson(reader, BoardTemplate.class);*/
 
 }

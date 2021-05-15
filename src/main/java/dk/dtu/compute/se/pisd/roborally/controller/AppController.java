@@ -56,6 +56,8 @@ public class AppController implements Observer {
 
     private GameController gameController;
 
+    String boardname;
+
     public AppController(@NotNull RoboRally roboRally) {
         this.roboRally = roboRally;
     }
@@ -167,6 +169,7 @@ public class AppController implements Observer {
      * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
      **/
     private Board createMediumBoard() {
+        boardname = "mediumboard";
         return LoadBoard.loadBoard("mediumboard");
     }
 
@@ -175,11 +178,12 @@ public class AppController implements Observer {
      * @author Camilla Boejden, Thamara Chellakooty, Sercan Bicen  & Lauritz Pepke
      */
     private Board createEasyBoard() {
+        boardname = "easyboard";
         return LoadBoard.loadBoard("easyboard");
     }
 
     /**
-     * Automatically saves games in the database when player start game.
+     * Method to save games in the database if player want it.
      */
     public void saveGame() {
         if (gameController != null) {
@@ -187,7 +191,7 @@ public class AppController implements Observer {
             if (board.getGameId() != null) {
                 RepositoryAccess.getRepository().updateGameInDB(board);
             } else {
-                RepositoryAccess.getRepository().createGameInDB(board);
+                RepositoryAccess.getRepository().createGameInDB(board, boardname);
             }
         }
     }
