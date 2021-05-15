@@ -23,6 +23,7 @@ package dk.dtu.compute.se.pisd.roborally.controller;
 
 import dk.dtu.compute.se.pisd.roborally.model.*;
 import dk.dtu.compute.se.pisd.roborally.view.PlayerView;
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import org.jetbrains.annotations.NotNull;
 
@@ -454,8 +455,9 @@ public class GameController {
     public void gameWins(Player player) {
         Alert alertMessage = new Alert(Alert.AlertType.INFORMATION, player.getName() + " won the game.");
         this.gameWin = true;
-        alertMessage.showAndWait();
         winningPhase();
+        alertMessage.showAndWait();
+        Platform.exit();
     }
 
     /**

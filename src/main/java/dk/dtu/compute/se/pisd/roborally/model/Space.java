@@ -39,13 +39,10 @@ public class Space extends Subject {
 
     public final Board board;
 
-    private Heading heading = SOUTH;
-
     public final int x;
     public final int y;
 
     private Player player;
-
 
     public Space(Board board, int x, int y) {
         this.board = board;

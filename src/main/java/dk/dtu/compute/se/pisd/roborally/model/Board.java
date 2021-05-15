@@ -283,6 +283,7 @@ public class Board extends Subject {
      * Get- and setter
      *
      * @return count moves on the board
+     * @author Sercan Bicen
      */
     public int getCount() {
         return count;
@@ -299,6 +300,7 @@ public class Board extends Subject {
      * Get- and setter
      *
      * @return if the field isn't empty return the message "the field isn't empty"
+     * @author Sercan Bicen
      */
     public String getNotEmpty() {
         return (this.notEmpty == null ? "" : this.notEmpty);
@@ -354,11 +356,9 @@ public class Board extends Subject {
         return players;
     }
 
-
     public List<ConveyorBelt> getConveyerBelt() {
         return this.conveyorBelts;
     }
-
 
     public void setConveyerBelt(ConveyorBelt conveyorBelt) {
         this.conveyorBelts.add(conveyorBelt);

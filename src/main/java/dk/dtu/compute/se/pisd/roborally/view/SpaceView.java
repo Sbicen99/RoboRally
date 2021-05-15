@@ -168,29 +168,29 @@ public class SpaceView extends StackPane implements ViewObserver {
                 Heading heading = conveyorBelt.getHeading();
                 int type = conveyorBelt.getType();
 
-                if ( type == 1){
-                try {
-                    InputStream stream = new FileInputStream("src/main/resources/images/conveyorbelt1.png");
-                    Image image = new Image(stream);
+                if (type == 1) {
+                    try {
+                        InputStream stream = new FileInputStream("src/main/resources/images/conveyorbelt1.png");
+                        Image image = new Image(stream);
 
-                    //creating the imageview
-                    ImageView imageView = new ImageView();
-                    imageView.setImage(image);
-                    imageView.setFitWidth(SPACE_WIDTH);
-                    imageView.setFitHeight(SPACE_HEIGHT);
+                        //creating the imageview
+                        ImageView imageView = new ImageView();
+                        imageView.setImage(image);
+                        imageView.setFitWidth(SPACE_WIDTH);
+                        imageView.setFitHeight(SPACE_HEIGHT);
 
-                    // Defensive programming
-                    if (heading != null) {
-                        imageView.setRotate(heading.ordinal() * 90);
+                        // Defensive programming
+                        if (heading != null) {
+                            imageView.setRotate(heading.ordinal() * 90);
+                        }
+
+                        this.getChildren().addAll(canvas, imageView);
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
                     }
-
-                    this.getChildren().addAll(canvas, imageView);
-
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
                 }
-            }
-                if ( type == 2){
+                if (type == 2) {
                     try {
                         InputStream stream = new FileInputStream("src/main/resources/images/conveyorbelt2.png");
                         Image image = new Image(stream);
@@ -212,7 +212,7 @@ public class SpaceView extends StackPane implements ViewObserver {
                         e.printStackTrace();
                     }
                 }
-                if ( type == 3){
+                if (type == 3) {
                     try {
                         InputStream stream = new FileInputStream("src/main/resources/images/conveyorbelt3.png");
                         Image image = new Image(stream);
@@ -234,7 +234,7 @@ public class SpaceView extends StackPane implements ViewObserver {
                         e.printStackTrace();
                     }
                 }
-                if ( type == 4){
+                if (type == 4) {
                     try {
                         InputStream stream = new FileInputStream("src/main/resources/images/conveyorbelt4.png");
                         Image image = new Image(stream);
@@ -264,9 +264,7 @@ public class SpaceView extends StackPane implements ViewObserver {
      * @author Sercan Bicen
      * Adding a startpoint behind each player.
      */
-
     private void addingStartpoint() {
-
         Canvas canvas = new Canvas(SPACE_WIDTH, SPACE_HEIGHT);
 
         try {
@@ -287,10 +285,19 @@ public class SpaceView extends StackPane implements ViewObserver {
     }
 
 
+    private void startpoint() {
+        Player player = space.getPlayer();
+        if (player != null) {
+            if (space.x == player.getStartpointX() && space.y == player.getStartpointY()) {
+                addingStartpoint();
+            }
+        }
+    }
+
+
     private void updatePlayer() {
         //------------------------
         //Adding elements to the board where each triangle/player is in front of it.
-
         // loop through actions. Can also be used to another board element.
         for (FieldAction action : space.getActions()) {
             if (action instanceof Checkpoint) {
@@ -299,18 +306,18 @@ public class SpaceView extends StackPane implements ViewObserver {
             } else if (action instanceof Gear) {
                 addingImages("images/gear" + ((Gear) action).direction + ".png", 0);
             }
-
         }
 
         createStaticObject();
         createConBelt();
+        startpoint();
         //------------------------
-
         Player player = space.getPlayer();
         if (player != null) {
 
-            // adding startpoints to the board.
-            addingStartpoint();
+            /*if (space.x == player.getStartpointX() && space.y == player.getStartpointY()) {
+                addingStartpoint();
+            }*/
 
             Polygon arrow = new Polygon(0.0, 0.0,
                     7.5, 15.0,
@@ -325,6 +332,7 @@ public class SpaceView extends StackPane implements ViewObserver {
             this.getChildren().add(arrow);
         }
     }
+
 
     @Override
     public void updateView(Subject subject) {

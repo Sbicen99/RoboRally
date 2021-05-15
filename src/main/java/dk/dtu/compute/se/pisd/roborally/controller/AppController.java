@@ -63,7 +63,7 @@ public class AppController implements Observer {
     /**
      * This method creates a table with 12 * 12..
      *
-     * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
+     * @author Najib s181663, Camilla Boejden, Thamara Chellakooty, Sercan Bicen.
      */
     public void newGameMediumBoard() {
         ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
@@ -86,7 +86,9 @@ public class AppController implements Observer {
             for (int i = 0; i < no; i++) {
                 Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1));
                 board.addPlayer(player);
-                player.setSpace(board.getSpace(i * 2 % board.width, 0));
+                player.setSpace(board.getSpace(13 % board.width, (i + 1) * 2));
+                player.setStartpointX(13 % board.width);
+                player.setStartpointY((i + 1) * 2);
             }
             // XXX: V2
             board.setCurrentPlayer(board.getPlayer(0));
@@ -114,9 +116,9 @@ public class AppController implements Observer {
                 }
             }
             String value = dialogg.getSelectedItem();
-            if (value == "Medium board") {
+            if (value.equals("Medium board")) {
                 newGameMediumBoard();
-            } else if (value == "Easy board") {
+            } else if (value.equals("Easy board")) {
                 newGameEasyBoard();
             }
         }
@@ -125,7 +127,7 @@ public class AppController implements Observer {
     /**
      * This method creates a table with 8*8.
      *
-     * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
+     * @author Najib s181663, Camilla Boejden, Thamara Chellakooty, Sercan Bicen.
      */
     public void newGameEasyBoard() {
         ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
@@ -149,13 +151,9 @@ public class AppController implements Observer {
             for (int i = 0; i < no; i++) {
                 Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1));
                 board.addPlayer(player);
-                player.setSpace(board.getSpace(i * 2 % board.width, 0));
-
-
-                if (player.getSpace() == board.getSpace(i % board.width, i)) {
-                    // TODO: needs to be implemented.
-
-                }
+                player.setSpace(board.getSpace(11 % board.width, i + 1));
+                player.setStartpointX(11 % board.width);
+                player.setStartpointY(i + 1);
             }
             // XXX: V2
             board.setCurrentPlayer(board.getPlayer(0));
@@ -169,8 +167,7 @@ public class AppController implements Observer {
      * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
      **/
     private Board createMediumBoard() {
-        Board board = LoadBoard.loadBoard("mediumboard");
-        return board;
+        return LoadBoard.loadBoard("mediumboard");
     }
 
     /**
@@ -178,8 +175,7 @@ public class AppController implements Observer {
      * @author Camilla Boejden, Thamara Chellakooty, Sercan Bicen  & Lauritz Pepke
      */
     private Board createEasyBoard() {
-        Board board = LoadBoard.loadBoard("easyboard");
-        return board;
+        return LoadBoard.loadBoard("easyboard");
 
         /*
         Board board = new Board(10,10);
@@ -222,13 +218,10 @@ public class AppController implements Observer {
             Board board = gameController.board;
             if (board.getGameId() != null) {
                 RepositoryAccess.getRepository().updateGameInDB(board);
+            } else {
+                RepositoryAccess.getRepository().createGameInDB(board);
             }
         }
-    }
-
-
-    public void loadGameFromFile() {
-        // TODO: need to be implemented.
     }
 
 
@@ -236,10 +229,9 @@ public class AppController implements Observer {
      * This method load games from the database. Returns messages to the player when it is not possible to retrieve games from the database
      */
     public void loadGame() {
-
         // XXX needs to be implemented eventually
-
         List<GameInDB> games = RepositoryAccess.getRepository().getGames();
+
         if (!games.isEmpty()) {
             ChoiceDialog<GameInDB> dialog = new ChoiceDialog<>(games.get(games.size() - 1), games);
             dialog.setTitle("Select game");
@@ -278,20 +270,20 @@ public class AppController implements Observer {
      */
     public boolean stopGame() {
         if (gameController != null) {
-            /*Alert alert = new Alert(AlertType.CONFIRMATION);
+            Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
             alert.setHeaderText("Do you want to save the game?");
             alert.setContentText("Choose your option.");
 
             Optional<ButtonType> result = alert.showAndWait();
-            if (!result.isPresent() || result.get() != ButtonType.OK) {
+            if (result.isEmpty() || result.get() != ButtonType.OK) {
                 System.exit(-1);
             } else {
                 saveGame();
-            }*/
+            }
 
             // here we save the game (without asking the user).
-            saveGame();
+            //saveGame();
 
             gameController = null;
             roboRally.createBoardView(null);
