@@ -65,8 +65,7 @@ public class Connector {
 
             createDatabaseSchema();
         } catch (SQLException e) {
-            // TODO we should try to diagnose and fix some problems here and
-            //      exit in a more graceful way
+            System.err.format("SQL: %s\n%s", e.getSQLState(), e.getMessage());
             e.printStackTrace();
 
 
@@ -98,16 +97,18 @@ public class Connector {
             connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
-            // TODO error handling
+            System.err.format("SQL: %s\n%s", e.getSQLState(), e.getMessage());
             errorHandler("Couldn't create database schema!");
             try {
                 connection.rollback();
             } catch (SQLException e1) {
+                System.err.format("SQL: %s\n%s", e1.getSQLState(), e1.getMessage());
             }
         } finally {
             try {
                 connection.setAutoCommit(true);
             } catch (SQLException e) {
+                System.err.format("SQL: %s\n%s", e.getSQLState(), e.getMessage());
             }
         }
     }

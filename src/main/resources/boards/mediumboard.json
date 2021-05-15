@@ -509,18 +509,6 @@
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Checkpoint",
           "INSTANCE": {
-            "checkpointnumber": 3
-          }
-        }
-      ],
-      "x": 3,
-      "y": 11
-    },
-    {
-      "actions": [
-        {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.Checkpoint",
-          "INSTANCE": {
             "checkpointnumber": 1
           }
         }

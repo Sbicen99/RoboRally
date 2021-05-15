@@ -213,7 +213,6 @@ public class AppController implements Observer {
      * Automatically saves games in the database when player start game.
      */
     public void saveGame() {
-        // XXX needs to be implemented eventually
         if (gameController != null) {
             Board board = gameController.board;
             if (board.getGameId() != null) {
@@ -280,10 +279,9 @@ public class AppController implements Observer {
                 System.exit(-1);
             } else {
                 saveGame();
+                System.exit(-1);
             }
 
-            // here we save the game (without asking the user).
-            //saveGame();
 
             gameController = null;
             roboRally.createBoardView(null);

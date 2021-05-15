@@ -55,6 +55,8 @@ public class Board extends Subject {
 
     private List<Checkpoint> checkpoints = new ArrayList<>();
 
+    private List<Integer> checkpointsNr = new ArrayList<>();
+
     private List<ConveyorBelt> conveyorBelts = new ArrayList<>();
 
     private List<Gear> gears = new ArrayList<>();
@@ -336,6 +338,14 @@ public class Board extends Subject {
 
     public void setCheckpoints(Checkpoint checkpoint) {
         this.checkpoints.add(checkpoint);
+    }
+
+    public List<Integer> getCheckpointsNr() {
+        return checkpointsNr;
+    }
+
+    public void setCheckpointsNr(List<Integer> checkpointsNr) {
+        this.checkpointsNr = checkpointsNr;
     }
 
     /**

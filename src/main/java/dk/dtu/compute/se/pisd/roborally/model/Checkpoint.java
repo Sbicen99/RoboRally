@@ -2,6 +2,8 @@ package dk.dtu.compute.se.pisd.roborally.model;
 
 import dk.dtu.compute.se.pisd.roborally.controller.GameController;
 
+import java.util.Collections;
+
 /**
  * @author Sercan Bicen
  * Class that extends from FieldAction to handle checkoints on the board.
@@ -25,7 +27,8 @@ public class Checkpoint extends FieldAction {
         Player player = space.getPlayer();
         if (player != null) {
             player.setEndCheckpoint(this.checkpointnumber);
-            if (player.getEndCheckpoint() >= gameController.board.getCheckpoints().size()) {
+            gameController.board.setCheckpointsNr(Collections.singletonList(this.checkpointnumber));
+            if (player.getEndCheckpoint() > gameController.board.getCheckpointsNr().size()) {
                 gameController.gameWins(player);
             }
         }

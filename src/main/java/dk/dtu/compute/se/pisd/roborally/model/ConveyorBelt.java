@@ -30,6 +30,7 @@ public class ConveyorBelt extends FieldAction {
     @Override
     public boolean doAction(GameController gameController, Space space) {
         Player player = space.getPlayer();
+        player.setHeading(heading);
         if (player != null & type == 1 & gameController.board.getConveyerBelt() != null) {
             player.moveForward(player);
             return true;
