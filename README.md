@@ -3,7 +3,7 @@ I projektet har fokus været på at videreudvikle et Java program der repræsent
 
 (Skriv nedenfor udarbejdet af: Camilla, Thamara og Sercan)
 
-# Konfiguration
+## Konfiguration
 - Såfremt der opstår fejl i forbindelse med imports i klasserne, skal Maven-projektet genindlæses over i højre bjælke. Klik på "Maven" > "Genindlæs"-knappen
 - Opdatér dine database-oplysninger i Connector-klassen ("RoboRally" > "dal" > "Connector").
 
