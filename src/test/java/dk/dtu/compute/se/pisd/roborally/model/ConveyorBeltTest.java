@@ -20,17 +20,20 @@ class ConveyorBeltTest {
         assertEquals(Heading.WEST, conveyorBelt.getHeading());
     }
 
+    Board board = new Board(10,10);
+    ConveyorBelt conveyorBelt = new ConveyorBelt(1, Heading.WEST);
 
     @Test
-    void doAction() {
-        ConveyorBelt conveyorBelt = new ConveyorBelt(1, Heading.WEST);
-        Board board = new Board(10,10);
-        GameController gameController = new GameController(board);
-        Player player = new Player(board, "red", "TestPlayer");
-        Space space1 = new Space(board, 3,3);
-        player.setSpace(space1);
-        Space space2 = new Space(board,2,3);
-        conveyorBelt.doAction(gameController,space1);
-        assertEquals(space2, player.getSpace());
+
+    /**
+    * testing that the players heading will be the same heading as conveyerbelt.
+    * */
+    void testPlayerHeading() {
+        ConveyorBelt conveyorBelt = new ConveyorBelt(2, Heading.WEST);
+        Heading heading =  conveyorBelt.getHeading();
+        Player player1 = new Player(board,"blue", "test ");
+        player1.setHeading(heading);
+        assertEquals(player1.getHeading(), conveyorBelt.getHeading());
     }
+
 }
