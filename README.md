@@ -3,8 +3,7 @@ I projektet har fokus været på at videreudvikle et Java program der repræsent
 
 
 
-
-Spilleregler: 
+# Spillerregler 
 - Vælg mellem 2 - 6 spillere. 
 - Hver spiller får tildelt sin farve robot. 
 - Hver spiller tildeles 8 programmeringskort til deres dæk. 
@@ -23,6 +22,9 @@ Spilleregler:
 
 
 
+# Features i nuværende version
+
+- Spillere har mulighed for at skubbe hinanden et felt.
 
 Felter  Typer:
         Spillepladen indeholder forskellige udfordringer som robotterne vil møde på deres vej:
@@ -33,7 +35,8 @@ Felter  Typer:
         Rød Gear: Lander robotten på dette felt vil den blive drejet til venstre.
         Checkpoint: Robotterne skal samle checkpoints. Først checkpoint 1 derefter checkpoint 2. 
 
-Programmeringskort_
+
+Programmeringskort
 De 8 forskellige programmeringskort:
         - Move one step forward
         - Move two steps forward
@@ -44,3 +47,7 @@ De 8 forskellige programmeringskort:
         - Left or right
         - Move one step back
 
+
+Database:
+        Mulighed for at gemme et spil i databasen med dets respektive navn.
+        Hente det gemte spil fra databasen.
