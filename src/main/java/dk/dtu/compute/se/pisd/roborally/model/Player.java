@@ -144,10 +144,6 @@ public class Player extends Subject {
                     e.getCause();
                     e.getMessage();
                     e.printStackTrace();
-                    // we don't do anything here for now;
-                    // we just catch the exception so that
-                    // we do no pass it on to the caller
-                    // (which would be very bad style).
                 }
             }
         }
