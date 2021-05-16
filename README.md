@@ -26,28 +26,28 @@ I projektet har fokus været på at videreudvikle et Java program der repræsent
 
 - Spillere har mulighed for at skubbe hinanden et felt.
 
-Felter  Typer:
-        Spillepladen indeholder forskellige udfordringer som robotterne vil møde på deres vej:
-        Væg: Robotter kan ikke bevæge sig igennem felter hvor der er placeret vægge. 
-        Grøn conveyorbelt: Lander en robot på den grønne conveyorbelte vil den automatisk blive rykket et felt frem. Robotten vil følge beltet i den retning pilene pejer. 
-        Blåt conveyorbelt: Hvis en robot lander på det blå conveyorbelte vil robotten rykke to felter frem i pilenes retning. 
-        Grøn Gear: Lander robotten på dette felt vil den blive drejet til højre.
-        Rød Gear: Lander robotten på dette felt vil den blive drejet til venstre.
-        Checkpoint: Robotterne skal samle checkpoints. Først checkpoint 1 derefter checkpoint 2. 
+Felter:
+Spillepladen indeholder forskellige udfordringer som robotterne vil møde på deres vej:
+- Væg: Robotter kan ikke bevæge sig igennem felter hvor der er placeret vægge. 
+- Grøn conveyorbelt: Lander en robot på den grønne conveyorbelte vil den automatisk blive rykket et felt frem. Robotten vil følge beltet i den retning pilene pejer. 
+- Blåt conveyorbelt: Hvis en robot lander på det blå conveyorbelte vil robotten rykke to felter frem i pilenes retning. 
+- Grøn Gear: Lander robotten på dette felt vil den blive drejet til højre.
+- Rød Gear: Lander robotten på dette felt vil den blive drejet til venstre.
+- Checkpoint: Robotterne skal samle checkpoints. Først checkpoint 1 derefter checkpoint 2. 
 
 
 
 De 8 forskellige programmeringskort:
-        - Move one step forward
-        - Move two steps forward
-        - Move three steps forward
-        - Turn left
-        - Turn right
-        - Turn back
-        - Left or right
-        - Move one step back
+- Move one step forward
+- Move two steps forward
+- Move three steps forward
+- Turn left
+- Turn right
+- Turn back
+- Left or right
+- Move one step back
 
 
 Database:
-        Mulighed for at gemme et spil i databasen med dets respektive navn.
-        Hente det gemte spil fra databasen.
+- Mulighed for at gemme et spil i databasen med dets respektive navn.
+- Hente det gemte spil fra databasen.
