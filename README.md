@@ -3,7 +3,7 @@ I projektet har fokus været på at videreudvikle et Java program der repræsent
 
 
 
-# Spillerregler 
+## Spillerregler 
 - Vælg mellem 2 - 6 spillere. 
 - Hver spiller får tildelt sin farve robot. 
 - Hver spiller tildeles 8 programmeringskort til deres dæk. 
@@ -22,7 +22,7 @@ I projektet har fokus været på at videreudvikle et Java program der repræsent
 
 
 
-# Features i nuværende version
+## Features i nuværende version
 
 - Spillere har mulighed for at skubbe hinanden et felt.
 
@@ -36,7 +36,7 @@ Felter  Typer:
         Checkpoint: Robotterne skal samle checkpoints. Først checkpoint 1 derefter checkpoint 2. 
 
 
-Programmeringskort
+
 De 8 forskellige programmeringskort:
         - Move one step forward
         - Move two steps forward
