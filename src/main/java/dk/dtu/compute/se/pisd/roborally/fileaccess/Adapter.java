@@ -44,7 +44,6 @@ public class Adapter<E> implements JsonSerializer<E>, JsonDeserializer<E>{
 
     private static final String CLASSNAME = "CLASSNAME";
     private static final String INSTANCE  = "INSTANCE";
-
     @Override
     public JsonElement serialize(E src, Type typeOfSrc,
             JsonSerializationContext context) {
@@ -56,7 +55,6 @@ public class Adapter<E> implements JsonSerializer<E>, JsonDeserializer<E>{
         retValue.add(INSTANCE, elem);
         return retValue;
     }
-
     @Override
     public E deserialize(JsonElement json, Type typeOfT,
             JsonDeserializationContext context) throws JsonParseException  {

@@ -41,25 +41,7 @@ import java.util.List;
  *
  */
 public class BoardTemplate {
-
     public int width;
     public int height;
-
     public List<SpaceTemplate> spaces = new ArrayList<>();
-
-    /*GsonBuilder simpleBuilder = new GsonBuilder().
-            registerTypeAdapter(FieldAction.class,
-                    new Adapter<FieldAction>());
-    Gson gson = simpleBuilder.create();
-    ClassLoader classLoader =
-            LoadBoard.class.getClassLoader();
-    InputStream inputStream =
-            classLoader.getResourceAsStream(
-                    "boards/defaultboard.json");
-
-    InputStreamReader streamReader = new InputStreamReader(inputStream);
-    JsonReader reader = gson.newJsonReader(streamReader);
-    BoardTemplate boardTemplate =
-            gson.fromJson(reader, BoardTemplate.class);*/
-
 }

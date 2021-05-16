@@ -12,20 +12,16 @@ public class ConveyorBelt extends FieldAction {
 
     private Heading heading;
     public final int type;
-
     public ConveyorBelt(int type, @NotNull Heading heading) {
         this.type = type;
         this.heading = heading;
     }
-
     public Heading getHeading() {
         return heading;
     }
-
     public void setHeading(Heading heading) {
         this.heading = heading;
     }
-
     @Override
     public boolean doAction(GameController gameController, Space space) {
         Player player = space.getPlayer();
@@ -48,7 +44,6 @@ public class ConveyorBelt extends FieldAction {
     }
         return true;
     }
-
     public int getType() {
         return this.type;
     }

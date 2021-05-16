@@ -57,7 +57,6 @@ public class IOUtil {
             return "";
         }
     }
-
     /**
      * Returns a string from a resource of the project. This method is implemented
      * in such a way that resource can be read when the project is deployed in
@@ -71,5 +70,4 @@ public class IOUtil {
         InputStream inputStream = classLoader.getResourceAsStream(relativeResourcePath);
         return IOUtil.readString(inputStream);
     }
-
 }

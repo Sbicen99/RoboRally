@@ -38,41 +38,28 @@ import org.jetbrains.annotations.NotNull;
  * @author Ekkart Kindler, ekki@dtu.dk
  */
 public class PlayerView extends Tab implements ViewObserver {
-
     private Player player;
-
     private VBox top;
-
     private Label programLabel;
     private GridPane programPane;
     private Label cardsLabel;
     private GridPane cardsPane;
-
     private CardFieldView[] programCardViews;
     private CardFieldView[] cardViews;
-
     private VBox buttonPanel;
-
     private Button finishButton;
     private Button executeButton;
     private Button stepButton;
-
     private VBox playerInteractionPanel;
-
     private GameController gameController;
-
     public PlayerView(@NotNull GameController gameController, @NotNull Player player) {
         super(player.getName());
         this.setStyle("-fx-text-base-color: " + player.getColor() + ";");
-
         top = new VBox();
         this.setContent(top);
-
         this.gameController = gameController;
         this.player = player;
-
         programLabel = new Label("Program");
-
         programPane = new GridPane();
         programPane.setVgap(2.0);
         programPane.setHgap(2.0);
@@ -84,34 +71,22 @@ public class PlayerView extends Tab implements ViewObserver {
                 programPane.add(programCardViews[i], i, 0);
             }
         }
-
-        // XXX  the following buttons should actually not be on the tabs of the individual
-        //      players, but on the PlayersView (view for all players). This should be
-        //      refactored.
         /**
          * addition to buttens.
          * @author Camilla Bøjden, s205360.
          */
-
-        // XXX the respective GameController operations are not yet implemented
         finishButton = new Button("Finish Programming");
         finishButton.setOnAction(e -> gameController.finishProgrammingPhase());
-
         executeButton = new Button("Execute Program");
         executeButton.setOnAction(e -> gameController.executePrograms());
-
         stepButton = new Button("Execute Current Register");
         stepButton.setOnAction(e -> gameController.executeStep());
-
         buttonPanel = new VBox(finishButton, executeButton, stepButton);
         buttonPanel.setAlignment(Pos.CENTER_LEFT);
         buttonPanel.setSpacing(3.0);
-        // programPane.add(buttonPanel, Player.NO_REGISTERS, 0); done in update now
-
         playerInteractionPanel = new VBox();
         playerInteractionPanel.setAlignment(Pos.CENTER_LEFT);
         playerInteractionPanel.setSpacing(3.0);
-
         cardsLabel = new Label("Command Cards");
         cardsPane = new GridPane();
         cardsPane.setVgap(2.0);
@@ -124,18 +99,15 @@ public class PlayerView extends Tab implements ViewObserver {
                 cardsPane.add(cardViews[i], i, 0);
             }
         }
-
         top.getChildren().add(programLabel);
         top.getChildren().add(programPane);
         top.getChildren().add(cardsLabel);
         top.getChildren().add(cardsPane);
-
         if (player.board != null) {
             player.board.attach(this);
             update(player.board);
         }
     }
-
     @Override
     public void updateView(Subject subject) {
         if (subject == player.board) {
@@ -161,7 +133,6 @@ public class PlayerView extends Tab implements ViewObserver {
                     }
                 }
             }
-
             if (player.board.getPhase() != Phase.PLAYER_INTERACTION) {
                 if (!programPane.getChildren().contains(buttonPanel)) {
                     programPane.getChildren().remove(playerInteractionPanel);
@@ -170,31 +141,24 @@ public class PlayerView extends Tab implements ViewObserver {
                 switch (player.board.getPhase()) {
                     case INITIALISATION:
                         finishButton.setDisable(true);
-                        // XXX just to make sure that there is a way for the player to get
-                        //     from the initialization phase to the programming phase somehow!
                         executeButton.setDisable(false);
                         stepButton.setDisable(true);
                         break;
-
                     case PROGRAMMING:
                         finishButton.setDisable(false);
                         executeButton.setDisable(true);
                         stepButton.setDisable(true);
                         break;
-
                     case ACTIVATION:
                         finishButton.setDisable(true);
                         executeButton.setDisable(false);
                         stepButton.setDisable(false);
                         break;
-
                     default:
                         finishButton.setDisable(true);
                         executeButton.setDisable(true);
                         stepButton.setDisable(true);
                 }
-
-
             } else {
 
                 if (!programPane.getChildren().contains(playerInteractionPanel)) {
@@ -202,24 +166,10 @@ public class PlayerView extends Tab implements ViewObserver {
                     programPane.add(playerInteractionPanel, Player.NO_REGISTERS, 0);
                 }
                 playerInteractionPanel.getChildren().clear();
-
                 if (player.board.getCurrentPlayer() == player) {
-                    /*
-                    Button optionButton = new Button("Option1");
-                    optionButton.setOnAction( e -> gameController.notImplemented());
-                    optionButton.setDisable(false);
-                    playerInteractionPanel.getChildren().add(optionButton);
-
-                    optionButton = new Button("Option 2");
-                    optionButton.setOnAction( e -> gameController.notImplemented());
-                    optionButton.setDisable(false);
-                    playerInteractionPanel.getChildren().add(optionButton);
-                    */
-
                     /**
                      * Getting options - Turn right and turn left buttons
                      */
-
                     CommandCardField field = player.getProgramField(player.board.getStep());
                     if (field != null) {
                         CommandCard card = field.getCard();
@@ -233,11 +183,8 @@ public class PlayerView extends Tab implements ViewObserver {
                             }
                         }
                     }
-
                 }
-
             }
         }
     }
-
 }

@@ -41,17 +41,13 @@ import java.sql.Statement;
  *
  */
 public class Connector {
-
 	private static final String HOST = "localhost";
 	private static final int PORT = 3306;
 	private static final String DATABASE = "roborally";
-	private static final String USERNAME = "root";
-	private static final String PASSWORD = "2Tkaufmann";
-
+	private static final String USERNAME = "najibhebrawi1991";
+	private static final String PASSWORD = "";
     private static final String DELIMITER = ";;";
-
     private Connection connection;
-
 
     /**
      * @author Najib s181663
@@ -59,7 +55,6 @@ public class Connector {
      */
     Connector() {
         try {
-            // String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
             String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE + "?serverTimezone=UTC&verifyServerCertificate=false&useSSL=true";
             connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
 
@@ -67,12 +62,8 @@ public class Connector {
         } catch (SQLException e) {
             System.err.format("SQL: %s\n%s", e.getSQLState(), e.getMessage());
             e.printStackTrace();
-
-
-            // Platform.exit();
         }
     }
-
     private void createDatabaseSchema() {
         String createTablesStatement;
         try {
@@ -112,11 +103,9 @@ public class Connector {
             }
         }
     }
-
     Connection getConnection() {
         return connection;
     }
-
     private void errorHandler(String err) {
         Alert errMessage = new Alert(Alert.AlertType.ERROR, err);
         errMessage.showAndWait();

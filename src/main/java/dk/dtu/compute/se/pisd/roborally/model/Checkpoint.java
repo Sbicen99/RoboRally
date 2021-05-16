@@ -12,16 +12,13 @@ import java.util.Collections;
 public class Checkpoint extends FieldAction {
 
     public final int checkpointnumber;
-
     public Checkpoint(int checkpointnumber) {
         this.checkpointnumber = checkpointnumber;
     }
-
     /**
      * @param gameController the gameController of the respective game
      * @param space the space this action should be executed for
      */
-
     @Override
     public boolean doAction(GameController gameController, Space space) {
         Player player = space.getPlayer();

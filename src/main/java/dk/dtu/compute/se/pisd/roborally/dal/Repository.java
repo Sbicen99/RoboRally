@@ -41,35 +41,21 @@ import java.util.List;
 public class Repository implements IRepository {
 
     private static final String GAME_GAMEID = "gameID";
-
     private static final String GAME_NAME = "name";
-
     private static final String GAME_CURRENTPLAYER = "currentPlayer";
-
     private static final String GAME_PHASE = "phase";
-
     private static final String GAME_STEP = "step";
-
     private static final String PLAYER_PLAYERID = "playerID";
-
     private static final String PLAYER_NAME = "name";
-
     private static final String PLAYER_COLOUR = "colour";
-
     private static final String PLAYER_GAMEID = "gameID";
-
     private static final String PLAYER_POSITION_X = "positionX";
-
     private static final String PLAYER_POSITION_Y = "positionY";
-
     private static final String PLAYER_HEADING = "heading";
-
     private Connector connector;
-
     Repository(Connector connector) {
         this.connector = connector;
     }
-
     @Override
     public boolean createGameInDB(Board game, String boardName) {
         if (game.getGameId() == null) {
@@ -77,45 +63,19 @@ public class Repository implements IRepository {
             try {
                 connection.setAutoCommit(false);
                 PreparedStatement ps = getInsertGameStatementRGK();
-                // TODO: the name should eventually set by the user
-                //       for the game and should be then used
-                //       game.getName();
-                //ps.setString(1, "Date: " + new Date()); // instead of name
                 ps.setString(1, boardName);
                 ps.setNull(2, Types.TINYINT); // game.getPlayerNumber(game.getCurrentPlayer())); is inserted after players!
                 ps.setInt(3, game.getPhase().ordinal());
                 ps.setInt(4, game.getStep());
-
-                // If you have a foreign key constraint for current players,
-                // the check would need to be temporarily disabled, since
-                // MySQL does not have a per transaction validation, but
-                // validates on a per row basis.
-                // Statement statement = connection.createStatement();
-                // statement.execute("SET foreign_key_checks = 0");
-
                 int affectedRows = ps.executeUpdate();
                 ResultSet generatedKeys = ps.getGeneratedKeys();
                 if (affectedRows == 1 && generatedKeys.next()) {
                     game.setGameId(generatedKeys.getInt(1));
                 }
                 generatedKeys.close();
-
-                // Enable foreign key constraint check again:
-                // statement.execute("SET foreign_key_checks = 1");
-                // statement.close();
-
                 createPlayersInDB(game);
-                // TODO: this method needs to be implemented first
-                //createCardFieldsInDB(game);
-
-
-                // since current player is a foreign key, it can oly be
-                // inserted after the players are created, since MySQL does
-                // not have a per transaction validation, but validates on
-                // a per row basis.
                 ps = getSelectGameStatementU();
                 ps.setInt(1, game.getGameId());
-
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     rs.updateInt(GAME_CURRENTPLAYER, game.getPlayerNumber(game.getCurrentPlayer()));
@@ -124,13 +84,11 @@ public class Repository implements IRepository {
                     errorHandling("Error, couldn't update.");
                 }
                 rs.close();
-
                 connection.commit();
                 connection.setAutoCommit(true);
                 return true;
             } catch (SQLException e) {
                 System.err.format("SQL: %s\n%s", e.getSQLState(), e.getMessage());
-
                 try {
                     connection.rollback();
                     connection.setAutoCommit(true);
@@ -143,18 +101,14 @@ public class Repository implements IRepository {
         }
         return false;
     }
-
     @Override
     public boolean updateGameInDB(Board game) {
         assert game.getGameId() != null;
-
         Connection connection = connector.getConnection();
         try {
             connection.setAutoCommit(false);
-
             PreparedStatement ps = getSelectGameStatementU();
             ps.setInt(1, game.getGameId());
-
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 rs.updateInt(GAME_CURRENTPLAYER, game.getPlayerNumber(game.getCurrentPlayer()));
@@ -165,19 +119,12 @@ public class Repository implements IRepository {
                 errorHandling("Couldn't get current player, game phase or step.");
             }
             rs.close();
-
             updatePlayersInDB(game);
-			/* TODO this method needs to be implemented first
-			updateCardFieldsInDB(game);
-			*/
-
-
             connection.commit();
             connection.setAutoCommit(true);
             return true;
         } catch (SQLException e) {
             System.err.format("SQL: %s\n%s", e.getSQLState(), e.getMessage());
-
             try {
                 connection.rollback();
                 connection.setAutoCommit(true);
@@ -186,75 +133,47 @@ public class Repository implements IRepository {
                 e1.printStackTrace();
             }
         }
-
         return false;
     }
-
-
-
     @Override
     public Board loadGameFromDB(int id) {
         Board game;
         try {
-            // TODO here, we could actually use a simpler statement
-            //      which is not updatable, but reuse the one from
-            //      above for the pupose
             PreparedStatement ps = getSelectGameStatementU();
             ps.setInt(1, id);
-
             ResultSet rs = ps.executeQuery();
             int playerNo = -1;
             if (rs.next()) {
-                // TODO the width and height could eventually come from the database
-                // int width = AppController.BOARD_WIDTH;
-                // int height = AppController.BOARD_HEIGHT;
-                // game = new Board(width,height);
-                // TODO and we should also store the used game board in the database
-                //      for now, we use the default game board
-
-                // Added board name to the database.
                 String name = rs.getString(GAME_NAME);
                 game = LoadBoard.loadBoard(name);
                 if (game == null) {
                     return null;
                 }
                 playerNo = rs.getInt(GAME_CURRENTPLAYER);
-                // TODO currently we do not set the games name (needs to be added)
                 game.setPhase(Phase.values()[rs.getInt(GAME_PHASE)]);
                 game.setStep(rs.getInt(GAME_STEP));
             } else {
-                // TODO error handling
                 return null;
             }
             rs.close();
-
             game.setGameId(id);
             loadPlayersFromDB(game);
-
             if (playerNo >= 0 && playerNo < game.getPlayersNumber()) {
                 game.setCurrentPlayer(game.getPlayer(playerNo));
             } else {
-                // TODO  error handling
                 return null;
             }
-
 			/* TOODO this method needs to be implemented first
 			loadCardFieldsFromDB(game);
 			*/
-
             return game;
         } catch (SQLException e) {
             System.err.format("SQL: %s\n%s", e.getSQLState(), e.getMessage());
         }
         return null;
     }
-
     @Override
     public List<GameInDB> getGames() {
-        // TODO when there many games in the DB, fetching all available games
-        //      from the DB is a bit extreme; eventually there should a
-        //      methods that can filter the returned games in order to
-        //      reduce the number of the returned games.
         List<GameInDB> result = new ArrayList<>();
         try {
             PreparedStatement ps = getSelectGameIdsStatement();
@@ -272,7 +191,6 @@ public class Repository implements IRepository {
         }
         return result;
     }
-
     private void createPlayersInDB(Board game) throws SQLException {
         try {
             if (game != null) {
@@ -292,36 +210,29 @@ public class Repository implements IRepository {
                     resultSet.updateInt(PLAYER_HEADING, player.getHeading().ordinal());
                     resultSet.insertRow();
                 }
-
                 resultSet.close();
             }
         } catch (SQLException e) {
             System.err.format("SQL: %s\n%s", e.getSQLState(), e.getMessage());
         }
     }
-
     private void loadPlayersFromDB(Board game) throws SQLException {
         PreparedStatement ps = getSelectPlayersASCStatement();
         ps.setInt(1, game.getGameId());
-
         ResultSet rs = ps.executeQuery();
         int i = 0;
         while (rs.next()) {
             int playerId = rs.getInt(PLAYER_PLAYERID);
             if (i++ == playerId) {
-                // TODO this should be more defensive
                 String name = rs.getString(PLAYER_NAME);
                 String colour = rs.getString(PLAYER_COLOUR);
                 Player player = new Player(game, colour, name);
                 game.addPlayer(player);
-
                 int x = rs.getInt(PLAYER_POSITION_X);
                 int y = rs.getInt(PLAYER_POSITION_Y);
                 player.setSpace(game.getSpace(x, y));
                 int heading = rs.getInt(PLAYER_HEADING);
                 player.setHeading(Heading.values()[heading]);
-
-                // TODO  should also load players program and hand here
             } else {
                 errorHandling("Games in DB doesn't have the current player!");
                 System.err.println("Game in DB does not have a player with id " + i + "!");
@@ -329,37 +240,26 @@ public class Repository implements IRepository {
         }
         rs.close();
     }
-
     private void updatePlayersInDB(Board game) throws SQLException {
         PreparedStatement ps = getSelectPlayersStatementU();
         ps.setInt(1, game.getGameId());
-
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             int playerId = rs.getInt(PLAYER_PLAYERID);
-
             if (game != null) {
                 Player player = game.getPlayer(playerId);
                 // rs.updateString(PLAYER_NAME, player.getName()); // not needed: player's names does not change
                 rs.updateInt(PLAYER_POSITION_X, player.getSpace().x);
                 rs.updateInt(PLAYER_POSITION_Y, player.getSpace().y);
                 rs.updateInt(PLAYER_HEADING, player.getHeading().ordinal());
-                // TODO error handling
-                // TODO take care of case when number of players changes, etc
                 rs.updateRow();
             }
         }
-
         rs.close();
-
-        // TODO error handling/consistency check: check whether all players were updated
     }
-
     private static final String SQL_INSERT_GAME =
             "INSERT INTO Game(name, currentPlayer, phase, step) VALUES (?, ?, ?, ?)";
-
     private PreparedStatement insert_game_stmt = null;
-
     private PreparedStatement getInsertGameStatementRGK() {
         if (insert_game_stmt == null) {
             Connection connection = connector.getConnection();
@@ -373,12 +273,9 @@ public class Repository implements IRepository {
         }
         return insert_game_stmt;
     }
-
     private static final String SQL_SELECT_GAME =
             "SELECT * FROM Game WHERE gameID = ?";
-
     private PreparedStatement select_game_stmt = null;
-
     private PreparedStatement getSelectGameStatementU() {
         if (select_game_stmt == null) {
             Connection connection = connector.getConnection();
@@ -393,12 +290,9 @@ public class Repository implements IRepository {
         }
         return select_game_stmt;
     }
-
     private static final String SQL_SELECT_PLAYERS =
             "SELECT * FROM Player WHERE gameID = ?";
-
     private PreparedStatement select_players_stmt = null;
-
     private PreparedStatement getSelectPlayersStatementU() {
         if (select_players_stmt == null) {
             Connection connection = connector.getConnection();
@@ -413,12 +307,9 @@ public class Repository implements IRepository {
         }
         return select_players_stmt;
     }
-
     private static final String SQL_SELECT_PLAYERS_ASC =
             "SELECT * FROM Player WHERE gameID = ? ORDER BY playerID ASC";
-
     private PreparedStatement select_players_asc_stmt = null;
-
     private PreparedStatement getSelectPlayersASCStatement() {
         if (select_players_asc_stmt == null) {
             Connection connection = connector.getConnection();
@@ -432,12 +323,9 @@ public class Repository implements IRepository {
         }
         return select_players_asc_stmt;
     }
-
     private static final String SQL_SELECT_GAMES =
             "SELECT gameID, name FROM Game";
-
     private PreparedStatement select_games_stmt = null;
-
     private PreparedStatement getSelectGameIdsStatement() {
         if (select_games_stmt == null) {
             Connection connection = connector.getConnection();
@@ -450,8 +338,6 @@ public class Repository implements IRepository {
         }
         return select_games_stmt;
     }
-
-
     /**
      * Error handler as a dialogue.
      *

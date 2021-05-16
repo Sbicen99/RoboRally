@@ -43,72 +43,52 @@ import org.jetbrains.annotations.NotNull;
  * @author Ekkart Kindler, ekki@dtu.dk
  */
 public class CardFieldView extends GridPane implements ViewObserver {
-
-    // This data format helps avoiding transfers of e.g. Strings from other
-    // programs which can copy/paste Strings.
     final public static DataFormat ROBO_RALLY_CARD = new DataFormat("games/roborally/cards");
-
     final public static int CARDFIELD_WIDTH = 65;
     final public static int CARDFIELD_HEIGHT = 100;
-
     final public static Border BORDER = new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(2)));
-
     final public static Background BG_DEFAULT = new Background(new BackgroundFill(Color.WHITE, null, null));
     final public static Background BG_DRAG = new Background(new BackgroundFill(Color.GRAY, null, null));
     final public static Background BG_DROP = new Background(new BackgroundFill(Color.LIGHTGRAY, null, null));
-
     final public static Background BG_ACTIVE = new Background(new BackgroundFill(Color.YELLOW, null, null));
     final public static Background BG_DONE = new Background(new BackgroundFill(Color.GREENYELLOW, null, null));
-
     private CommandCardField field;
-
     private Label label;
-
     private GameController gameController;
-
     public CardFieldView(@NotNull GameController gameController, @NotNull CommandCardField field) {
         this.gameController = gameController;
         this.field = field;
-
         this.setAlignment(Pos.CENTER);
         this.setPadding(new Insets(5, 5, 5, 5));
-
         this.setBorder(BORDER);
         this.setBackground(BG_DEFAULT);
-
         this.setPrefWidth(CARDFIELD_WIDTH);
         this.setMinWidth(CARDFIELD_WIDTH);
         this.setMaxWidth(CARDFIELD_WIDTH);
         this.setPrefHeight(CARDFIELD_HEIGHT);
         this.setMinHeight(CARDFIELD_HEIGHT);
         this.setMaxHeight(CARDFIELD_HEIGHT);
-
         label = new Label("This is a slightly longer text");
         label.setWrapText(true);
         label.setMouseTransparent(true);
         this.add(label, 0, 0);
-
         this.setOnDragDetected(new OnDragDetectedHandler());
         this.setOnDragOver(new OnDragOverHandler());
         this.setOnDragEntered(new OnDragEnteredHandler());
         this.setOnDragExited(new OnDragExitedHandler());
         this.setOnDragDropped(new OnDragDroppedHandler());
         this.setOnDragDone(new OnDragDoneHandler());
-
         field.attach(this);
         update(field);
     }
-
     private String cardFieldRepresentation(CommandCardField cardField) {
         if (cardField.player != null) {
-
             for (int i = 0; i < Player.NO_REGISTERS; i++) {
                 CommandCardField other = cardField.player.getProgramField(i);
                 if (other == cardField) {
                     return "P," + i;
                 }
             }
-
             for (int i = 0; i < Player.NO_CARDS; i++) {
                 CommandCardField other = cardField.player.getCardField(i);
                 if (other == cardField) {
@@ -117,9 +97,7 @@ public class CardFieldView extends GridPane implements ViewObserver {
             }
         }
         return null;
-
     }
-
     private CommandCardField cardFieldFromRepresentation(String rep) {
         if (rep != null && field.player != null) {
             String[] strings = rep.split(",");
@@ -138,7 +116,6 @@ public class CardFieldView extends GridPane implements ViewObserver {
         }
         return null;
     }
-
     @Override
     public void updateView(Subject subject) {
         if (subject == field && subject != null) {
@@ -150,9 +127,7 @@ public class CardFieldView extends GridPane implements ViewObserver {
             }
         }
     }
-
     private class OnDragDetectedHandler implements EventHandler<MouseEvent> {
-
         @Override
         public void handle(MouseEvent event) {
             Object t = event.getTarget();
@@ -167,21 +142,16 @@ public class CardFieldView extends GridPane implements ViewObserver {
                     Dragboard db = source.startDragAndDrop(TransferMode.MOVE);
                     Image image = source.snapshot(null, null);
                     db.setDragView(image);
-
                     ClipboardContent content = new ClipboardContent();
                     content.put(ROBO_RALLY_CARD, cardFieldRepresentation(cardField));
-
                     db.setContent(content);
                     source.setBackground(BG_DRAG);
                 }
             }
             event.consume();
         }
-
     }
-
     private class OnDragOverHandler implements EventHandler<DragEvent> {
-
         @Override
         public void handle(DragEvent event) {
             Object t = event.getTarget();
@@ -199,11 +169,8 @@ public class CardFieldView extends GridPane implements ViewObserver {
             }
             event.consume();
         }
-
     }
-
     private class OnDragEnteredHandler implements EventHandler<DragEvent> {
-
         @Override
         public void handle(DragEvent event) {
             Object t = event.getTarget();
@@ -222,7 +189,6 @@ public class CardFieldView extends GridPane implements ViewObserver {
             }
             event.consume();
         }
-
     }
 
     private class OnDragExitedHandler implements EventHandler<DragEvent> {

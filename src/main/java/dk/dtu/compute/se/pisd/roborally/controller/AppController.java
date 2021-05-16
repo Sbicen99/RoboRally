@@ -46,22 +46,15 @@ import java.util.Optional;
  * @author Ekkart Kindler, ekki@dtu.dk
  */
 public class AppController implements Observer {
-
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
     final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "grey", "magenta");
-
     final private List<String> Player_Board_Option = Arrays.asList("Easy board", "Medium board");
-
     final private RoboRally roboRally;
-
     private GameController gameController;
-
     String boardname;
-
     public AppController(@NotNull RoboRally roboRally) {
         this.roboRally = roboRally;
     }
-
     /**
      * This method creates a table with 12 * 12..
      *
@@ -74,14 +67,10 @@ public class AppController implements Observer {
         Optional<Integer> result = dialog.showAndWait();
         if (result.isPresent()) {
             if (gameController != null) {
-                // The UI should not allow this, but in case this happens anyway.
-                // give the user the option to save the game or abort this operation!
                 if (!stopGame()) {
                     return;
                 }
             }
-            // XXX the board should eventually be created programmatically or loaded from a file
-            //     here we just create an empty board with the required number of players.
             Board board = createMediumBoard();
             gameController = new GameController(board);
             int no = result.get();
@@ -92,13 +81,11 @@ public class AppController implements Observer {
                 player.setStartpointX(13 % board.width);
                 player.setStartpointY(i * 2);
             }
-            // XXX: V2
             board.setCurrentPlayer(board.getPlayer(0));
             gameController.startProgrammingPhase();
             roboRally.createBoardView(gameController);
         }
     }
-
     /**
      * This method of choosing between large or small board and starting the game.
      *
@@ -125,7 +112,6 @@ public class AppController implements Observer {
             }
         }
     }
-
     /**
      * This method creates a table with 8*8.
      *
@@ -136,17 +122,12 @@ public class AppController implements Observer {
         dialog.setTitle("Player number");
         dialog.setHeaderText("Select number of players");
         Optional<Integer> result = dialog.showAndWait();
-
         if (result.isPresent()) {
             if (gameController != null) {
-                // The UI should not allow this, but in case this happens anyway.
-                // give the user the option to save the game or abort this operation!
                 if (!stopGame()) {
                     return;
                 }
             }
-            // XXX the board should eventually be created programmatically or loaded from a file
-            //     here we just create an empty board with the required number of players.
             Board board = createEasyBoard();
             gameController = new GameController(board);
             int no = result.get();
@@ -157,14 +138,11 @@ public class AppController implements Observer {
                 player.setStartpointX(11 % board.width);
                 player.setStartpointY(i);
             }
-            // XXX: V2
             board.setCurrentPlayer(board.getPlayer(0));
             gameController.startProgrammingPhase();
             roboRally.createBoardView(gameController);
         }
     }
-
-
     /**
      * @author Najib s181663, Camilla Boejden, Thamara Chellakooty.
      **/
@@ -172,7 +150,6 @@ public class AppController implements Observer {
         boardname = "mediumboard";
         return LoadBoard.loadBoard("mediumboard");
     }
-
     /**
      * @return Returns board where different board elements are included on specific fields.
      * @author Camilla Boejden, Thamara Chellakooty, Sercan Bicen  & Lauritz Pepke
@@ -181,7 +158,6 @@ public class AppController implements Observer {
         boardname = "easyboard";
         return LoadBoard.loadBoard("easyboard");
     }
-
     /**
      * Method to save games in the database if player want it.
      */
@@ -195,13 +171,10 @@ public class AppController implements Observer {
             }
         }
     }
-
-
     /**
      * This method load games from the database. Returns messages to the player when it is not possible to retrieve games from the database
      */
     public void loadGame() {
-        // XXX needs to be implemented eventually
         List<GameInDB> games = RepositoryAccess.getRepository().getGames();
 
         if (!games.isEmpty()) {
@@ -229,8 +202,6 @@ public class AppController implements Observer {
             alert.showAndWait();
         }
     }
-
-
     /**
      * Stop playing the current game, giving the user the option to save
      * the game or to cancel stopping the game. The method returns true
@@ -261,15 +232,12 @@ public class AppController implements Observer {
                 savedToDB.showAndWait();
                 System.exit(-1);
             }
-
             gameController = null;
             roboRally.createBoardView(null);
             return true;
         }
         return false;
     }
-
-
     public void exit() {
         if (gameController != null) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -281,22 +249,14 @@ public class AppController implements Observer {
                 return; // return without exiting the application
             }
         }
-
-        // If the user did not cancel, the RoboRally application will exit
-        // after the option to save the game
         if (gameController == null || stopGame()) {
             Platform.exit();
         }
     }
-
     public boolean isGameRunning() {
         return gameController != null;
     }
-
-
     @Override
     public void update(Subject subject) {
-        // XXX do nothing for now
     }
-
 }

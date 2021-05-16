@@ -33,7 +33,6 @@ import java.util.List;
  */
 public enum Command {
 
-    // This is a very simplistic way of realizing different commands.
 
     FORWARD("Move one step forward"),
     RIGHT("Turn Right"),
@@ -42,26 +41,17 @@ public enum Command {
     FAST_FORWARD2("Move three steps forward"),
     U_Turn("Turn back"),
     MoveBack("Move one step Back"),
-
-
-    // XXX Assignment V3
     OPTION_LEFT_RIGHT("Left OR Right", LEFT, RIGHT);
-
     final public String displayName;
-
     final private List<Command> options;
-
     Command(String displayName, Command... options) {
         this.displayName = displayName;
         this.options = Collections.unmodifiableList(Arrays.asList(options));
     }
-
     public boolean isInteractive() {
         return !options.isEmpty();
     }
-
     public List<Command> getOptions() {
         return options;
     }
-
 }

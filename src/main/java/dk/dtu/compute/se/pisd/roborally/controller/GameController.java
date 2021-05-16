@@ -35,18 +35,11 @@ import static dk.dtu.compute.se.pisd.roborally.model.Phase.WINNING;
  * @author Ekkart Kindler, ekki@dtu.dk
  */
 public class GameController {
-
-    Space space;
-    PlayerView playerView;
-
     final public Board board;
-
     public boolean gameWin = false;
-
     public GameController(@NotNull Board board) {
         this.board = board;
     }
-
     /**
      * Moves the player and changes to another player.
      * Checks if the field is empty.
@@ -60,28 +53,14 @@ public class GameController {
             Player currentPlayer = board.getCurrentPlayer();
             currentPlayer.setSpace(space);
             board.setNotEmpty("");
-
             int number = board.getPlayerNumber(currentPlayer);
             Player nextPlayer = board.getPlayer((number + 1) % board.getPlayersNumber());
             board.setCurrentPlayer(nextPlayer);
             board.setCount(board.getCount() + 1);
-
-
-            //----------------------------
-            //Actions on the board
-            //space.blueConveyorBeltAction();
-            //space.gearTurnRightAction();
-            //space.gearTurnLeftAction();
-            //space.checkpointActions();
-            //----------------------------
-
         } else {
             board.setNotEmpty("The field isn't empty");
         }
     }
-
-
-    // XXX: V2
     public void startProgrammingPhase() {
         board.setPhase(Phase.PROGRAMMING);
         board.setCurrentPlayer(board.getPlayer(0));
@@ -103,14 +82,11 @@ public class GameController {
             }
         }
     }
-
-    // XXX: V2
     private CommandCard generateRandomCommandCard() {
         Command[] commands = Command.values();
         int random = (int) (Math.random() * commands.length);
         return new CommandCard(commands[random]);
     }
-
     /**
      * Once the player has completed programming his robot.
      */
@@ -122,8 +98,6 @@ public class GameController {
         board.setCurrentPlayer(board.getPlayer(0));
         board.setStep(0);
     }
-
-    // XXX: V2
     private void makeProgramFieldsVisible(int register) {
         if (register >= 0 && register < Player.NO_REGISTERS) {
             for (int i = 0; i < board.getPlayersNumber(); i++) {
@@ -133,8 +107,6 @@ public class GameController {
             }
         }
     }
-
-    // XXX: V2
     private void makeProgramFieldsInvisible() {
         for (int i = 0; i < board.getPlayersNumber(); i++) {
             Player player = board.getPlayer(i);
@@ -144,35 +116,25 @@ public class GameController {
             }
         }
     }
-
     /**
      * Executing command cards for all players.
      */
-
-    // XXX: V2
     public void executePrograms() {
         board.setStepMode(false);
         continuePrograms();
     }
-
     /**
      * Executing command cards for current player.
      */
-
-    // XXX: V2
     public void executeStep() {
         board.setStepMode(true);
         continuePrograms();
     }
-
-    // XXX: V2
     private void continuePrograms() {
         do {
             executeNextStep();
         } while (board.getPhase() == Phase.ACTIVATION && !board.isStepMode());
     }
-
-    // XXX: V2
     private void executeNextStep() {
         Player currentPlayer = board.getCurrentPlayer();
         if ((board.getPhase() == Phase.ACTIVATION || (board.getPhase() == Phase.PLAYER_INTERACTION && board.getUserChoice() != null)) && currentPlayer != null) {
@@ -224,8 +186,6 @@ public class GameController {
             assert false;
         }
     }
-
-
     /**
      * Executing command with option on turn right and turn left and continue.
      *
@@ -242,10 +202,6 @@ public class GameController {
     // XXX: V2
     private void executeCommand(@NotNull Player player, Command command) {
         if (player != null && player.board == board && command != null) {
-            // XXX This is a very simplistic way of dealing with some basic cards and
-            //     their execution. This should eventually be done in a more elegant way
-            //     (this concerns the way cards are modelled as well as the way they are executed).
-
             switch (command) {
                 case FORWARD:
                     this.moveForward(player);
@@ -272,7 +228,6 @@ public class GameController {
             }
         }
     }
-
     /**
      * Moving the player one field forward.
      *
@@ -325,12 +280,7 @@ public class GameController {
         }
 
         player.setSpace(space);
-        //space.blueConveyorBeltAction();
-        //space.gearTurnRightAction();
-        //space.gearTurnLeftAction();
     }
-
-
     /**
      * Moving the player one field back (without changing the direction).
      *
@@ -353,7 +303,6 @@ public class GameController {
             }
         }
     }
-
     /**
      * Moving the player two fields forward.
      * Calling the moveForward method two times.
@@ -361,13 +310,10 @@ public class GameController {
      * @param player represent player(s) in game
      * @author Najib Hebrawi, Sercan Bicen
      */
-
     public void fastForward1(@NotNull Player player) {
         moveForward(player);
         moveForward(player);
     }
-
-
     /**
      * Moving the player three field forward.
      *
@@ -379,8 +325,6 @@ public class GameController {
         moveForward(player);
         moveForward(player);
     }
-
-
     /**
      * Turning the player to the right.
      *
@@ -393,8 +337,6 @@ public class GameController {
             player.setHeading(player.getHeading().next());
         }
     }
-
-
     /**
      * Turning the player to the left.
      *
@@ -406,9 +348,7 @@ public class GameController {
         if (player != null && player.board == board) {
             player.setHeading(player.getHeading().prev());
         }
-
     }
-
     /**
      * Turning the player U-Turn.
      *
@@ -420,7 +360,6 @@ public class GameController {
             player.setHeading(player.getHeading().BackUTurn());
         }
     }
-
     public boolean moveCards(@NotNull CommandCardField source, @NotNull CommandCardField target) {
         CommandCard sourceCard = source.getCard();
         CommandCard targetCard = target.getCard();
@@ -432,8 +371,6 @@ public class GameController {
             return false;
         }
     }
-
-
     /**
      * Setting the current phase to winning when a player passes checkpoints.
      *
@@ -446,7 +383,6 @@ public class GameController {
         board.setCurrentPlayer(board.getPlayer(0));
         board.setStep(0);
     }
-
     /**
      * Message that appears when a player passes checkpoints.
      *
@@ -459,7 +395,6 @@ public class GameController {
         alertMessage.showAndWait();
         Platform.exit();
     }
-
     /**
      * A method called when no corresponding controller operation is implemented yet. This
      * should eventually be removed.

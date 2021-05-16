@@ -37,39 +37,23 @@ import static dk.dtu.compute.se.pisd.roborally.model.Phase.INITIALISATION;
  */
 public class Board extends Subject {
 
+    private Command userChoice = null;
     private String notEmpty;
-
     private int count;
-
     public final int width;
-
     public final int height;
-
     public final String boardName;
-
     private Integer gameId;
-
     private final Space[][] spaces;
-
     private final List<Player> players = new ArrayList<>();
-
     private List<Checkpoint> checkpoints = new ArrayList<>();
-
     private List<Integer> checkpointsNr = new ArrayList<>();
-
     private List<ConveyorBelt> conveyorBelts = new ArrayList<>();
-
     private List<Gear> gears = new ArrayList<>();
-
     private Player current;
-
     private Phase phase = INITIALISATION;
-
-
     private int step = 0;
-
     private boolean stepMode;
-
     public Board(int width, int height, @NotNull String boardName) {
         this.boardName = boardName;
         this.width = width;
@@ -83,15 +67,12 @@ public class Board extends Subject {
         }
         this.stepMode = false;
     }
-
     public Board(int width, int height) {
         this(width, height, "defaultboard");
     }
-
     public Integer getGameId() {
         return gameId;
     }
-
     public void setGameId(int gameId) {
         if (this.gameId == null) {
             this.gameId = gameId;
@@ -101,14 +82,12 @@ public class Board extends Subject {
             }
         }
     }
-
     /**
      * @param x defines the field on x-axis
      * @param y defines the field on y-axis
      * @return retrieves the field based on the value for x and y
      * @author Sercan Bicen
      */
-
     public Space getSpace(int x, int y) {
         if (x >= 0 && x < width &&
                 y >= 0 && y < height) {
@@ -117,18 +96,14 @@ public class Board extends Subject {
             return null;
         }
     }
-
     /**
      * @return the size of players
      * @author Sercan Bicen, Najib Hebrawi
      * Method that handle number of players
      */
-
     public int getPlayersNumber() {
         return players.size();
     }
-
-
     /**
      * Adding players to the game.
      *
@@ -141,7 +116,6 @@ public class Board extends Subject {
             notifyChange();
         }
     }
-
     public Player getPlayer(int i) {
         if (i >= 0 && i < players.size()) {
             return players.get(i);
@@ -149,29 +123,24 @@ public class Board extends Subject {
             return null;
         }
     }
-
     public Player getCurrentPlayer() {
         return current;
     }
-
     public void setCurrentPlayer(Player player) {
         if (player != this.current && players.contains(player)) {
             this.current = player;
             notifyChange();
         }
     }
-
     public Phase getPhase() {
         return phase;
     }
-
     public void setPhase(Phase phase) {
         if (phase != this.phase) {
             this.phase = phase;
             notifyChange();
         }
     }
-
     public int getStep() {
         return step;
     }
@@ -182,7 +151,6 @@ public class Board extends Subject {
             notifyChange();
         }
     }
-
     public boolean isStepMode() {
         return stepMode;
     }
@@ -193,7 +161,6 @@ public class Board extends Subject {
             notifyChange();
         }
     }
-
     public int getPlayerNumber(@NotNull Player player) {
         if (player.board == this) {
             return players.indexOf(player);
@@ -201,7 +168,6 @@ public class Board extends Subject {
             return -1;
         }
     }
-
     /**
      * Returns the neighbour of the given space of the board in the given heading.
      * The neighbour is returned only, if it can be reached from the given space
@@ -213,10 +179,7 @@ public class Board extends Subject {
      * @return the space in the given direction; null if there is no (reachable) neighbour
      */
     public Space getNeighbour(@NotNull Space space, @NotNull Heading heading) {
-
-
         if (!space.getWalls().contains(heading)) {
-
             int x = space.x;
             int y = space.y;
             switch (heading) {
@@ -241,8 +204,6 @@ public class Board extends Subject {
         }
         return null;
     }
-
-
     /**
      * @param space   the space for which the neighbour should be computed
      * @param heading the heading of the neighbour
@@ -266,10 +227,8 @@ public class Board extends Subject {
                 x = (x + 1) % width;
                 break;
         }
-
         return getSpace(x, y);
     }
-
     /**
      * Showing a message on the board that contains player name, moves, status on each field and the phase.
      */
@@ -279,8 +238,6 @@ public class Board extends Subject {
         // status of the game
         return "Player = " + getCurrentPlayer().getName() + ", moves: " + getCount() + ", message: " + getNotEmpty() + ", phase: " + getPhase();
     }
-
-
     /**
      * Get- and setter
      *
@@ -297,7 +254,6 @@ public class Board extends Subject {
             notifyChange();
         }
     }
-
     /**
      * Get- and setter
      *
@@ -307,26 +263,19 @@ public class Board extends Subject {
     public String getNotEmpty() {
         return (this.notEmpty == null ? "" : this.notEmpty);
     }
-
     public void setNotEmpty(String notEmpty) {
         this.notEmpty = notEmpty;
         notifyChange();
     }
-
-
-    private Command userChoice = null;
-
     public Command getUserChoice() {
         return userChoice;
     }
-
     public void setUserChoice(Command userChoice) {
         if (this.userChoice != userChoice) {
             this.userChoice = userChoice;
             notifyChange();
         }
     }
-
     /**
      * @return checkpoints
      * @author Sercan Bicen, Najib Hebrawi
@@ -335,41 +284,32 @@ public class Board extends Subject {
     public List<Checkpoint> getCheckpoints() {
         return this.checkpoints;
     }
-
     public void setCheckpoints(Checkpoint checkpoint) {
         this.checkpoints.add(checkpoint);
     }
-
     public List<Integer> getCheckpointsNr() {
         return checkpointsNr;
     }
-
     public void setCheckpointsNr(List<Integer> checkpointsNr) {
         this.checkpointsNr = checkpointsNr;
     }
-
     /**
      * @return
      * @author Lauritz Pepke
      * Get- and setter for gears.
      */
-
     public List<Gear> getGears() {
         return this.gears;
     }
-
     public void setGears(Gear gear) {
         this.gears.add(gear);
     }
-
     public List<Player> getPlayers() {
         return players;
     }
-
     public List<ConveyorBelt> getConveyerBelt() {
         return this.conveyorBelts;
     }
-
     public void setConveyerBelt(ConveyorBelt conveyorBelt) {
         this.conveyorBelts.add(conveyorBelt);
     }

@@ -36,45 +36,33 @@ public class Player extends Subject {
 
     final public static int NO_REGISTERS = 5;
     final public static int NO_CARDS = 8;
-
     final public Board board;
-
     private String name;
     private String color;
-
     private Space space;
     private Heading heading = SOUTH;
-
     private int endCheckpoint;
-
     private int startpointX;
     private int startpointY;
-
     private CommandCardField[] program;
     private CommandCardField[] cards;
-
     public Player(@NotNull Board board, String color, @NotNull String name) {
         this.board = board;
         this.name = name;
         this.color = color;
-
         this.space = null;
-
         program = new CommandCardField[NO_REGISTERS];
         for (int i = 0; i < program.length; i++) {
             program[i] = new CommandCardField(this);
         }
-
         cards = new CommandCardField[NO_CARDS];
         for (int i = 0; i < cards.length; i++) {
             cards[i] = new CommandCardField(this);
         }
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         if (name != null && !name.equals(this.name)) {
             this.name = name;
@@ -84,7 +72,6 @@ public class Player extends Subject {
             }
         }
     }
-
     public String getColor() {
         return color;
     }
@@ -96,11 +83,9 @@ public class Player extends Subject {
             space.playerChanged();
         }
     }
-
     public Space getSpace() {
         return space;
     }
-
     public void setSpace(Space space) {
         Space oldSpace = this.space;
         if (space != oldSpace &&
@@ -115,11 +100,9 @@ public class Player extends Subject {
             notifyChange();
         }
     }
-
     public Heading getHeading() {
         return heading;
     }
-
     public void setHeading(@NotNull Heading heading) {
         if (heading != this.heading) {
             this.heading = heading;
@@ -129,22 +112,18 @@ public class Player extends Subject {
             }
         }
     }
-
     public CommandCardField getProgramField(int i) {
         return program[i];
     }
-
     public CommandCardField getCardField(int i) {
         return cards[i];
     }
-
     public void setEndCheckpoint(int endCheckpoint) {
         if (endCheckpoint == (this.endCheckpoint + 1)) {
             this.endCheckpoint = endCheckpoint;
             notifyChange();
         }
     }
-
     /**
      * Checking if the number of the checkpoint is bigger than another.
      *
@@ -153,8 +132,6 @@ public class Player extends Subject {
     public int getEndCheckpoint() {
         return endCheckpoint;
     }
-
-
     public void moveForward(@NotNull Player player) {
         if (player.board == board && player != null) {
             Space space = player.getSpace();
@@ -175,7 +152,6 @@ public class Player extends Subject {
             }
         }
     }
-
     public void turnLeft(@NotNull Player player) {
         if (player != null && player.board == board) {
             player.setHeading(player.getHeading().prev());
@@ -186,25 +162,20 @@ public class Player extends Subject {
             player.setHeading(player.getHeading().next());
         }
     }
-
     public int getStartpointX() {
         return startpointX;
     }
-
     public void setStartpointX(int startpointX) {
         this.startpointX = startpointX;
         notifyChange();
     }
-
     public int getStartpointY() {
         return startpointY;
     }
-
     public void setStartpointY(int startpointY) {
         this.startpointY = startpointY;
         notifyChange();
     }
-
     /**
      * @param player  represent player(s) in game
      * @param space   space of the current and target player
@@ -216,22 +187,12 @@ public class Player extends Subject {
         Player other = space.getPlayer();
         if (other != null) {
             Space target = board.getNeighbour(space, heading);
-
             if (target != null) {
-
-                // XXX Note that there might be additional problems
-                // with infinite recursion here!
-
                 moveToSpace(other, target, heading);
             } else {
                 throw new ImpossibleMoveException(player, space, heading);
             }
         }
-
         player.setSpace(space);
-        //space.blueConveyorBeltAction();
-        //space.gearTurnRightAction();
-        //space.gearTurnLeftAction();
     }
-
 }
