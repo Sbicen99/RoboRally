@@ -88,9 +88,9 @@ public class AppController implements Observer {
             for (int i = 0; i < no; i++) {
                 Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1));
                 board.addPlayer(player);
-                player.setSpace(board.getSpace(13 % board.width, (i + 1) * 2));
+                player.setSpace(board.getSpace(13 % board.width, (i * 2)));
                 player.setStartpointX(13 % board.width);
-                player.setStartpointY((i + 1) * 2);
+                player.setStartpointY(i * 2);
             }
             // XXX: V2
             board.setCurrentPlayer(board.getPlayer(0));
@@ -153,9 +153,9 @@ public class AppController implements Observer {
             for (int i = 0; i < no; i++) {
                 Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1));
                 board.addPlayer(player);
-                player.setSpace(board.getSpace(11 % board.width, i + 1));
+                player.setSpace(board.getSpace(11 % board.width, i));
                 player.setStartpointX(11 % board.width);
-                player.setStartpointY(i + 1);
+                player.setStartpointY(i);
             }
             // XXX: V2
             board.setCurrentPlayer(board.getPlayer(0));
@@ -249,12 +249,18 @@ public class AppController implements Observer {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isEmpty() || result.get() != ButtonType.OK) {
+                // Close the game.
                 System.exit(-1);
             } else {
                 saveGame();
+                System.out.println("The game is saved.");
+                Alert savedToDB = new Alert(AlertType.INFORMATION);
+                savedToDB.setTitle("The game is saved!");
+                savedToDB.setHeaderText("You have now saved your game." + "\n" +
+                        "The program will close after you press 'OK'..");
+                savedToDB.showAndWait();
                 System.exit(-1);
             }
-
 
             gameController = null;
             roboRally.createBoardView(null);
