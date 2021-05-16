@@ -190,9 +190,7 @@ public class CardFieldView extends GridPane implements ViewObserver {
             event.consume();
         }
     }
-
     private class OnDragExitedHandler implements EventHandler<DragEvent> {
-
         @Override
         public void handle(DragEvent event) {
             Object t = event.getTarget();
@@ -211,9 +209,7 @@ public class CardFieldView extends GridPane implements ViewObserver {
             }
             event.consume();
         }
-
     }
-
     private class OnDragDroppedHandler implements EventHandler<DragEvent> {
 
         @Override
@@ -235,12 +231,7 @@ public class CardFieldView extends GridPane implements ViewObserver {
                         if (object instanceof String) {
                             CommandCardField source = cardFieldFromRepresentation((String) object);
                             if (source != null && gameController.moveCards(source, cardField)) {
-                                // CommandCard card = source.getCard();
-                                // if (card != null) {
-                                // if (gameController.moveCards(source, cardField)) {
-                                // cardField.setCard(card);
                                 success = true;
-                                // }
                             }
                         }
                     }
@@ -250,9 +241,7 @@ public class CardFieldView extends GridPane implements ViewObserver {
             }
             event.consume();
         }
-
     }
-
     private class OnDragDoneHandler implements EventHandler<DragEvent> {
 
         @Override
@@ -264,9 +253,7 @@ public class CardFieldView extends GridPane implements ViewObserver {
             }
             event.consume();
         }
-
     }
-
 }
 
 
