@@ -171,6 +171,7 @@ public class Repository implements IRepository {
 			updateCardFieldsInDB(game);
 			*/
 
+
             connection.commit();
             connection.setAutoCommit(true);
             return true;
