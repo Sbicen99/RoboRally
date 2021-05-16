@@ -2,6 +2,7 @@
 I projektet har fokus været på at videreudvikle et Java program der repræsenterer det strategiske brætspil RoboRally. Roborally har indtil nu været et fysisk spil,  hvor spillerne skal programmere deres robotter i mål inden deres medspillere, samtidig med at sabotere hinandens gameplans.
 
 
+(Skriv nedenfor udarbejdet af: Camilla, Thamara og Sercan)
 
 ## Spillerregler 
 - Vælg mellem 2 - 6 spillere. 
