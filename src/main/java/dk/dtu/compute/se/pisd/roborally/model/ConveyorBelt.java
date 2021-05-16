@@ -13,7 +13,6 @@ public class ConveyorBelt extends FieldAction {
     private Heading heading;
     public final int type;
 
-
     public ConveyorBelt(int type, @NotNull Heading heading) {
         this.type = type;
         this.heading = heading;
