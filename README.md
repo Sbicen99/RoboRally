@@ -1,48 +1,48 @@
-# RoboRally - Projekt i Software-udvikling (02362)
-I projektet har fokus været på at videreudvikle et Java program der repræsenterer det strategiske brætspil RoboRally. Roborally har indtil nu været et fysisk spil,  hvor spillerne skal programmere deres robotter i mål inden deres medspillere, samtidig med at sabotere hinandens gameplans.
+# RoboRally - Project in Software Development (02362)
+In the project, the focus has been on further developing a Java program that represents the strategic board game RoboRally. Roborally has so far been a physical game where players have to program their robots into goals before their teammates, while sabotaging each other's game plans.
 
-(Skriv nedenfor udarbejdet af: Camilla, Thamara og Sercan)
+(Write below prepared by: Camilla, Thamara and Sercan)
 
-## Konfiguration
-- Såfremt der opstår fejl i forbindelse med imports i klasserne, skal Maven-projektet genindlæses over i højre bjælke. Klik på "Maven" > "Genindlæs"-knappen
-- Opdatér dine database-oplysninger i Connector-klassen ("RoboRally" > "dal" > "Connector").
-
-
-## Spillerregler 
-- Vælg mellem 2 - 6 spillere. 
-- Hver spiller får tildelt sin farve robot. 
-- Hver spiller tildeles 8 programmeringskort til deres dæk. 
-- Alle spiller programmere deres robot ved at trække 5 programmeringskort i de 5 registre.
-- Programmerings kortene viser forskellige retninger f.eks. 3 skridt frem, drej til højre, 1 skridt tilbage osv. så det er nu et spørgsmål om at planlægge sin robots vej til den -næste checkpoint. 
-- Læg programmerings kortene i den rækkefølge, som robotten skal bevæge sig i.
-- Spillet foregår i runder, der består af en programmeringsfase og derefter en aktiveringsfase, hvor hver runde eksekveres i et register hos hver af spillerne. 
-- Efter programmeringsfasen vil aktiveringsfasen starte starte ved at trykke “finish programming”. 
-- Derefter kan der vælges om det enkelte register  skal eksekveres ved at trykke “Execute current register”.
-- Eller alle register for alle spillere skal eksekveres ved at trykke “Execute program”.
-- Aktiveringsfasen vil aktivere hvert register efter  registrenes rækkefølge. Dvs register 1 eksekveres for alle robotter før register 2 vil eksekveres. 
-- Eksekveringen vil ske i rækkefølgen spiller 1 til spiller 6.
-- Under aktiveringsfasen vil robotten udfører de handlinger der er på de kort der er placeret i registreret. 
-- Når alle 5 registre er eksekveret for alle robotterne  vil programmeringsfasen gentage sig.
-- Den Spiller der først når alle checkpoints i den rigtige rækkefølge vinder spillet. 
+## Configuration
+- If errors occur in connection with imports in the classes, the Maven project must be reloaded into the right bar. Click the "Stomach"> "Reload" button
+- Update your database information in the Connector class ("RoboRally"> "dal"> "Connector").
 
 
-
-## Features i nuværende version
-
-- Spillere har mulighed for at skubbe hinanden et felt.
-
-Felter:
-Spillepladen indeholder forskellige udfordringer som robotterne vil møde på deres vej:
-- Væg: Robotter kan ikke bevæge sig igennem felter hvor der er placeret vægge. 
-- Grøn conveyorbelt: Lander en robot på den grønne conveyorbelte vil den automatisk blive rykket et felt frem. Robotten vil følge beltet i den retning pilene pejer. 
-- Blåt conveyorbelt: Hvis en robot lander på det blå conveyorbelte vil robotten rykke to felter frem i pilenes retning. 
-- Grøn Gear: Lander robotten på dette felt vil den blive drejet til højre.
-- Rød Gear: Lander robotten på dette felt vil den blive drejet til venstre.
-- Checkpoint: Robotterne skal samle checkpoints. Først checkpoint 1 derefter checkpoint 2. 
+## Player rules
+- Choose between 2 - 6 players.
+- Each player is assigned his color robot.
+- Each player is dealt 8 programming cards for their decks.
+- All players program their robot by dragging 5 programming cards in the 5 registers.
+- The programming maps show different directions e.g. 3 steps forward, turn right, 1 step back, etc. so it's now a matter of planning his robot's path to the next checkpoint.
+Place the programming cards in the order in which the robot is to move.
+- The game takes place in rounds consisting of a programming phase and then an activation phase, where each round is executed in a register of each of the players.
+- After the programming phase, the activation phase will start by pressing “finish programming”.
+- Then you can select whether the individual register is to be executed by pressing “Execute current register”.
+- Or all registers for all players must be executed by pressing "Execute program".
+The activation phase will activate each register in the order of the registers. That is, register 1 is executed for all robots before register 2 will be executed.
+- The execution will take place in the order player 1 to player 6.
+- During the activation phase, the robot will perform the actions that are on the cards placed in the register.
+- When all 5 registers have been executed for all the robots, the programming phase will be repeated.
+The Player who first reaches all checkpoints in the correct order wins the game.
 
 
 
-De 8 forskellige programmeringskort:
+## Features in current version
+
+- Players have the opportunity to push each other a field.
+
+Fields:
+The game board contains various challenges that the robots will face on their way:
+- Wall: Robots cannot move through fields where walls are located.
+- Green conveyor belt: If a robot lands on the green conveyor belt, it will automatically be moved one field forward. The robot will follow the belt in the direction the arrows point.
+- Blue conveyor belt: If a robot lands on the blue conveyor belt, the robot will advance two fields in the direction of the arrows.
+- Green Gear: If the robot lands on this field, it will be turned to the right.
+- Red Gear: If the robot lands on this field, it will be turned to the left.
+- Checkpoint: The robots must collect checkpoints. First checkpoint 1 then checkpoint 2.
+
+
+
+The 8 different programming cards:
 - Move one step forward
 - Move two steps forward
 - Move three steps forward
@@ -54,5 +54,5 @@ De 8 forskellige programmeringskort:
 
 
 Database:
-- Mulighed for at gemme et spil i databasen med dets respektive navn.
-- Hente det gemte spil fra databasen.
+Possibility to save a game in the database with its respective name.
+- Retrieve the saved game from the database.
